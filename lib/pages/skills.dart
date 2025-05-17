@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class SkillsSection extends StatelessWidget {
   final List<Map<String, dynamic>> languages = [
@@ -38,23 +39,37 @@ class SkillsSection extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: isDark ? Colors.white12 : Colors.grey[100],
                     shape: BoxShape.circle,
-                    boxShadow: isDark
-                        ? []
-                        : [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 6,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
+                    boxShadow: [
+                      BoxShadow(
+                        color: isDark
+                            ? Colors.white.withOpacity(0.25)
+                            : Colors.black.withOpacity(0.4),
+                        spreadRadius: isDark ? 2 : 4,
+                        blurRadius: isDark ? 8 : 16,
+                        offset: const Offset(0, 6),
+                      ),
+                    ],
                   ),
                   child: Image.asset(
                     item['asset'],
                     width: 40,
                     height: 40,
                   ),
-                ),
+                )
+                    .animate(onPlay: (controller) => controller.repeat())
+                    .scaleXY(
+                      begin: 1.0,
+                      end: 1.1,
+                      duration: 800.ms,
+                      curve: Curves.easeInOut,
+                    )
+                    .then()
+                    .scaleXY(
+                      begin: 1.1,
+                      end: 1.0,
+                      duration: 800.ms,
+                      curve: Curves.easeInOut,
+                    ),
               ),
               const SizedBox(height: 8),
               Text(
