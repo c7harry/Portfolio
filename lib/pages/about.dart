@@ -1,10 +1,60 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutSection extends StatelessWidget {
-  final String resumeUrl = 'https://drive.google.com/file/d/1aR8lixMPw33Jjw5VeMzwcV2WVZh5e7Mq/view?usp=sharing'; // Replace with your actual resume link
+class AboutSection extends StatefulWidget {
+  @override
+  State<AboutSection> createState() => _AboutSectionState();
+}
+
+class _AboutSectionState extends State<AboutSection> {
+  final String resumeUrl = 'https://drive.google.com/file/d/1aR8lixMPw33Jjw5VeMzwcV2WVZh5e7Mq/view?usp=sharing';
+  final List<String> titles = ['Software Engineer', 'Full Stack Developer'];
+
+  String displayedText = '';
+  int currentTitleIndex = 0;
+  int charIndex = 0;
+  bool isDeleting = false;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startTyping();
+  }
+
+  void _startTyping() {
+    timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      setState(() {
+        final currentText = titles[currentTitleIndex];
+        if (!isDeleting) {
+          if (charIndex < currentText.length) {
+            displayedText = currentText.substring(0, ++charIndex);
+          } else {
+            // Pause before deleting
+            Future.delayed(const Duration(milliseconds: 1000), () {
+              isDeleting = true;
+            });
+          }
+        } else {
+          if (charIndex > 0) {
+            displayedText = currentText.substring(0, --charIndex);
+          } else {
+            isDeleting = false;
+            currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+          }
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   void _launchURL() async {
     if (!await launchUrl(Uri.parse(resumeUrl), mode: LaunchMode.externalApplication)) {
@@ -59,7 +109,39 @@ class AboutSection extends StatelessWidget {
                 .slideY(begin: 0.2),
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 40),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "I am a ",
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: textColor,
+                ),
+              ),
+              Text(
+                displayedText,
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+              Text(
+                "|",
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 40),
 
           ElevatedButton.icon(
             onPressed: _launchURL,
