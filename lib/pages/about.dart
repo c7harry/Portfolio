@@ -11,7 +11,7 @@ class AboutSection extends StatefulWidget {
 
 class _AboutSectionState extends State<AboutSection> {
   final String resumeUrl = 'https://drive.google.com/file/d/1aR8lixMPw33Jjw5VeMzwcV2WVZh5e7Mq/view?usp=sharing';
-  final List<String> titles = ['Software Engineer', 'Full Stack Developer'];
+  final List<String> titles = ['Software Engineer', 'Full Stack Developer', 'Cyber Security Engineer', 'Flutter Engineer'];
 
   String displayedText = '';
   int currentTitleIndex = 0;
@@ -183,15 +183,15 @@ class _AboutSectionState extends State<AboutSection> {
             children: [
               Text(
                 "📧 hdosanjh209@gmail.com",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.8)),
+                style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
               ),
               Text(
                 "🔗 linkedin.com/in/harpreet-dosanjh209",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.8)),
+                style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
               ),
               Text(
                 "🐙 github.com/c7harry",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.8)),
+                style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
               ),
             ],
           )
