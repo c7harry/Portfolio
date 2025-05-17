@@ -38,13 +38,6 @@ class HeaderSection extends StatelessWidget {
               .slideY(begin: -0.2)
               .scale(delay: 300.ms),
           const SizedBox(height: 20),
-          Animate(
-            effects: [FadeEffect(duration: 800.ms), SlideEffect(begin: Offset(0, 0.3))],
-            child: Text(
-              "Frontend Developer | Flutter Enthusiast",
-              style: GoogleFonts.robotoMono(fontSize: 20, color: subtitleColor),
-            ),
-          ),
         ],
       ),
     );
