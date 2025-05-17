@@ -35,7 +35,7 @@ class HeaderSection extends StatelessWidget {
             effects: [FadeEffect(duration: 800.ms), SlideEffect(begin: Offset(0, 0.3))],
             child: Text(
               "Frontend Developer | Flutter Enthusiast",
-              style: GoogleFonts.robotoMono(fontSize: 20, color: Colors.cyanAccent),
+              style: GoogleFonts.robotoMono(fontSize: 20, color: const Color.fromARGB(255, 255, 255, 255)),
             ),
           ),
         ],

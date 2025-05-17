@@ -25,10 +25,10 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
       theme: isDarkMode
           ? ThemeData.dark().copyWith(
               scaffoldBackgroundColor: const Color.fromARGB(255, 9, 10, 9),
-              primaryColor: Colors.tealAccent,
+              primaryColor: const Color.fromARGB(255, 255, 255, 255),
               colorScheme: ColorScheme.dark(
-                primary: Colors.tealAccent,
-                secondary: Colors.amberAccent,
+                primary: const Color.fromARGB(255, 255, 255, 255),
+                secondary: const Color.fromARGB(255, 255, 255, 255),
               ),
               textTheme: GoogleFonts.poppinsTextTheme(
                 ThemeData.dark().textTheme,
@@ -39,10 +39,10 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
             )
           : ThemeData.light().copyWith(
               scaffoldBackgroundColor: Colors.white,
-              primaryColor: Colors.teal,
+              primaryColor: const Color.fromARGB(255, 0, 0, 0),
               colorScheme: ColorScheme.light(
-                primary: Colors.teal,
-                secondary: Colors.amber,
+                primary: const Color.fromARGB(255, 0, 0, 0),
+                secondary: const Color.fromARGB(255, 255, 255, 255),
               ),
               textTheme: GoogleFonts.poppinsTextTheme(
                 ThemeData.light().textTheme,

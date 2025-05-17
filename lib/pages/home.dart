@@ -30,34 +30,24 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: const Color.fromARGB(255, 9, 10, 9),
         elevation: 0,
+        scrolledUnderElevation: 0, 
+        shadowColor: Colors.transparent,
         title: Row(
           children: [
-            Image.asset(
-                'assets/images/logo.png',
-                height: 60,
-                ),
-            SizedBox(width: 8),
-            Text("Harpreet Dosanjh"),
-            Spacer(),
+            Image.asset('assets/images/logo.png', height: 60),
+            const SizedBox(width: 8),
+            const Text("Harpreet Dosanjh"),
+            const Spacer(),
             IconButton(
               icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
               onPressed: widget.toggleTheme,
               tooltip: 'Toggle Theme',
             ),
-            TextButton(
-              onPressed: () => scrollTo(aboutKey),
-              child: Text("About"),
-            ),
-            TextButton(
-              onPressed: () => scrollTo(skillsKey),
-              child: Text("Skills"),
-            ),
-            TextButton(
-              onPressed: () => scrollTo(projectsKey),
-              child: Text("Projects"),
-            ),
+            TextButton(onPressed: () => scrollTo(aboutKey), child: const Text("About")),
+            TextButton(onPressed: () => scrollTo(skillsKey), child: const Text("Skills")),
+            TextButton(onPressed: () => scrollTo(projectsKey), child: const Text("Projects")),
           ],
         ),
       ),
