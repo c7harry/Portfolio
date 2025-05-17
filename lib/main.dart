@@ -21,7 +21,7 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Portfolio',
+      title: 'Harpreets Portfolio',
       theme: isDarkMode
           ? ThemeData.dark().copyWith(
               scaffoldBackgroundColor: Colors.black,

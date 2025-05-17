@@ -10,7 +10,7 @@ class AboutSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
       child: Column(
         children: [
-          Text("About Me",
+          Text("Hi, I am Harpreet.",
               style: GoogleFonts.poppins(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
