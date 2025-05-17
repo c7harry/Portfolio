@@ -32,30 +32,34 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.scaffoldBackgroundColor, // Dynamically adapt
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        shadowColor: Colors.transparent,
         title: Row(
           children: [
-            Image.asset('assets/images/logo.png', height: 60),
-            const SizedBox(width: 8),
-            Text(
-              "Harpreet Dosanjh",
-              style: TextStyle(color: theme.colorScheme.onBackground),
+            Image.asset(
+              widget.isDarkMode
+                  ? 'assets/images/logo.png'
+                  : 'assets/images/logo-inverted.png',
+              height: 60,
             ),
+            const SizedBox(width: 8),
+            const Text("Harpreet Dosanjh"),
             const Spacer(),
             IconButton(
-              icon: Icon(
-                widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                color: theme.iconTheme.color,
-              ),
+              icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
               onPressed: widget.toggleTheme,
               tooltip: 'Toggle Theme',
             ),
-            _buildNavButton("About", () => scrollTo(aboutKey), theme),
-            _buildNavButton("Skills", () => scrollTo(skillsKey), theme),
-            _buildNavButton("Projects", () => scrollTo(projectsKey), theme),
+            TextButton(
+              onPressed: () => scrollTo(aboutKey),
+              child: const Text("About"),
+            ),
+            TextButton(
+              onPressed: () => scrollTo(skillsKey),
+              child: const Text("Skills"),
+            ),
+            TextButton(
+              onPressed: () => scrollTo(projectsKey),
+              child: const Text("Projects"),
+            ),
           ],
         ),
       ),

@@ -26,9 +26,9 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
           ? ThemeData.dark().copyWith(
               useMaterial3: true,
               scaffoldBackgroundColor: const Color.fromARGB(255, 9, 10, 9),
-              primaryColor: Colors.cyanAccent,
+              primaryColor: const Color.fromARGB(255, 255, 255, 255),
               colorScheme: const ColorScheme.dark(
-                primary: Colors.cyanAccent,
+                primary: Color.fromARGB(255, 255, 255, 255),
                 secondary: Colors.amberAccent,
               ),
               textTheme: GoogleFonts.poppinsTextTheme(
@@ -46,9 +46,9 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
           : ThemeData.light().copyWith(
               useMaterial3: true,
               scaffoldBackgroundColor: Colors.white,
-              primaryColor: Colors.teal,
+              primaryColor: const Color.fromARGB(255, 0, 0, 0),
               colorScheme: const ColorScheme.light(
-                primary: Colors.teal,
+                primary: Color.fromARGB(255, 0, 0, 0),
                 secondary: Colors.amber,
               ),
               textTheme: GoogleFonts.poppinsTextTheme(
@@ -58,10 +58,10 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
                 displayColor: Colors.black87,
               ),
               appBarTheme: const AppBarTheme(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                scrolledUnderElevation: 0,
-              ),
+              backgroundColor: Color.fromRGBO(251, 249, 247, 1), // or fromARGB(255, 251, 249, 247)
+              elevation: 0,
+              scrolledUnderElevation: 0,
+            ),
             ),
       home: HomePage(toggleTheme: toggleTheme, isDarkMode: isDarkMode),
       debugShowCheckedModeBanner: false,
