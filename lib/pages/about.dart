@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutSection extends StatelessWidget {
+  final String resumeUrl = 'https://drive.google.com/file/d/1aR8lixMPw33Jjw5VeMzwcV2WVZh5e7Mq/view?usp=sharing'; // Replace with your actual resume link
+
+  void _launchURL() async {
+    if (!await launchUrl(Uri.parse(resumeUrl), mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $resumeUrl';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -15,41 +24,65 @@ class AboutSection extends StatelessWidget {
       color: theme.scaffoldBackgroundColor,
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Hi, I am Harpreet.",
+            "Hi, I'm Harpreet",
             style: GoogleFonts.poppins(
-              fontSize: 32,
+              fontSize: 36,
               fontWeight: FontWeight.bold,
               color: titleColor,
             ),
           ).animate().fadeIn().slideY(begin: 0.2),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
 
-          Center(
-            child: Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: cardColor,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: borderColor),
-              ),
-              width: 600,
-              child: Text(
-                "I'm a developer passionate about creating beautiful, high-performance web and mobile applications using modern technologies like Flutter, React, and Firebase.",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  fontSize: 18,
-                  color: textColor.withOpacity(0.85),
-                ),
-              )
-                  .animate()
-                  .fadeIn()
-                  .scaleXY(begin: 0.9, duration: Duration(milliseconds: 600))
-                  .slideY(begin: 0.2),
+          Container(
+            width: 700,
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: cardColor,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: borderColor),
             ),
+            child: Text(
+              "A passionate developer with experience building elegant, high-performance applications using Flutter, React, Firebase, and modern web technologies. I love solving complex problems and crafting intuitive user experiences.",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                color: textColor.withOpacity(0.9),
+              ),
+            )
+                .animate()
+                .fadeIn()
+                .scaleXY(begin: 0.9)
+                .slideY(begin: 0.2),
           ),
+
+          const SizedBox(height: 30),
+
+          ElevatedButton.icon(
+            onPressed: _launchURL,
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+              backgroundColor: theme.colorScheme.primary,
+              foregroundColor: theme.colorScheme.onPrimary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 10,
+              shadowColor: theme.brightness == Brightness.dark
+                  ? Colors.white.withOpacity(0.2)
+                  : Colors.black.withOpacity(0.3),
+            ),
+            icon: const Icon(Icons.picture_as_pdf),
+            label: const Text("View Resume", style: TextStyle(fontSize: 16)),
+          )
+              .animate()
+              .fadeIn(delay: 200.ms)
+              .slideY(begin: 0.3)
+              .then()
+              .shakeY(delay: 400.ms, duration: 800.ms), // playful bounce effect
 
           const SizedBox(height: 60),
 
@@ -62,26 +95,26 @@ class AboutSection extends StatelessWidget {
             ),
           ).animate().fadeIn().slideY(begin: 0.2),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
 
           Column(
             children: [
               Text(
                 "📧 hdosanjh209@gmail.com",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.75)),
+                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.8)),
               ),
               Text(
                 "🔗 linkedin.com/in/harpreet-dosanjh209",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.75)),
+                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.8)),
               ),
               Text(
                 "🐙 github.com/c7harry",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.75)),
+                style: GoogleFonts.robotoMono(color: textColor.withOpacity(0.8)),
               ),
             ],
           )
               .animate()
-              .fadeIn(delay: Duration(milliseconds: 200))
+              .fadeIn(delay: 200.ms)
               .slideY(begin: 0.4),
         ],
       ),
