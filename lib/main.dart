@@ -21,14 +21,15 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Harpreets Portfolio',
+      title: 'Harpreet\'s Portfolio',
       theme: isDarkMode
           ? ThemeData.dark().copyWith(
+              useMaterial3: true,
               scaffoldBackgroundColor: const Color.fromARGB(255, 9, 10, 9),
-              primaryColor: const Color.fromARGB(255, 255, 255, 255),
-              colorScheme: ColorScheme.dark(
-                primary: const Color.fromARGB(255, 255, 255, 255),
-                secondary: const Color.fromARGB(255, 255, 255, 255),
+              primaryColor: Colors.cyanAccent,
+              colorScheme: const ColorScheme.dark(
+                primary: Colors.cyanAccent,
+                secondary: Colors.amberAccent,
               ),
               textTheme: GoogleFonts.poppinsTextTheme(
                 ThemeData.dark().textTheme,
@@ -36,19 +37,30 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
                 bodyColor: Colors.white,
                 displayColor: Colors.white,
               ),
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Color.fromARGB(255, 9, 10, 9),
+                elevation: 0,
+                scrolledUnderElevation: 0,
+              ),
             )
           : ThemeData.light().copyWith(
+              useMaterial3: true,
               scaffoldBackgroundColor: Colors.white,
-              primaryColor: const Color.fromARGB(255, 0, 0, 0),
-              colorScheme: ColorScheme.light(
-                primary: const Color.fromARGB(255, 0, 0, 0),
-                secondary: const Color.fromARGB(255, 255, 255, 255),
+              primaryColor: Colors.teal,
+              colorScheme: const ColorScheme.light(
+                primary: Colors.teal,
+                secondary: Colors.amber,
               ),
               textTheme: GoogleFonts.poppinsTextTheme(
                 ThemeData.light().textTheme,
               ).apply(
-                bodyColor: const Color.fromARGB(255, 9, 10, 9),
-                displayColor: const Color.fromARGB(255, 9, 10, 9),
+                bodyColor: Colors.black87,
+                displayColor: Colors.black87,
+              ),
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                scrolledUnderElevation: 0,
               ),
             ),
       home: HomePage(toggleTheme: toggleTheme, isDarkMode: isDarkMode),

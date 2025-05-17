@@ -5,12 +5,19 @@ import 'package:google_fonts/google_fonts.dart';
 class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final backgroundColor = isDark
+        ? const Color.fromARGB(255, 9, 10, 9)
+        : Colors.white;
+    final textColor = isDark ? Colors.white : const Color.fromARGB(255, 9, 10, 9);
+    final subtitleColor = isDark ? Colors.cyanAccent : Colors.teal;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 24),
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [const Color.fromARGB(255, 9, 10, 9), const Color.fromARGB(255, 9, 10, 9)],
+          colors: [backgroundColor, backgroundColor],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -23,7 +30,7 @@ class HeaderSection extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 42,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: textColor,
             ),
           )
               .animate()
@@ -35,7 +42,7 @@ class HeaderSection extends StatelessWidget {
             effects: [FadeEffect(duration: 800.ms), SlideEffect(begin: Offset(0, 0.3))],
             child: Text(
               "Frontend Developer | Flutter Enthusiast",
-              style: GoogleFonts.robotoMono(fontSize: 20, color: const Color.fromARGB(255, 255, 255, 255)),
+              style: GoogleFonts.robotoMono(fontSize: 20, color: subtitleColor),
             ),
           ),
         ],

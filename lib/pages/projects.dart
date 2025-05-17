@@ -21,17 +21,19 @@ class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color.fromARGB(255, 9, 10, 9),
+      color: Theme.of(context).scaffoldBackgroundColor,
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Projects",
-              style: GoogleFonts.poppins(
-                  fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white))
-              .animate()
-              .fadeIn()
-              .slideY(begin: 0.2),
+          Text(
+            "Projects",
+            style: GoogleFonts.poppins(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ).animate().fadeIn().slideY(begin: 0.2),
           const SizedBox(height: 30),
           Column(
             children: projects.asMap().entries.map((entry) {
@@ -40,12 +42,25 @@ class ProjectsSection extends StatelessWidget {
 
               return Card(
                 elevation: 8,
-                color: Colors.white.withOpacity(0.05),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                color: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
                 margin: const EdgeInsets.symmetric(vertical: 12),
                 child: ListTile(
-                  title: Text(project['title']!, style: GoogleFonts.poppins(color: Colors.white)),
-                  subtitle: Text(project['description']!, style: GoogleFonts.poppins(color: Colors.white70)),
+                  title: Text(
+                    project['title']!,
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  subtitle: Text(
+                    project['description']!,
+                    style: GoogleFonts.poppins(
+                      color: Colors.white70,
+                    ),
+                  ),
                 ),
               ).animate().fadeIn(delay: (i * 200).ms).slideX(begin: 0.2);
             }).toList(),

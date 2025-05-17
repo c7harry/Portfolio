@@ -21,33 +21,42 @@ class _HomePageState extends State<HomePage> {
   void scrollTo(GlobalKey key) {
     Scrollable.ensureVisible(
       key.currentContext!,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 9, 10, 9),
+        backgroundColor: theme.scaffoldBackgroundColor, // Dynamically adapt
         elevation: 0,
-        scrolledUnderElevation: 0, 
+        scrolledUnderElevation: 0,
         shadowColor: Colors.transparent,
         title: Row(
           children: [
             Image.asset('assets/images/logo.png', height: 60),
             const SizedBox(width: 8),
-            const Text("Harpreet Dosanjh"),
+            Text(
+              "Harpreet Dosanjh",
+              style: TextStyle(color: theme.colorScheme.onBackground),
+            ),
             const Spacer(),
             IconButton(
-              icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+              icon: Icon(
+                widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                color: theme.iconTheme.color,
+              ),
               onPressed: widget.toggleTheme,
               tooltip: 'Toggle Theme',
             ),
-            TextButton(onPressed: () => scrollTo(aboutKey), child: const Text("About")),
-            TextButton(onPressed: () => scrollTo(skillsKey), child: const Text("Skills")),
-            TextButton(onPressed: () => scrollTo(projectsKey), child: const Text("Projects")),
+            _buildNavButton("About", () => scrollTo(aboutKey), theme),
+            _buildNavButton("Skills", () => scrollTo(skillsKey), theme),
+            _buildNavButton("Projects", () => scrollTo(projectsKey), theme),
           ],
         ),
       ),
@@ -59,6 +68,16 @@ class _HomePageState extends State<HomePage> {
             Container(key: projectsKey, child: ProjectsSection()),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildNavButton(String label, VoidCallback onPressed, ThemeData theme) {
+    return TextButton(
+      onPressed: onPressed,
+      child: Text(
+        label,
+        style: TextStyle(color: theme.colorScheme.onBackground),
       ),
     );
   }
