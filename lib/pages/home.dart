@@ -34,11 +34,18 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Row(
           children: [
-            Image.asset(
-              widget.isDarkMode
-                  ? 'assets/images/logo.png'
-                  : 'assets/images/logo-inverted.png',
-              height: 60,
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return ScaleTransition(scale: animation, child: child);
+              },
+              child: Image.asset(
+                widget.isDarkMode
+                    ? 'assets/images/logo.png'
+                    : 'assets/images/logo-inverted.png',
+                key: ValueKey<bool>(widget.isDarkMode),
+                height: 70,
+              ),
             ),
             const SizedBox(width: 8),
             const Text("Harpreet Dosanjh"),
