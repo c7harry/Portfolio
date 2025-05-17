@@ -34,7 +34,10 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         title: Row(
           children: [
-            Icon(Icons.person, color: Theme.of(context).colorScheme.primary),
+            Image.asset(
+                'assets/images/logo.png',
+                height: 60,
+                ),
             SizedBox(width: 8),
             Text("Harpreet Dosanjh"),
             Spacer(),

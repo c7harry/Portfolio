@@ -6,7 +6,7 @@ class AboutSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: const Color.fromARGB(255, 9, 10, 9),
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
       child: Column(
         children: [

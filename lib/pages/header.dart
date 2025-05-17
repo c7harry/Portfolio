@@ -10,7 +10,7 @@ class HeaderSection extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.black, Colors.blueGrey.shade900],
+          colors: [const Color.fromARGB(255, 9, 10, 9), const Color.fromARGB(255, 9, 10, 9)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),

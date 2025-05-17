@@ -24,7 +24,7 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
       title: 'Harpreets Portfolio',
       theme: isDarkMode
           ? ThemeData.dark().copyWith(
-              scaffoldBackgroundColor: Colors.black,
+              scaffoldBackgroundColor: const Color.fromARGB(255, 9, 10, 9),
               primaryColor: Colors.tealAccent,
               colorScheme: ColorScheme.dark(
                 primary: Colors.tealAccent,
@@ -47,8 +47,8 @@ class _MyPortfolioAppState extends State<MyPortfolioApp> {
               textTheme: GoogleFonts.poppinsTextTheme(
                 ThemeData.light().textTheme,
               ).apply(
-                bodyColor: Colors.black,
-                displayColor: Colors.black,
+                bodyColor: const Color.fromARGB(255, 9, 10, 9),
+                displayColor: const Color.fromARGB(255, 9, 10, 9),
               ),
             ),
       home: HomePage(toggleTheme: toggleTheme, isDarkMode: isDarkMode),
