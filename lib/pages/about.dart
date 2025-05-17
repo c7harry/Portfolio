@@ -131,7 +131,7 @@ class _AboutSectionState extends State<AboutSection> {
                 ),
               ),
               Text(
-                "|",
+                "_",
                 style: GoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
