@@ -126,7 +126,7 @@ class _AboutSectionState extends State<AboutSection> {
                     color: textColor,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 20),
                 ...[
                   '🎓 Computer Engineering graduate from UC Merced with strong foundations in software development and systems engineering.',
                   '👨‍💻 Full-stack engineer experienced with Flutter, React, Firebase, Flask, and SQLite.',
@@ -187,7 +187,7 @@ class _AboutSectionState extends State<AboutSection> {
               .then()
               .shakeY(delay: 400.ms, duration: 800.ms),
 
-          const SizedBox(height: 60),
+          const SizedBox(height: 40),
 
           Text(
             "Contact Info",
