@@ -26,7 +26,7 @@ class HeaderSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Hi, I'm Update",
+            "Hi, I'm Harpreet",
             style: GoogleFonts.poppins(
               fontSize: 42,
               fontWeight: FontWeight.bold,
