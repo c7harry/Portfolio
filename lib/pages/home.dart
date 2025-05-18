@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/pages/about.dart';
 import 'package:my_portfolio/pages/skills.dart';
 import 'package:my_portfolio/pages/projects.dart';
+import 'package:my_portfolio/pages/certificates.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback toggleTheme;
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey aboutKey = GlobalKey();
   final GlobalKey skillsKey = GlobalKey();
   final GlobalKey projectsKey = GlobalKey();
+  final GlobalKey certificatesKey = GlobalKey();
 
   void scrollTo(GlobalKey key) {
     Scrollable.ensureVisible(
@@ -68,6 +70,10 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 onPressed: () => scrollTo(projectsKey),
                 child: const Text("Projects"),
+              ),
+              TextButton(
+                onPressed: () => scrollTo(certificatesKey),
+                child: const Text("Certificates"),
               ),
             ],
           ],
@@ -125,6 +131,13 @@ class _HomePageState extends State<HomePage> {
                       scrollTo(projectsKey);
                     },
                   ),
+                  ListTile(
+                    title: const Text("Certificates"),
+                    onTap: () {
+                      Navigator.pop(context);
+                      scrollTo(certificatesKey);
+                    },
+                  ),
                 ],
               ),
             )
@@ -135,6 +148,7 @@ class _HomePageState extends State<HomePage> {
             Container(key: aboutKey, child: AboutSection()),
             Container(key: skillsKey, child: SkillsSection()),
             Container(key: projectsKey, child: ProjectsSection()),
+            Container(key: certificatesKey, child: CertificatesSection()),
           ],
         ),
       ),
