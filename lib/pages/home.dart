@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isMobile = MediaQuery.of(context).size.width < 600;
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                     ? 'assets/images/logo.png'
                     : 'assets/images/logo-inverted.png',
                 key: ValueKey<bool>(widget.isDarkMode),
-                height: 70,
+                height: 50,
               ),
             ),
             const SizedBox(width: 8),
@@ -55,21 +56,79 @@ class _HomePageState extends State<HomePage> {
               onPressed: widget.toggleTheme,
               tooltip: 'Toggle Theme',
             ),
-            TextButton(
-              onPressed: () => scrollTo(aboutKey),
-              child: const Text("About"),
-            ),
-            TextButton(
-              onPressed: () => scrollTo(skillsKey),
-              child: const Text("Skills"),
-            ),
-            TextButton(
-              onPressed: () => scrollTo(projectsKey),
-              child: const Text("Projects"),
-            ),
+            if (!isMobile) ...[
+              TextButton(
+                onPressed: () => scrollTo(aboutKey),
+                child: const Text("About"),
+              ),
+              TextButton(
+                onPressed: () => scrollTo(skillsKey),
+                child: const Text("Skills"),
+              ),
+              TextButton(
+                onPressed: () => scrollTo(projectsKey),
+                child: const Text("Projects"),
+              ),
+            ],
           ],
         ),
       ),
+      drawer: isMobile
+          ? Drawer(
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 40, 16, 12),
+                    decoration: BoxDecoration(
+                      color: theme.primaryColor.withOpacity(0.1),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              widget.isDarkMode
+                                  ? 'assets/images/logo.png'
+                                  : 'assets/images/logo-inverted.png',
+                              height: 40,
+                            ),
+                            const SizedBox(width: 8),
+                            const Text("Harpreet Dosanjh"),
+                          ],
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: () => Navigator.pop(context),
+                        )
+                      ],
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text("About"),
+                    onTap: () {
+                      Navigator.pop(context);
+                      scrollTo(aboutKey);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Skills"),
+                    onTap: () {
+                      Navigator.pop(context);
+                      scrollTo(skillsKey);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Projects"),
+                    onTap: () {
+                      Navigator.pop(context);
+                      scrollTo(projectsKey);
+                    },
+                  ),
+                ],
+              ),
+            )
+          : null,
       body: SingleChildScrollView(
         child: Column(
           children: [
