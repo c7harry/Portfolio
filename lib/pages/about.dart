@@ -33,7 +33,6 @@ class _AboutSectionState extends State<AboutSection> {
           if (charIndex < currentText.length) {
             displayedText = currentText.substring(0, ++charIndex);
           } else {
-            // Pause before deleting
             Future.delayed(const Duration(milliseconds: 1000), () {
               isDeleting = true;
             });
@@ -95,13 +94,46 @@ class _AboutSectionState extends State<AboutSection> {
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: borderColor),
             ),
-            child: Text(
-              "Results-driven financial analyst and software engineer with expertise in market analysis, risk management, and strategic decision-making. I utilize data-driven insights and advanced tools to optimize performance and achieve consistent, profitable outcomes. With a passion for integrating finance and technology, I bring a unique skill set that bridges analytical rigor and innovative problem-solving.",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                color: textColor.withOpacity(0.9),
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Who am I?",
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                ...[
+                  '🎓 Computer Engineering graduate from UC Merced with strong foundations in software development and systems engineering.',
+                  '👨‍💻 Full-stack engineer experienced with Flutter, React, Firebase, Flask, and SQLite.',
+                  '📈 Financial analyst background with MyForexFunds and Funding Pips, specializing in technical analysis and disciplined risk management.',
+                  '🤖 Built ML-powered applications using TensorFlow and Keras, including a predictive agriculture tool deployed with Flutter for SupHerb Farms.',
+                  '🚀 Proficient in Git, JS, CI/CD, C++, and cross-platform mobile/web development.',
+                  '🧠 Passionate about solving complex, real-world problems by combining data, design, and engineering best practices.',
+                ].asMap().entries.map((entry) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("• ", style: TextStyle(fontSize: 18)),
+                      Expanded(
+                        child: Text(
+                          entry.value,
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            height: 1.8,
+                            letterSpacing: 0.4,
+                            color: textColor.withOpacity(0.9),
+                          ),
+                        ).animate().fadeIn(delay: (entry.key * 100).ms),
+                      ),
+                    ],
+                  ),
+                )),
+              ],
             )
                 .animate()
                 .fadeIn()
@@ -164,7 +196,7 @@ class _AboutSectionState extends State<AboutSection> {
               .fadeIn(delay: 200.ms)
               .slideY(begin: 0.3)
               .then()
-              .shakeY(delay: 400.ms, duration: 800.ms), // playful bounce effect
+              .shakeY(delay: 400.ms, duration: 800.ms),
 
           const SizedBox(height: 60),
 
