@@ -8,21 +8,21 @@ class CertificatesSection extends StatelessWidget {
       'issuer': 'MyForexFunds',
       'date': 'Jun 2022',
       'image': 'assets/images/myforexfunds_stage1_2.jpg',
-      'link': 'https://drive.google.com/file/d/156zTGXkaO_88Tepb7uX_eFOt1TiJp8NR/view' // Replace with actual link
+      'link': 'https://drive.google.com/file/d/156zTGXkaO_88Tepb7uX_eFOt1TiJp8NR/view'
     },
     {
       'title': 'Account Management Stage 1',
       'issuer': 'FundingPips',
       'date': 'Apr 2024',
       'image': 'assets/images/fundingpips_stage1.png',
-      'link': 'https://app.fundingpips.com/certificates/verify/363f0140-6b61-4d49-81cd-43ada36850c3' // Replace with actual link
+      'link': 'https://app.fundingpips.com/certificates/verify/363f0140-6b61-4d49-81cd-43ada36850c3'
     },
     {
       'title': 'Account Management Stage 2',
       'issuer': 'FundingPips',
       'date': 'Jul 2024',
       'image': 'assets/images/fundingpips_stage2.png',
-      'link': 'https://app.fundingpips.com/certificates/verify/893a6efb-2afb-4bf4-a502-d358afd74f87' // Replace with actual link
+      'link': 'https://app.fundingpips.com/certificates/verify/893a6efb-2afb-4bf4-a502-d358afd74f87'
     },
   ];
 
