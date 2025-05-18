@@ -96,7 +96,7 @@ class _AboutSectionState extends State<AboutSection> {
               border: Border.all(color: borderColor),
             ),
             child: Text(
-              "A passionate developer with experience building elegant, high-performance applications using Flutter, React, Firebase, and modern web technologies. I love solving complex problems and crafting intuitive user experiences.",
+              "Results-driven financial analyst and software engineer with expertise in market analysis, risk management, and strategic decision-making. I utilize data-driven insights and advanced tools to optimize performance and achieve consistent, profitable outcomes. With a passion for integrating finance and technology, I bring a unique skill set that bridges analytical rigor and innovative problem-solving.",
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 fontSize: 18,
