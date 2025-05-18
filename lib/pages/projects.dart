@@ -1,10 +1,11 @@
+// Top of the file
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectsSection extends StatelessWidget {
-  final List<Map<String, String>> projects = [
+  final List<Map<String, dynamic>> projects = [
     {
       'title': 'Portfolio Website',
       'description': 'A responsive portfolio built with Flutter and deployed on the web.',
@@ -12,8 +13,14 @@ class ProjectsSection extends StatelessWidget {
       'demo': 'https://harpreet.dev'
     },
     {
-      'title': 'Bobcat Buzz (Secure User Portal)',
-      'description': 'A secure full-stack web app featuring user login, registration, and session management. Built using Flask for the backend and SQLite for data persistence. This project highlights backend development, frontend integration, form validation, secure password hashing, and key cybersecurity practices including input sanitization and session control.',
+      'title': 'Bobcat Buzz',
+      'subtitle': 'Secure User Portal',
+      'points': [
+        'Secure login, registration, and session management.',
+        'Built with Flask backend and SQLite database.',
+        'Form validation and password hashing.',
+        'Implements key cybersecurity techniques.',
+      ],
       'github': 'https://github.com/c7harry/CSE-106-Final-Project',
       'demo': 'https://bobcat-buzz.onrender.com/'
     },
@@ -84,26 +91,54 @@ class ProjectsSection extends StatelessWidget {
                             color: titleColor,
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        Text(
-                          project['description'] ?? '',
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            color: textColor.withOpacity(0.8),
+                        if (project['subtitle'] != null && project['subtitle']!.isNotEmpty)
+                          Text(
+                            project['subtitle']!,
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: textColor.withOpacity(0.8),
+                            ),
                           ),
-                        ),
+                        const SizedBox(height: 12),
+                        if (project['points'] != null)
+                          ...List<Widget>.from(project['points'].map<Widget>((point) => Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 2.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text("• ",
+                                        style: TextStyle(fontSize: 16)),
+                                    Expanded(
+                                      child: Text(point,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 15,
+                                            color: textColor.withOpacity(0.8),
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                              ))),
+                        if (project['description'] != null)
+                          Text(
+                            project['description'],
+                            style: GoogleFonts.poppins(
+                              fontSize: 15,
+                              color: textColor.withOpacity(0.8),
+                            ),
+                          ),
                         const SizedBox(height: 20),
                         Row(
                           children: [
                             if (project['github'] != null && project['github']!.isNotEmpty)
                               TextButton.icon(
-                                onPressed: () => _launchURL(project['github']!),
+                                onPressed: () => _launchURL(project['github']),
                                 icon: const Icon(Icons.code, size: 18),
                                 label: const Text("GitHub"),
                               ),
                             if (project['demo'] != null && project['demo']!.isNotEmpty)
                               TextButton.icon(
-                                onPressed: () => _launchURL(project['demo']!),
+                                onPressed: () => _launchURL(project['demo']),
                                 icon: const Icon(Icons.launch, size: 18),
                                 label: const Text("Live Demo"),
                               ),
