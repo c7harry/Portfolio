@@ -59,8 +59,12 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
+
+    #Name Logo
     - assets/images/logo.png
     - assets/images/logo-inverted.png
+
+    #Logos
     - assets/images/javascript.png
     - assets/images/python.png
     - assets/images/cpp.png
@@ -72,6 +76,14 @@ flutter:
     - assets/images/firebase.png
     - assets/images/git.png
     - assets/images/tailwind.png
+
+    #Contact Info
+    - assets/logos/gmail.png
+    - assets/logos/linkedin.png
+    - assets/logos/github.png
+    - assets/logos/github-inverted.png
+
+    # Certificates
     - assets/images/fundingpips_stage1.png
     - assets/images/fundingpips_stage2.png
     - assets/images/myforexfunds_stage1_2.jpg
