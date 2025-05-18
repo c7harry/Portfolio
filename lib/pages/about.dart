@@ -75,19 +75,40 @@ class _AboutSectionState extends State<AboutSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Hi, I'm Harpreet",
-            style: GoogleFonts.poppins(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-              color: titleColor,
-            ),
-          ).animate().fadeIn().slideY(begin: 0.2),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "I am a ",
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: textColor,
+                ),
+              ),
+              Text(
+                displayedText,
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+              Text(
+                "_",
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: theme.colorScheme.primary,
+                ),
+              ),
+            ],
+          ),
 
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
 
           Container(
-            width: 700,
+            width: 900,
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: cardColor,
@@ -139,38 +160,6 @@ class _AboutSectionState extends State<AboutSection> {
                 .fadeIn()
                 .scaleXY(begin: 0.9)
                 .slideY(begin: 0.2),
-          ),
-
-          const SizedBox(height: 40),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "I am a ",
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: textColor,
-                ),
-              ),
-              Text(
-                displayedText,
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: theme.colorScheme.primary,
-                ),
-              ),
-              Text(
-                "_",
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: theme.colorScheme.primary,
-                ),
-              ),
-            ],
           ),
 
           const SizedBox(height: 40),

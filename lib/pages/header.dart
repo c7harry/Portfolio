@@ -22,24 +22,6 @@ class HeaderSection extends StatelessWidget {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            "Hi, I'm Harpreet",
-            style: GoogleFonts.poppins(
-              fontSize: 42,
-              fontWeight: FontWeight.bold,
-              color: textColor,
-            ),
-          )
-              .animate()
-              .fadeIn(duration: 800.ms)
-              .slideY(begin: -0.2)
-              .scale(delay: 300.ms),
-          const SizedBox(height: 20),
-        ],
-      ),
     );
   }
 }
