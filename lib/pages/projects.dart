@@ -8,9 +8,17 @@ class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
       'title': 'Portfolio Website',
-      'description': 'A responsive portfolio built with Flutter and deployed on the web.',
-      'github': 'https://github.com/c7harry/portfolio',
-      'demo': 'https://harpreet.dev'
+      'subtitle': 'Flutter Web App + Firebase Hosting',
+      'points': [
+        'Built using Flutter for a fast, cross-platform UI.',
+        'Deployed with Firebase Hosting and integrated CI/CD.',
+        'Features dynamic animations and custom UI design.',
+        'Responsive layout for all screen sizes and devices.',
+        'Automated GitHub Actions pipeline for instant deploys on push.',
+        'Uses Dart, Flutter Animate, and custom component libraries.',
+      ],
+      'github': 'https://github.com/c7harry/my_portfolio',
+      'demo': 'https://portfolio-874c2.web.app/'
     },
     {
       'title': 'Bobcat Buzz',
@@ -23,12 +31,6 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/CSE-106-Final-Project',
       'demo': 'https://bobcat-buzz.onrender.com/'
-    },
-    {
-      'title': 'Blog CMS',
-      'description': 'Markdown blog platform using Firebase and Tailwind.',
-      'github': 'https://github.com/c7harry/blog-cms',
-      'demo': ''
     },
   ];
 
