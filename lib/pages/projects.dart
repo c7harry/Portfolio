@@ -12,10 +12,10 @@ class ProjectsSection extends StatelessWidget {
       'demo': 'https://harpreet.dev'
     },
     {
-      'title': 'Task Manager App',
-      'description': 'Cross-platform app with API integration, offline mode, and notifications.',
-      'github': 'https://github.com/c7harry/task-manager',
-      'demo': ''
+      'title': 'Bobcat Buzz (Secure User Portal)',
+      'description': 'A secure full-stack web app featuring user login, registration, and session management. Built using Flask for the backend and SQLite for data persistence. This project highlights backend development, frontend integration, form validation, secure password hashing, and key cybersecurity practices including input sanitization and session control.',
+      'github': 'https://github.com/c7harry/CSE-106-Final-Project',
+      'demo': 'https://bobcat-buzz.onrender.com/'
     },
     {
       'title': 'Blog CMS',
