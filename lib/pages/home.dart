@@ -154,14 +154,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  Widget _buildNavButton(String label, VoidCallback onPressed, ThemeData theme) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Text(
-        label,
-        style: TextStyle(color: theme.colorScheme.onBackground),
-      ),
-    );
-  }
 }

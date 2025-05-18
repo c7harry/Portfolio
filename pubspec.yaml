@@ -65,6 +65,7 @@ flutter:
     - assets/images/python.png
     - assets/images/cpp.png
     - assets/images/html.png
+    - assets/images/dart.png
     - assets/images/css.png
     - assets/images/react.png
     - assets/images/flutter.png

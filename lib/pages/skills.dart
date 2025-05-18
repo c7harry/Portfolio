@@ -6,6 +6,7 @@ class SkillsSection extends StatelessWidget {
     {'name': 'JavaScript', 'asset': 'assets/images/javascript.png'},
     {'name': 'Python', 'asset': 'assets/images/python.png'},
     {'name': 'C++', 'asset': 'assets/images/cpp.png'},
+    {'name': 'Dart', 'asset': 'assets/images/dart.png'},
     {'name': 'HTML', 'asset': 'assets/images/html.png'},
     {'name': 'CSS', 'asset': 'assets/images/css.png'},
   ];

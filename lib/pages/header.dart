@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HeaderSection extends StatelessWidget {
   @override
@@ -9,8 +7,6 @@ class HeaderSection extends StatelessWidget {
     final backgroundColor = isDark
         ? const Color.fromARGB(255, 9, 10, 9)
         : Colors.white;
-    final textColor = isDark ? Colors.white : const Color.fromARGB(255, 9, 10, 9);
-    final subtitleColor = isDark ? Colors.cyanAccent : Colors.teal;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 24),
