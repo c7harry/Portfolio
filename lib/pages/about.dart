@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
 
 class AboutSection extends StatefulWidget {
   @override
@@ -201,18 +202,66 @@ class _AboutSectionState extends State<AboutSection> {
           const SizedBox(height: 16),
 
           Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                "📧 hdosanjh209@gmail.com",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "📧 hdosanjh209@gmail.com",
+                    style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    tooltip: "Copy Email",
+                    icon: const Icon(Icons.copy, size: 18),
+                    color: theme.colorScheme.primary,
+                    onPressed: () {
+                      Clipboard.setData(const ClipboardData(text: 'hdosanjh209@gmail.com'));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Email copied to clipboard!')),
+                      );
+                    },
+                  ),
+                ],
               ),
-              Text(
-                "🔗 linkedin.com/in/harpreet-dosanjh209",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
+
+              const SizedBox(height: 8),
+
+              // LinkedIn clickable with hover underline
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () async {
+                    final url = Uri.parse('https://www.linkedin.com/in/harpreet-dosanjh209');
+                    if (await canLaunchUrl(url)) {
+                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                    }
+                  },
+                  child: HoverLinkText(
+                    text: "🔗 linkedin.com/in/harpreet-dosanjh209",
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
               ),
-              Text(
-                "🐙 github.com/c7harry",
-                style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
+
+              const SizedBox(height: 4),
+
+              // GitHub clickable with hover underline
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () async {
+                    final url = Uri.parse('https://github.com/c7harry');
+                    if (await canLaunchUrl(url)) {
+                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                    }
+                  },
+                  child: HoverLinkText(
+                    text: "🐙 github.com/c7harry",
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
               ),
             ],
           )
@@ -220,6 +269,36 @@ class _AboutSectionState extends State<AboutSection> {
               .fadeIn(delay: 200.ms)
               .slideY(begin: 0.4),
         ],
+      ),
+    );
+  }
+}
+
+class HoverLinkText extends StatefulWidget {
+  final String text;
+  final Color color;
+
+  const HoverLinkText({required this.text, required this.color});
+
+  @override
+  _HoverLinkTextState createState() => _HoverLinkTextState();
+}
+
+class _HoverLinkTextState extends State<HoverLinkText> {
+  bool _isHovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovering = true),
+      onExit: (_) => setState(() => _isHovering = false),
+      child: Text(
+        widget.text,
+        style: GoogleFonts.robotoMono(
+          color: widget.color,
+          decoration:
+              _isHovering ? TextDecoration.underline : TextDecoration.none,
+        ),
       ),
     );
   }
