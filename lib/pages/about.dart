@@ -10,6 +10,44 @@ class AboutSection extends StatefulWidget {
   State<AboutSection> createState() => _AboutSectionState();
 }
 
+class HoverIcon extends StatefulWidget {
+  final String assetPath;
+  final double width;
+  final double height;
+
+  const HoverIcon({
+    super.key,
+    required this.assetPath,
+    this.width = 24,
+    this.height = 24,
+  });
+
+  @override
+  State<HoverIcon> createState() => _HoverIconState();
+}
+
+class _HoverIconState extends State<HoverIcon> {
+  bool _hovering = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovering = true),
+      onExit: (_) => setState(() => _hovering = false),
+      child: AnimatedScale(
+        scale: _hovering ? 1.15 : 1.0,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        child: Image.asset(
+          widget.assetPath,
+          width: widget.width,
+          height: widget.height,
+        ),
+      ),
+    );
+  }
+}
+
 class _AboutSectionState extends State<AboutSection> {
   final String resumeUrl = 'https://drive.google.com/file/d/1aR8lixMPw33Jjw5VeMzwcV2WVZh5e7Mq/view?usp=sharing';
   final List<String> titles = ['Software Engineer', 'Full Stack Developer', 'Cyber Security Engineer', 'Flutter Engineer'];
@@ -202,98 +240,102 @@ class _AboutSectionState extends State<AboutSection> {
           const SizedBox(height: 20),
 
           Column(
-  crossAxisAlignment: CrossAxisAlignment.center,
-  children: [
-    // Email row
-    Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          'assets/logos/gmail.png',
-          height: 40,
-          width: 40,
-        ),
-        const SizedBox(width: 8),
-        Text(
-          "hdosanjh209@gmail.com",
-          style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
-        ),
-        const SizedBox(width: 8),
-        IconButton(
-          tooltip: "Copy Email",
-          icon: const Icon(Icons.copy, size: 18),
-          color: theme.colorScheme.primary,
-          onPressed: () {
-            Clipboard.setData(
-              const ClipboardData(text: 'hdosanjh209@gmail.com'),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Email copied to clipboard!')),
-            );
-          },
-        ),
-      ],
-    ),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const HoverIcon(
+                    assetPath: 'assets/logos/gmail.png',
+                    width: 40,
+                    height: 35,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    "hdosanjh209@gmail.com",
+                    style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton(
+                    tooltip: "Copy Email",
+                    icon: const Icon(Icons.copy, size: 18),
+                    color: theme.colorScheme.primary,
+                    onPressed: () {
+                      Clipboard.setData(
+                        const ClipboardData(text: 'hdosanjh209@gmail.com'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Email copied to clipboard!')),
+                      );
+                    },
+                  ),
+                ],
+              ),
 
-    // LinkedIn row
-    MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () async {
-          final url = Uri.parse('https://www.linkedin.com/in/harpreet-dosanjh209');
-          if (await canLaunchUrl(url)) {
-            await launchUrl(url, mode: LaunchMode.externalApplication);
-          }
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              'assets/logos/linkedin.png',
-              height: 60,
-              width: 100,
-            ),
-            const SizedBox(width: 8),
-            HoverLinkText(
-              text: "linkedin.com/in/harpreet-dosanjh209",
-              color: theme.colorScheme.primary,
-            ),
-          ],
-        ),
-      ),
-    ),
-
-    // GitHub row
-    MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: () async {
-          final url = Uri.parse('https://github.com/c7harry');
-          if (await canLaunchUrl(url)) {
-            await launchUrl(url, mode: LaunchMode.externalApplication);
-          }
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              theme.brightness == Brightness.dark
-                  ? 'assets/logos/github-inverted.png'
-                  : 'assets/logos/github.png',
-              height: 40,
-              width: 40,
-            ),
-            const SizedBox(width: 8),
-            HoverLinkText(
-              text: "github.com/c7harry",
-              color: theme.colorScheme.primary,
-            ),
-          ],
-        ),
-      ),
-    ),
-  ],
-)
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () async {
+                    final url = Uri.parse('https://www.linkedin.com/in/harpreet-dosanjh209');
+                    if (await canLaunchUrl(url)) {
+                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                    }
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const HoverIcon(
+                        assetPath: 'assets/logos/linkedin.png',
+                        width: 60,
+                        height: 60,
+                      ),
+                      const SizedBox(width: 8),
+                      HoverLinkText(
+                        text: "linkedin.com/in/harpreet-dosanjh209",
+                        color: theme.colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: () async {
+                    final url = Uri.parse('https://github.com/c7harry');
+                    if (await canLaunchUrl(url)) {
+                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                    }
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        transitionBuilder: (child, animation) => FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        ),
+                        child: HoverIcon(
+                          key: ValueKey(theme.brightness), // key triggers rebuild
+                          assetPath: theme.brightness == Brightness.dark
+                              ? 'assets/logos/github-inverted.png'
+                              : 'assets/logos/github.png',
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      HoverLinkText(
+                        text: "github.com/c7harry",
+                        color: theme.colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )
               .animate()
               .fadeIn(delay: 200.ms)
               .slideY(begin: 0.4),
