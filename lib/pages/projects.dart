@@ -155,7 +155,7 @@ class ProjectsSection extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'SupHerb Cilantro Estimator – Demo',
+                  'App – Demo',
                   style: GoogleFonts.poppins(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
