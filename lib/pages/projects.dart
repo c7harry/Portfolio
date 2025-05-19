@@ -65,59 +65,62 @@ class ProjectsSection extends StatelessWidget {
   }
 
   void _showVideoDemo(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        insetPadding: const EdgeInsets.all(16),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.9,
-          ),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Minecraft OpenGL – Demo',
-                  style: GoogleFonts.poppins(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+  final List<Map<String, String>> videoItems = [
+    {'title': 'Moving Clouds & Tree Leafs', 'videoPath': 'assets/videos/treecloud.mp4'},
+    {'title': 'Environment & Lighting', 'videoPath': 'assets/videos/lighting.mp4'},
+    {'title': 'Terrain Generation', 'videoPath': 'assets/videos/terrain.mp4'},
+    {'title': 'Block Selection', 'videoPath': 'assets/videos/block_selection.mp4'},
+    {'title': 'Block Placement & Destruction', 'videoPath': 'assets/videos/place_destroy.mp4'},
+  ];
+
+  showDialog(
+    context: context,
+    builder: (context) => Dialog(
+      insetPadding: const EdgeInsets.all(16),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.9,
+          maxWidth: MediaQuery.of(context).size.width * 0.95,
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Text(
+                'Minecraft OpenGL – Demo',
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 20),
-                _VideoDemoItem(
-                  title: 'Moving Clouds & Tree Leafs',
-                  videoPath: 'assets/videos/treecloud.mp4',
-                ),
-                _VideoDemoItem(
-                  title: 'Environment & Lighting',
-                  videoPath: 'assets/videos/lighting.mp4',
-                ),
-                _VideoDemoItem(
-                  title: 'Terrain Generation',
-                  videoPath: 'assets/videos/terrain.mp4',
-                ),
-                _VideoDemoItem(
-                  title: 'Block Selection',
-                  videoPath: 'assets/videos/block_selection.mp4',
-                ),
-                _VideoDemoItem(
-                  title: 'Block Placement & Destruction',
-                  videoPath: 'assets/videos/place_destroy.mp4',
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Close'),
-                ),
-              ],
+              ),
             ),
-          ),
+            const SizedBox(height: 12),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                itemCount: videoItems.length,
+                itemBuilder: (context, index) {
+                  final item = videoItems[index];
+                  return _VideoDemoItem(
+                    title: item['title']!,
+                    videoPath: item['videoPath']!,
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Close'),
+              ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   void _showCilantroDemo(BuildContext context) {
     const videoViewerId = 'cilantroYoutube';
@@ -369,7 +372,7 @@ class _VideoDemoItem extends StatefulWidget {
   State<_VideoDemoItem> createState() => _VideoDemoItemState();
 }
 
-class _VideoDemoItemState extends State<_VideoDemoItem> {
+class _VideoDemoItemState extends State<_VideoDemoItem> with AutomaticKeepAliveClientMixin {
   late final VideoPlayerController _controller;
 
   @override
@@ -377,10 +380,12 @@ class _VideoDemoItemState extends State<_VideoDemoItem> {
     super.initState();
     _controller = VideoPlayerController.asset(widget.videoPath)
       ..initialize().then((_) {
-        setState(() {});
-        _controller.setLooping(true);
-        _controller.setVolume(0.0);
-        _controller.play();
+        if (mounted) {
+          setState(() {});
+          _controller.setLooping(true);
+          _controller.setVolume(0.0);
+          _controller.play();
+        }
       });
   }
 
@@ -391,8 +396,17 @@ class _VideoDemoItemState extends State<_VideoDemoItem> {
   }
 
   @override
+  bool get wantKeepAlive => true; // Keeps widget alive during scroll
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context); // Needed when using AutomaticKeepAliveClientMixin
+
+    final isMobile = MediaQuery.of(context).size.width < 600;
+    final double maxWidth = isMobile ? MediaQuery.of(context).size.width * 0.9 : 600;
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           widget.title,
@@ -404,7 +418,7 @@ class _VideoDemoItemState extends State<_VideoDemoItem> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: SizedBox(
-                width: 600,
+                width: maxWidth,
                 child: AspectRatio(
                   aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
