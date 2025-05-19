@@ -47,7 +47,7 @@ class ProjectsSection extends StatelessWidget {
     },
     {
       'title': 'SupHerb Cilantro Estimator',
-      'subtitle': 'Computer Vision Web App for Agricultural Yield Forecasting',
+      'subtitle': 'Computer Vision App for Ag Yield Forecasting',
       'points': [
         'Collaborated with SupHerb Farms to build a tool that predicts cilantro yield using image analysis.',
         'Built a full-stack web app using Flask (Python) and TensorFlow/Keras for ML-based yield estimation.',
@@ -55,7 +55,7 @@ class ProjectsSection extends StatelessWidget {
         'Flutter and Google Colab were used to prototype a cross-platform frontend and train the model, respectively.',
         'App helps determine machine activation—reducing operational costs and maximizing profit (up to 💲250k per harvest).',
         'Integrated event reporting system to track planting/harvesting schedules across fields.',
-        '🔒 Note: Code not available due to non-disclosure agreement (NDA).'
+        '🔒: Code not available due to non-disclosure agreement (NDA).'
       ],
     },
   ];
