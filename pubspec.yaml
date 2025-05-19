@@ -98,6 +98,19 @@ flutter:
     - assets/images/fundingpips_stage2.png
     - assets/images/myforexfunds_stage1_2.jpg
 
+    # Cilantro Slides
+    - assets/cilantro/cilantro_slide_1.jpg
+    - assets/cilantro/cilantro_slide_2.jpg
+    - assets/cilantro/cilantro_slide_3.jpg
+    - assets/cilantro/cilantro_slide_4.jpg
+    - assets/cilantro/cilantro_slide_5.jpg
+    - assets/cilantro/cilantro_slide_6.jpg
+    - assets/cilantro/cilantro_slide_7.jpg
+    - assets/cilantro/cilantro_slide_8.jpg
+    - assets/cilantro/cilantro_slide_9.jpg
+    - assets/cilantro/cilantro_slide_10.jpg
+    - assets/cilantro/cilantro_slide_11.jpg
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

@@ -123,105 +123,150 @@ class ProjectsSection extends StatelessWidget {
 }
 
   void _showCilantroDemo(BuildContext context) {
-    const videoViewerId = 'cilantroYoutube';
-    const slidesViewerId = 'cilantroPresentation';
+  const videoViewerId = 'cilantroYoutube';
 
-    ui_web.platformViewRegistry.registerViewFactory(
-      videoViewerId,
-      (int viewId) {
-        final iframe = html.IFrameElement()
-          ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
-          ..style.border = 'none'
-          ..style.width = '100%'
-          ..style.height = '100%'
-          ..style.display = 'block';
+  ui_web.platformViewRegistry.registerViewFactory(
+    videoViewerId,
+    (int viewId) {
+      final iframe = html.IFrameElement()
+        ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
+        ..style.border = 'none'
+        ..style.width = '100%'
+        ..style.height = '100%'
+        ..style.display = 'block';
 
-        return iframe;
-      },
-    );
+      return iframe;
+    },
+  );
 
-    ui_web.platformViewRegistry.registerViewFactory(
-      slidesViewerId,
-      (int viewId) {
-        final iframe = html.IFrameElement()
-          ..src =
-              'https://docs.google.com/presentation/d/13HAW6IsI9xCYfDssDX2mhqeEgGcEMRUG/edit?usp=sharing&ouid=109231096808274163857&rtpof=true&sd=true'
-          ..style.border = 'none'
-          ..style.width = '100%'
-          ..style.height = '100%'
-          ..style.display = 'block';
+  showDialog(
+    context: context,
+    builder: (context) {
+      final screenWidth = MediaQuery.of(context).size.width;
+      final bool isMobile = screenWidth < 600;
+      final double slideHeight = isMobile ? screenWidth * 0.75 : 540;
 
-        return iframe;
-      },
-    );
+      return Dialog(
+        insetPadding: const EdgeInsets.all(16),
+        child: StatefulBuilder(
+          builder: (context, setState) {
+            final pageController = PageController();
+            int currentIndex = 0;
 
-    showDialog(
-      context: context,
-      builder: (context) {
-        final screenWidth = MediaQuery.of(context).size.width;
-
-        return Dialog(
-          insetPadding: const EdgeInsets.all(16),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.95,
-            ),
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                children: [
-                  Text(
-                    'App Demo',
-                    style: GoogleFonts.poppins(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    width: double.infinity,
-                    constraints: BoxConstraints(
-                      maxWidth: 720,
-                      maxHeight: screenWidth < 600 ? screenWidth * 9 / 16 : 405, // 16:9 ratio
-                    ),
-                    child: AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: HtmlElementView(viewType: videoViewerId),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    'Slide Deck Presentation',
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Container(
-                  width: double.infinity,
+            return StatefulBuilder(
+              builder: (context, setState) {
+                return ConstrainedBox(
                   constraints: BoxConstraints(
-                    maxWidth: 720,
-                    maxHeight: screenWidth < 600 ? screenWidth * 3 / 4 : 540, // 4:3 ratio
+                    maxHeight: MediaQuery.of(context).size.height * 0.95,
                   ),
-                  child: AspectRatio(
-                    aspectRatio: 4 / 3,
-                    child: HtmlElementView(viewType: slidesViewerId),
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      children: [
+                        Text(
+                          'App Demo',
+                          style: GoogleFonts.poppins(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Container(
+                          width: double.infinity,
+                          constraints: BoxConstraints(
+                            maxWidth: 720,
+                            maxHeight: isMobile ? screenWidth * 9 / 16 : 405,
+                          ),
+                          child: AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: HtmlElementView(viewType: videoViewerId),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Slide Deck Presentation',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 1),
+                        SizedBox(
+                          width: double.infinity,
+                          height: slideHeight,
+                          child: PageView.builder(
+                            controller: pageController,
+                            itemCount: 11,
+                            onPageChanged: (index) {
+                              setState(() => currentIndex = index);
+                            },
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: Image.asset(
+                                  'assets/cilantro/cilantro_slide_${index + 1}.jpg',
+                                  fit: BoxFit.contain,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 1),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.chevron_left),
+                              onPressed: () {
+                                if (currentIndex > 0) {
+                                  currentIndex--;
+                                  pageController.animateToPage(
+                                    currentIndex,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut,
+                                  );
+                                  setState(() {});
+                                }
+                              },
+                            ),
+                            Text(
+                              '${currentIndex + 1}/11',
+                              style: GoogleFonts.poppins(fontSize: 16),
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.chevron_right),
+                              onPressed: () {
+                                if (currentIndex < 10) {
+                                  currentIndex++;
+                                  pageController.animateToPage(
+                                    currentIndex,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut,
+                                  );
+                                  setState(() {});
+                                }
+                              },
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        ElevatedButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('Close'),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text('Close'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
+                );
+              },
+            );
+          },
+        ),
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
