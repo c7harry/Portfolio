@@ -41,6 +41,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   font_awesome_flutter: ^10.8.0
+  video_player: ^2.9.5
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,9 @@ flutter:
     - assets/images/firebase.png
     - assets/images/git.png
     - assets/images/tailwind.png
+
+    #Videos
+    - assets/videos/treecloud.mp4
 
     #Contact Info
     - assets/logos/gmail.png
