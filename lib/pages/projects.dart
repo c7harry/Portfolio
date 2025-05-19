@@ -156,7 +156,6 @@ class ProjectsSection extends StatelessWidget {
       context: context,
       builder: (context) {
         final screenWidth = MediaQuery.of(context).size.width;
-        final videoMaxWidth = screenWidth < 600 ? screenWidth - 32 : 720.0;
 
         return Dialog(
           insetPadding: const EdgeInsets.all(16),
@@ -176,8 +175,12 @@ class ProjectsSection extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  SizedBox(
-                    width: videoMaxWidth,
+                  Container(
+                    width: double.infinity,
+                    constraints: BoxConstraints(
+                      maxWidth: 720,
+                      maxHeight: screenWidth < 600 ? screenWidth * 9 / 16 : 405, // 16:9 ratio
+                    ),
                     child: AspectRatio(
                       aspectRatio: 16 / 9,
                       child: HtmlElementView(viewType: videoViewerId),
@@ -192,13 +195,17 @@ class ProjectsSection extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  SizedBox(
-                    width: videoMaxWidth,
-                    child: AspectRatio(
-                      aspectRatio: 4 / 3,
-                      child: HtmlElementView(viewType: slidesViewerId),
-                    ),
+                  Container(
+                  width: double.infinity,
+                  constraints: BoxConstraints(
+                    maxWidth: 720,
+                    maxHeight: screenWidth < 600 ? screenWidth * 3 / 4 : 540, // 4:3 ratio
                   ),
+                  child: AspectRatio(
+                    aspectRatio: 4 / 3,
+                    child: HtmlElementView(viewType: slidesViewerId),
+                  ),
+                ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () => Navigator.pop(context),
