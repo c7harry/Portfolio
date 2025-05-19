@@ -43,8 +43,20 @@ class ProjectsSection extends StatelessWidget {
         'Applied object-oriented programming and real-time rendering techniques.',
       ],
       'github': 'https://github.com/c7harry/Minecraft-OpenGL',
-      'demo': '',
       'videoDemo': true,
+    },
+    {
+      'title': 'SupHerb Cilantro Estimator',
+      'subtitle': 'Computer Vision Web App for Agricultural Yield Forecasting',
+      'points': [
+        'Collaborated with SupHerb Farms to build a tool that predicts cilantro yield using image analysis.',
+        'Built a full-stack web app using Flask (Python) and TensorFlow/Keras for ML-based yield estimation.',
+        'Designed and deployed a CNN to estimate harvestable yield from field images with high consistency.',
+        'Flutter and Google Colab were used to prototype a cross-platform frontend and train the model, respectively.',
+        'App helps determine machine activation—reducing operational costs and maximizing profit (up to 💲250k per harvest).',
+        'Integrated event reporting system to track planting/harvesting schedules across fields.',
+        '🔒 Note: Code not available due to non-disclosure agreement (NDA).'
+      ],
     },
   ];
 
