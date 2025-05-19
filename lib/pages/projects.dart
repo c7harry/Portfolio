@@ -261,7 +261,7 @@ class _VideoDemoItemState extends State<_VideoDemoItem> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: SizedBox(
-                width: 800,
+                width: 600,
                 child: AspectRatio(
                   aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
