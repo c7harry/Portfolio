@@ -129,6 +129,8 @@ class ProjectsSection extends StatelessWidget {
         final iframe = html.IFrameElement()
           ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
           ..style.border = 'none'
+          ..style.width = '100%'
+          ..style.height = '100%'
           ..style.display = 'block';
 
         return iframe;
@@ -142,6 +144,8 @@ class ProjectsSection extends StatelessWidget {
           ..src =
               'https://docs.google.com/presentation/d/13HAW6IsI9xCYfDssDX2mhqeEgGcEMRUG/edit?usp=sharing&ouid=109231096808274163857&rtpof=true&sd=true'
           ..style.border = 'none'
+          ..style.width = '100%'
+          ..style.height = '100%'
           ..style.display = 'block';
 
         return iframe;
@@ -150,51 +154,62 @@ class ProjectsSection extends StatelessWidget {
 
     showDialog(
       context: context,
-      builder: (context) => Dialog(
-        insetPadding: const EdgeInsets.all(16),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.95,
-          ),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              children: [
-                Text(
-                  'App – Demo',
-                  style: GoogleFonts.poppins(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+      builder: (context) {
+        final screenWidth = MediaQuery.of(context).size.width;
+        final videoMaxWidth = screenWidth < 600 ? screenWidth - 32 : 720.0;
+
+        return Dialog(
+          insetPadding: const EdgeInsets.all(16),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.95,
+            ),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                children: [
+                  Text(
+                    'App – Demo',
+                    style: GoogleFonts.poppins(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: HtmlElementView(viewType: videoViewerId),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'Slide Deck Presentation',
-                  style: GoogleFonts.poppins(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: videoMaxWidth,
+                    child: AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: HtmlElementView(viewType: videoViewerId),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 12),
-                AspectRatio(
-                  aspectRatio: 4 / 3,
-                  child: HtmlElementView(viewType: slidesViewerId),
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Close'),
-                ),
-              ],
+                  const SizedBox(height: 24),
+                  Text(
+                    'Slide Deck Presentation',
+                    style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    width: videoMaxWidth,
+                    child: AspectRatio(
+                      aspectRatio: 4 / 3,
+                      child: HtmlElementView(viewType: slidesViewerId),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Close'),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
