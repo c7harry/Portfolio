@@ -168,7 +168,7 @@ class ProjectsSection extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'App – Demo',
+                    'App Demo',
                     style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,

@@ -82,6 +82,10 @@ flutter:
 
     #Videos
     - assets/videos/treecloud.mp4
+    - assets/videos/terrain.mp4
+    - assets/videos/lighting.mp4
+    - assets/videos/block_selection.mp4
+    - assets/videos/place_destroy.mp4
 
     #Contact Info
     - assets/logos/gmail.png
