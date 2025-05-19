@@ -125,21 +125,27 @@ class ProjectsSection extends StatelessWidget {
 
     ui_web.platformViewRegistry.registerViewFactory(
       videoViewerId,
-      (int viewId) => html.IFrameElement()
-        ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
-        ..style.border = 'none'
-        ..style.width = '640px'
-        ..style.height = '360px',
+      (int viewId) {
+        final iframe = html.IFrameElement()
+          ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
+          ..style.border = 'none'
+          ..style.display = 'block';
+
+        return iframe;
+      },
     );
 
     ui_web.platformViewRegistry.registerViewFactory(
       slidesViewerId,
-      (int viewId) => html.IFrameElement()
-        ..src =
-            'https://docs.google.com/presentation/d/13HAW6IsI9xCYfDssDX2mhqeEgGcEMRUG/edit?usp=drive_link'
-        ..style.border = 'none'
-        ..style.width = '640px'
-        ..style.height = '480px',
+      (int viewId) {
+        final iframe = html.IFrameElement()
+          ..src =
+              'https://docs.google.com/presentation/d/13HAW6IsI9xCYfDssDX2mhqeEgGcEMRUG/edit?usp=sharing&ouid=109231096808274163857&rtpof=true&sd=true'
+          ..style.border = 'none'
+          ..style.display = 'block';
+
+        return iframe;
+      },
     );
 
     showDialog(
@@ -162,9 +168,8 @@ class ProjectsSection extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                SizedBox(
-                  width: 640,
-                  height: 360,
+                AspectRatio(
+                  aspectRatio: 16 / 9,
                   child: HtmlElementView(viewType: videoViewerId),
                 ),
                 const SizedBox(height: 24),
@@ -176,9 +181,8 @@ class ProjectsSection extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                SizedBox(
-                  width: 640,
-                  height: 480,
+                AspectRatio(
+                  aspectRatio: 4 / 3,
                   child: HtmlElementView(viewType: slidesViewerId),
                 ),
                 const SizedBox(height: 20),
