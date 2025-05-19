@@ -1,3 +1,6 @@
+import 'dart:html' as html;
+import 'dart:ui_web' as ui_web;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,10 +15,8 @@ class ProjectsSection extends StatelessWidget {
       'points': [
         'Built using Flutter for a fast, cross-platform UI.',
         'Deployed with Firebase Hosting and integrated CI/CD.',
-        'Features dynamic animations and custom UI design.',
         'Responsive layout for all screen sizes and devices.',
-        'Automated GitHub Actions pipeline for instant deploys on push.',
-        'Uses Dart, Flutter Animate, and custom component libraries.',
+        'Automated GitHub Actions pipeline with GitHub Actions.',
       ],
       'github': 'https://github.com/c7harry/my_portfolio',
       'demo': 'https://portfolio-874c2.web.app/',
@@ -37,26 +38,23 @@ class ProjectsSection extends StatelessWidget {
       'subtitle': 'C++ Game Engine using OpenGL and GLSL',
       'points': [
         'Built a 3D voxel world engine in C++ inspired by Minecraft.',
-        'Used OpenGL for graphics rendering and GLSL for custom shaders.',
-        'Implemented modular shader programs for vertex, fragment, and geometry stages.',
-        'Managed GPU resources manually using buffer objects and shader uniforms.',
-        'Applied object-oriented programming and real-time rendering techniques.',
+        'Used OpenGL for rendering and GLSL for shaders.',
+        'Real-time terrain generation and block manipulation.',
       ],
       'github': 'https://github.com/c7harry/Minecraft-OpenGL',
       'videoDemo': true,
     },
     {
-      'title': 'SupHerb Cilantro Estimator',
+      'title': 'SupHerb Cilantro Estimating',
       'subtitle': 'Computer Vision App for Ag Yield Forecasting',
       'points': [
-        'Collaborated with SupHerb Farms to build a tool that predicts cilantro yield using image analysis.',
-        'Built a full-stack web app using Flask (Python) and TensorFlow/Keras for ML-based yield estimation.',
-        'Designed and deployed a CNN to estimate harvestable yield from field images with high consistency.',
-        'Flutter and Google Colab were used to prototype a cross-platform frontend and train the model, respectively.',
-        'App helps determine machine activation—reducing operational costs and maximizing profit (up to 💲250k per harvest).',
-        'Integrated event reporting system to track planting/harvesting schedules across fields.',
-        '🔒: Code not available due to non-disclosure agreement (NDA).'
+        'Developed ML-powered tool to forecast cilantro yield using field images.',
+        'Built using Flask, TensorFlow/Keras, Flutter, and Google Colab.',
+        'CNN model estimates harvestable yield for precision agriculture.',
+        'Integrated planting and harvesting logs for schedule tracking.',
+        'Project built under NDA with SupHerb Farms.',
       ],
+      'cilantroDemo': true,
     },
   ];
 
@@ -67,59 +65,134 @@ class ProjectsSection extends StatelessWidget {
   }
 
   void _showVideoDemo(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) => Dialog(
-      insetPadding: const EdgeInsets.all(16),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.9,
-        ),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Minecraft OpenGL – Demo',
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        insetPadding: const EdgeInsets.all(16),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.9,
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Minecraft OpenGL – Demo',
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              _VideoDemoItem(
-                title: 'Moving Clouds & Tree Leafs',
-                videoPath: 'assets/videos/treecloud.mp4',
-              ),
-              _VideoDemoItem(
-                title: 'Environment & Lighting',
-                videoPath: 'assets/videos/lighting.mp4',
-              ),
-              _VideoDemoItem(
-                title: 'Terrain Generation',
-                videoPath: 'assets/videos/terrain.mp4',
-              ),
-              _VideoDemoItem(
-                title: 'Block Selection',
-                videoPath: 'assets/videos/block_selection.mp4',
-              ),
-              _VideoDemoItem(
-                title: 'Block Placement & Destruction',
-                videoPath: 'assets/videos/place_destroy.mp4',
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Close'),
-              ),
-            ],
+                const SizedBox(height: 20),
+                _VideoDemoItem(
+                  title: 'Moving Clouds & Tree Leafs',
+                  videoPath: 'assets/videos/treecloud.mp4',
+                ),
+                _VideoDemoItem(
+                  title: 'Environment & Lighting',
+                  videoPath: 'assets/videos/lighting.mp4',
+                ),
+                _VideoDemoItem(
+                  title: 'Terrain Generation',
+                  videoPath: 'assets/videos/terrain.mp4',
+                ),
+                _VideoDemoItem(
+                  title: 'Block Selection',
+                  videoPath: 'assets/videos/block_selection.mp4',
+                ),
+                _VideoDemoItem(
+                  title: 'Block Placement & Destruction',
+                  videoPath: 'assets/videos/place_destroy.mp4',
+                ),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Close'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
+
+  void _showCilantroDemo(BuildContext context) {
+    const videoViewerId = 'cilantroYoutube';
+    const slidesViewerId = 'cilantroPresentation';
+
+    ui_web.platformViewRegistry.registerViewFactory(
+      videoViewerId,
+      (int viewId) => html.IFrameElement()
+        ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
+        ..style.border = 'none'
+        ..style.width = '640px'
+        ..style.height = '360px',
+    );
+
+    ui_web.platformViewRegistry.registerViewFactory(
+      slidesViewerId,
+      (int viewId) => html.IFrameElement()
+        ..src =
+            'https://docs.google.com/presentation/d/13HAW6IsI9xCYfDssDX2mhqeEgGcEMRUG/edit?usp=drive_link'
+        ..style.border = 'none'
+        ..style.width = '640px'
+        ..style.height = '480px',
+    );
+
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        insetPadding: const EdgeInsets.all(16),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.95,
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              children: [
+                Text(
+                  'SupHerb Cilantro Estimator – Demo',
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 640,
+                  height: 360,
+                  child: HtmlElementView(viewType: videoViewerId),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  'Slide Deck Presentation',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: 640,
+                  height: 480,
+                  child: HtmlElementView(viewType: slidesViewerId),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Close'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +209,12 @@ class ProjectsSection extends StatelessWidget {
         children: [
           Text(
             "Projects",
-            style: GoogleFonts.poppins(fontSize: 36, fontWeight: FontWeight.bold, color: titleColor),
-          ).animate().fadeIn().slideY(begin: 0.2),
+            style: GoogleFonts.poppins(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: titleColor,
+            ),
+          ),
           const SizedBox(height: 40),
           Wrap(
             spacing: 24,
@@ -170,47 +247,76 @@ class ProjectsSection extends StatelessWidget {
                       children: [
                         Text(
                           project['title'] ?? '',
-                          style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w600, color: titleColor),
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: titleColor,
+                          ),
                         ),
                         if (project['subtitle'] != null)
                           Text(
                             project['subtitle'],
-                            style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500, color: textColor.withOpacity(0.8)),
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: textColor.withOpacity(0.8),
+                            ),
                           ),
                         const SizedBox(height: 12),
                         if (project['points'] != null)
-                          ...List<Widget>.from((project['points'] as List).map((point) => Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 2.0),
+                          ...List<Widget>.from(
+                            (project['points'] as List).map(
+                              (point) => Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 2.0),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text("• ", style: TextStyle(fontSize: 16)),
+                                    const Text("• ",
+                                        style: TextStyle(fontSize: 16)),
                                     Expanded(
-                                      child: Text(point, style: GoogleFonts.poppins(fontSize: 15, color: textColor.withOpacity(0.8))),
+                                      child: Text(
+                                        point,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15,
+                                          color: textColor.withOpacity(0.8),
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ))),
+                              ),
+                            ),
+                          ),
                         const SizedBox(height: 20),
                         Row(
                           children: [
-                            if (project['github'] != null && project['github'].toString().isNotEmpty)
+                            if (project['github'] != null)
                               TextButton.icon(
-                                onPressed: () => _launchURL(project['github']),
+                                onPressed: () =>
+                                    _launchURL(project['github']),
                                 icon: const Icon(Icons.code, size: 18),
                                 label: const Text("GitHub"),
                               ),
-                            if (project['demo'] != null && project['demo'].toString().isNotEmpty)
+                            if (project['demo'] != null)
                               TextButton.icon(
-                                onPressed: () => _launchURL(project['demo']),
+                                onPressed: () =>
+                                    _launchURL(project['demo']),
                                 icon: const Icon(Icons.launch, size: 18),
                                 label: const Text("Live Demo"),
                               ),
                             if (project['videoDemo'] == true)
                               TextButton.icon(
                                 onPressed: () => _showVideoDemo(context),
-                                icon: const Icon(Icons.play_circle_fill, size: 18),
+                                icon: const Icon(Icons.play_circle_fill,
+                                    size: 18),
                                 label: const Text("Video Demo"),
+                              ),
+                            if (project['cilantroDemo'] == true)
+                              TextButton.icon(
+                                onPressed: () => _showCilantroDemo(context),
+                                icon: const Icon(Icons.slideshow, size: 18),
+                                label: const Text("View Project Content"),
                               ),
                           ],
                         ),
@@ -238,7 +344,7 @@ class _VideoDemoItem extends StatefulWidget {
 }
 
 class _VideoDemoItemState extends State<_VideoDemoItem> {
-  late VideoPlayerController _controller;
+  late final VideoPlayerController _controller;
 
   @override
   void initState() {
@@ -261,7 +367,6 @@ class _VideoDemoItemState extends State<_VideoDemoItem> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           widget.title,
