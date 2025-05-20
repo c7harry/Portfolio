@@ -10,7 +10,7 @@ import 'package:video_player/video_player.dart';
 class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
-      'title': 'Portfolio Website',
+      'title': 'Portfolio',
       'subtitle': 'Skills/Project Showcase + Hosting',
       'points': [
         'Built using Flutter for a fast, cross-platform UI.',
@@ -45,7 +45,7 @@ class ProjectsSection extends StatelessWidget {
       'videoDemo': true,
     },
     {
-      'title': 'SupHerb Cilantro Estimating',
+      'title': 'Cilantro Estimating',
       'subtitle': 'Computer Vision App for Ag Yield Forecasting',
       'points': [
         'Developed ML-powered tool to forecast cilantro yield using field images.',
@@ -444,35 +444,44 @@ class _VideoDemoItemState extends State<_VideoDemoItem> with AutomaticKeepAliveC
   bool get wantKeepAlive => true; // Keeps widget alive during scroll
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context); // Needed when using AutomaticKeepAliveClientMixin
+Widget build(BuildContext context) {
+  super.build(context); // Needed when using AutomaticKeepAliveClientMixin
 
-    final isMobile = MediaQuery.of(context).size.width < 600;
-    final double maxWidth = isMobile ? MediaQuery.of(context).size.width * 0.9 : 600;
+  final isMobile = MediaQuery.of(context).size.width < 600;
+  final double maxWidth = isMobile
+      ? MediaQuery.of(context).size.width * 0.9
+      : MediaQuery.of(context).size.width * 0.6;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 24.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          widget.title,
-          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w500),
-        ),
-        const SizedBox(height: 8),
-        if (_controller.value.isInitialized)
-          Center(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: SizedBox(
-                width: maxWidth,
-                child: AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                ),
-              ),
+        Center(
+          child: Text(
+            widget.title,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
             ),
           ),
-        const SizedBox(height: 24),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          width: maxWidth,
+          height: maxWidth * 9 / 16,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.black,
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: _controller.value.isInitialized
+              ? VideoPlayer(_controller)
+              : const Center(child: CircularProgressIndicator()),
+        ),
       ],
-    );
-  }
+    ),
+  );
+}
 }
