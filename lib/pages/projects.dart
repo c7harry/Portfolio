@@ -11,19 +11,19 @@ class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
       'title': 'Portfolio Website',
-      'subtitle': 'Flutter Web App + Firebase Hosting',
+      'subtitle': 'SKills and Project Showcase + Hosting',
       'points': [
         'Built using Flutter for a fast, cross-platform UI.',
         'Deployed with Firebase Hosting and integrated CI/CD.',
         'Responsive layout for all screen sizes and devices.',
-        'Automated GitHub Actions pipeline with GitHub Actions.',
+        'Automated GitHub Actions pipeline.',
       ],
       'github': 'https://github.com/c7harry/my_portfolio',
       'demo': 'https://portfolio-874c2.web.app/',
     },
     {
       'title': 'Bobcat Buzz',
-      'subtitle': 'Secure User Portal',
+      'subtitle': 'Secure User Portal + Hosting',
       'points': [
         'Secure login, registration, and session management.',
         'Built with Flask backend and SQLite database.',
