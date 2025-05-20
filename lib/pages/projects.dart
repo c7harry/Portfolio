@@ -34,6 +34,18 @@ class ProjectsSection extends StatelessWidget {
       'demo': 'https://bobcat-buzz.onrender.com/',
     },
     {
+      'title': 'SimpleMail',
+      'subtitle': 'Responsive Email UI – Bay Valley Tech Challenge',
+      'points': [
+        'Designed and built a Gmail-inspired email client using HTML, CSS, and Bootstrap in under 24 hours.',
+        'Implemented message filtering by user and folder tabs (Primary, Promotions, Social) with dynamic interactivity.',
+        'Integrated a responsive layout with mobile-first design, smooth transitions, and accessible navigation.',
+        'Included features such as composing messages, inbox interactivity, and animations to enhance UX.',
+      ],
+      'github': 'https://github.com/c7harry/bootstrap-email-dosanjh',
+      'demo': 'https://bootstrap-email-dosanjh.onrender.com',
+    },
+    {
       'title': 'Minecraft',
       'subtitle': '3D Voxel Engine in C++',
       'points': [
