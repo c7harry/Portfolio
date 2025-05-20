@@ -19,6 +19,7 @@ class SkillsSection extends StatelessWidget {
     {'name': 'TensorFlow', 'asset': 'assets/images/tensorflow.png'},
     {'name': 'Keras', 'asset': 'assets/images/keras.png'},
     {'name': 'Flask', 'asset': 'assets/images/flask.png'},
+    {'name': 'OpenGL', 'asset': 'assets/images/openGL.png'},
   ];
 
   final List<Map<String, dynamic>> tools = [

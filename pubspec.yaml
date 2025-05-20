@@ -87,6 +87,7 @@ flutter:
     - assets/images/colab.png
     - assets/images/tradingview.png
     - assets/images/tensorflow.png
+    - assets/images/openGL.png
 
     #Videos
     - assets/videos/treecloud.mp4
