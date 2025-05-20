@@ -11,7 +11,7 @@ class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
       'title': 'Portfolio Website',
-      'subtitle': 'SKills and Project Showcase + Hosting',
+      'subtitle': 'Skills/Project Showcase + Hosting',
       'points': [
         'Built using Flutter for a fast, cross-platform UI.',
         'Deployed with Firebase Hosting and integrated CI/CD.',
