@@ -79,6 +79,14 @@ flutter:
     - assets/images/firebase.png
     - assets/images/git.png
     - assets/images/tailwind.png
+    - assets/images/keras.png
+    - assets/images/flask.png
+    - assets/images/tradingview.png
+    - assets/images/aws.png
+    - assets/images/android_studio.png
+    - assets/images/colab.png
+    - assets/images/tradingview.png
+    - assets/images/tensorflow.png
 
     #Videos
     - assets/videos/treecloud.mp4

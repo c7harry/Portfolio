@@ -16,7 +16,16 @@ class SkillsSection extends StatelessWidget {
     {'name': 'Flutter', 'asset': 'assets/images/flutter.png'},
     {'name': 'Firebase', 'asset': 'assets/images/firebase.png'},
     {'name': 'Git', 'asset': 'assets/images/git.png'},
-    {'name': 'Tailwind', 'asset': 'assets/images/tailwind.png'},
+    {'name': 'TensorFlow', 'asset': 'assets/images/tensorflow.png'},
+    {'name': 'Keras', 'asset': 'assets/images/keras.png'},
+    {'name': 'Flask', 'asset': 'assets/images/flask.png'},
+  ];
+
+  final List<Map<String, dynamic>> tools = [
+    {'name': 'AWS', 'asset': 'assets/images/aws.png'},
+    {'name': 'Android Studio', 'asset': 'assets/images/android_studio.png'},
+    {'name': 'Google Colab', 'asset': 'assets/images/colab.png'},
+    {'name': 'TradingView', 'asset': 'assets/images/tradingview.png'},
   ];
 
   @override
@@ -122,6 +131,17 @@ class SkillsSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           buildIconGrid(technologies),
+          const SizedBox(height: 40),
+          Text(
+            'Tools & Platforms',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+              color: isDark ? Colors.white70 : Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 20),
+          buildIconGrid(tools),
         ],
       ),
     );
