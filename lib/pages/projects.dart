@@ -34,7 +34,7 @@ class ProjectsSection extends StatelessWidget {
       'demo': 'https://bobcat-buzz.onrender.com/',
     },
     {
-      'title': 'SimpleMail',
+      'title': 'CraftMail',
       'subtitle': 'Responsive Email UI – Bay Valley Tech Challenge',
       'points': [
         'Designed and built a Gmail-inspired email client using HTML, CSS, and Bootstrap in under 24 hours.',
