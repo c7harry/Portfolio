@@ -11,7 +11,7 @@ class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
       'title': 'Portfolio',
-      'subtitle': 'Interactive Showcase + Hosting',
+      'subtitle': '🎯 Interactive Showcase + Hosting',
       'points': [
         'Designed and built with Flutter to demonstrate UI, animation, and state management expertise.',
         'Deployed using Firebase Hosting and automated with GitHub Actions CI/CD pipeline.',
@@ -23,7 +23,7 @@ class ProjectsSection extends StatelessWidget {
     },
     {
       'title': 'Bobcat Buzz',
-      'subtitle': 'Secure User Portal + Hosting',
+      'subtitle': '🔐 Secure User Portal + Hosting',
       'points': [
         'Developed a user authentication system with hashed passwords and session tracking using Flask and SQLite.',
         'Implemented custom form validation, secure routing, and basic RBAC logic.',
@@ -35,7 +35,7 @@ class ProjectsSection extends StatelessWidget {
     },
     {
       'title': 'CraftMail',
-      'subtitle': 'Responsive Email UI – Bay Valley Tech Challenge',
+      'subtitle': '📬 Responsive Email UI – Bay Valley Tech Challenge',
       'points': [
         'Designed and built a Gmail-inspired email client using HTML, CSS, and Bootstrap in under 24 hours.',
         'Implemented message filtering by user and folder tabs (Primary, Promotions, Social) with dynamic interactivity.',
@@ -47,7 +47,7 @@ class ProjectsSection extends StatelessWidget {
     },
     {
       'title': 'Minecraft',
-      'subtitle': '3D Voxel Engine in C++',
+      'subtitle': '🧱 3D Voxel Engine in C++',
       'points': [
         'Engineered a Minecraft-inspired voxel renderer using OpenGL and GLSL for real-time 3D graphics.',
         'Built custom terrain generation logic with dynamic chunk management.',
@@ -59,7 +59,7 @@ class ProjectsSection extends StatelessWidget {
     },
     {
       'title': 'Cilantro Estimating',
-      'subtitle': 'AI-Powered Yield Forecasting App',
+      'subtitle': '🌿 AI-Powered Yield Forecasting App',
       'points': [
         'Led development of a computer vision web app using TensorFlow and Keras for crop yield estimation.',
         'Integrated image-based inference with a Flutter frontend and Flask API backend.',

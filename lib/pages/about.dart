@@ -167,38 +167,26 @@ class _AboutSectionState extends State<AboutSection> {
                 ),
                 const SizedBox(height: 20),
                 ...[
-                '🎓 Computer Engineering graduate from UC Merced with a focus on software systems, machine learning, and full-stack development.',
-                '🛠️ Built and deployed cross-platform applications using Flutter, React, Flask, Firebase, and TensorFlow.',
-                '📊 Experienced in financial strategy, having traded professionally using algorithmic systems and technical analysis.',
-                '🌱 Developed a real-world ML app for agriculture that improves decision-making with image-based predictions.',
-                '🧩 Passionate about building products at the intersection of data, design, and performance.',
-                '🚀 Continuously learning and contributing to open-source, with a strong emphasis on clean architecture and scalability.',
+                  '🎓 Computer Engineering graduate from UC Merced with a focus on software systems, machine learning, and full-stack development.',
+                  '🛠️ Built and deployed cross-platform applications using Flutter, React, Flask, Firebase, and TensorFlow.',
+                  '📊 Experienced in financial strategy, having traded professionally using algorithmic systems and technical analysis.',
+                  '🌱 Developed a real-world ML app for agriculture that improves decision-making with image-based predictions.',
+                  '🧩 Passionate about building products at the intersection of data, design, and performance.',
+                  '🚀 Continuously learning and contributing to open-source, with a strong emphasis on clean architecture and scalability.',
                 ].asMap().entries.map((entry) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("• ", style: TextStyle(fontSize: 18)),
-                      Expanded(
-                        child: Text(
-                          entry.value,
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            height: 1.8,
-                            letterSpacing: 0.4,
-                            color: textColor.withOpacity(0.9),
-                          ),
-                        ).animate().fadeIn(delay: (entry.key * 100).ms),
-                      ),
-                    ],
-                  ),
+                  child: Text(
+                    entry.value,
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      height: 1.8,
+                      letterSpacing: 0.4,
+                      color: textColor.withOpacity(0.9),
+                    ),
+                  ).animate().fadeIn(delay: (entry.key * 100).ms),
                 )),
               ],
-            )
-                .animate()
-                .fadeIn()
-                .scaleXY(begin: 0.9)
-                .slideY(begin: 0.2),
+            ).animate().fadeIn().scaleXY(begin: 0.9).slideY(begin: 0.2),
           ),
 
           const SizedBox(height: 40),
@@ -219,12 +207,7 @@ class _AboutSectionState extends State<AboutSection> {
             ),
             icon: const Icon(Icons.picture_as_pdf),
             label: const Text("View Resume", style: TextStyle(fontSize: 16)),
-          )
-              .animate()
-              .fadeIn(delay: 200.ms)
-              .slideY(begin: 0.3)
-              .then()
-              .shakeY(delay: 400.ms, duration: 800.ms),
+          ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.3).then().shakeY(delay: 400.ms, duration: 800.ms),
 
           const SizedBox(height: 40),
 
@@ -271,7 +254,7 @@ class _AboutSectionState extends State<AboutSection> {
                   ),
                 ],
               ),
-
+              const SizedBox(height: 12),
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
@@ -298,6 +281,7 @@ class _AboutSectionState extends State<AboutSection> {
                   ),
                 ),
               ),
+              const SizedBox(height: 12),
               MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
@@ -317,7 +301,7 @@ class _AboutSectionState extends State<AboutSection> {
                           child: child,
                         ),
                         child: HoverIcon(
-                          key: ValueKey(theme.brightness), // key triggers rebuild
+                          key: ValueKey(theme.brightness),
                           assetPath: theme.brightness == Brightness.dark
                               ? 'assets/logos/github-inverted.png'
                               : 'assets/logos/github.png',
@@ -335,10 +319,7 @@ class _AboutSectionState extends State<AboutSection> {
                 ),
               ),
             ],
-          )
-              .animate()
-              .fadeIn(delay: 200.ms)
-              .slideY(begin: 0.4),
+          ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.4),
         ],
       ),
     );
@@ -367,8 +348,7 @@ class _HoverLinkTextState extends State<HoverLinkText> {
         widget.text,
         style: GoogleFonts.robotoMono(
           color: widget.color,
-          decoration:
-              _isHovering ? TextDecoration.underline : TextDecoration.none,
+          decoration: _isHovering ? TextDecoration.underline : TextDecoration.none,
         ),
       ),
     );
