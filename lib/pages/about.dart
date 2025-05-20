@@ -167,12 +167,12 @@ class _AboutSectionState extends State<AboutSection> {
                 ),
                 const SizedBox(height: 20),
                 ...[
-                  '🎓 Computer Engineering graduate from UC Merced with strong foundations in software development and systems engineering.',
-                  '👨‍💻 Full-stack engineer experienced with Flutter, React, Firebase, Flask, and SQLite.',
-                  '📈 Financial analyst background with MyForexFunds and Funding Pips, specializing in technical analysis and disciplined risk management.',
-                  '🤖 Built ML-powered applications using TensorFlow and Keras, including a predictive agriculture tool deployed with Flutter for SupHerb Farms.',
-                  '🚀 Proficient in Git, JS, CI/CD, C++, and cross-platform mobile/web development.',
-                  '🧠 Passionate about solving complex, real-world problems by combining data, design, and engineering best practices.',
+                '🎓 Computer Engineering graduate from UC Merced with a focus on software systems, machine learning, and full-stack development.',
+                '🛠️ Built and deployed cross-platform applications using Flutter, React, Flask, Firebase, and TensorFlow.',
+                '📊 Experienced in financial strategy, having traded professionally using algorithmic systems and technical analysis.',
+                '🌱 Developed a real-world ML app for agriculture that improves decision-making with image-based predictions.',
+                '🧩 Passionate about building products at the intersection of data, design, and performance.',
+                '🚀 Continuously learning and contributing to open-source, with a strong emphasis on clean architecture and scalability.',
                 ].asMap().entries.map((entry) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6.0),
                   child: Row(
