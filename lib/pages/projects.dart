@@ -10,6 +10,19 @@ import 'package:video_player/video_player.dart';
 class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
+      'title': 'TaskPilot',
+      'subtitle': '🚀 React Chrome Extension for Task Management',
+      'points': [
+        'Built a productivity-focused Chrome Extension in under 12 hours using React, Framer Motion, and Tailwind-style design.',
+        'Implements task tracking by profile (Work/Personal), priorities, due dates, calendar integration, and dark mode.',
+        'Utilizes Chrome Storage API for data persistence and session management.',
+        'Features a responsive, modern UI with interactive calendar, task filters, and completion system.',
+      ],
+      'github':
+          'https://github.com/c7harry/module-2-js-final-project-Harpreet-Dosanjh',
+      'demo': 'https://module-2-js-final-project-harpreet.onrender.com',
+    },
+    {
       'title': 'Portfolio',
       'subtitle': '🎯 Interactive Showcase + Hosting',
       'points': [
@@ -77,208 +90,229 @@ class ProjectsSection extends StatelessWidget {
   }
 
   void _showVideoDemo(BuildContext context) {
-  final List<Map<String, String>> videoItems = [
-    {'title': 'Moving Clouds & Tree Leafs', 'videoPath': 'assets/videos/treecloud.mp4'},
-    {'title': 'Environment & Lighting', 'videoPath': 'assets/videos/lighting.mp4'},
-    {'title': 'Terrain Generation', 'videoPath': 'assets/videos/terrain.mp4'},
-    {'title': 'Block Selection', 'videoPath': 'assets/videos/block_selection.mp4'},
-    {'title': 'Block Placement & Destruction', 'videoPath': 'assets/videos/place_destroy.mp4'},
-  ];
+    final List<Map<String, String>> videoItems = [
+      {
+        'title': 'Moving Clouds & Tree Leafs',
+        'videoPath': 'assets/videos/treecloud.mp4',
+      },
+      {
+        'title': 'Environment & Lighting',
+        'videoPath': 'assets/videos/lighting.mp4',
+      },
+      {'title': 'Terrain Generation', 'videoPath': 'assets/videos/terrain.mp4'},
+      {
+        'title': 'Block Selection',
+        'videoPath': 'assets/videos/block_selection.mp4',
+      },
+      {
+        'title': 'Block Placement & Destruction',
+        'videoPath': 'assets/videos/place_destroy.mp4',
+      },
+    ];
 
-  showDialog(
-    context: context,
-    builder: (context) => Dialog(
-      insetPadding: const EdgeInsets.all(16),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.9,
-          maxWidth: MediaQuery.of(context).size.width * 0.95,
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: Text(
-                'Minecraft OpenGL – Demo',
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+    showDialog(
+      context: context,
+      builder:
+          (context) => Dialog(
+            insetPadding: const EdgeInsets.all(16),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.9,
+                maxWidth: MediaQuery.of(context).size.width * 0.95,
               ),
-            ),
-            const SizedBox(height: 12),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                itemCount: videoItems.length,
-                itemBuilder: (context, index) {
-                  final item = videoItems[index];
-                  return _VideoDemoItem(
-                    title: item['title']!,
-                    videoPath: item['videoPath']!,
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Close'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-  void _showCilantroDemo(BuildContext context) {
-  const videoViewerId = 'cilantroYoutube';
-
-  ui_web.platformViewRegistry.registerViewFactory(
-    videoViewerId,
-    (int viewId) {
-      final iframe = html.IFrameElement()
-        ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
-        ..style.border = 'none'
-        ..style.width = '100%'
-        ..style.height = '100%'
-        ..style.display = 'block';
-
-      return iframe;
-    },
-  );
-
-  showDialog(
-    context: context,
-    builder: (context) {
-      final screenWidth = MediaQuery.of(context).size.width;
-      final bool isMobile = screenWidth < 600;
-      final double slideHeight = isMobile ? screenWidth * 0.75 : 540;
-
-      return Dialog(
-        insetPadding: const EdgeInsets.all(16),
-        child: StatefulBuilder(
-          builder: (context, setState) {
-            final pageController = PageController();
-            int currentIndex = 0;
-
-            return StatefulBuilder(
-              builder: (context, setState) {
-                return ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height * 0.95,
-                  ),
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      children: [
-                        Text(
-                          'App Demo',
-                          style: GoogleFonts.poppins(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Container(
-                          width: double.infinity,
-                          constraints: BoxConstraints(
-                            maxWidth: 720,
-                            maxHeight: isMobile ? screenWidth * 9 / 16 : 405,
-                          ),
-                          child: AspectRatio(
-                            aspectRatio: 16 / 9,
-                            child: HtmlElementView(viewType: videoViewerId),
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        Text(
-                          'Slide Deck Presentation',
-                          style: GoogleFonts.poppins(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(height: 1),
-                        SizedBox(
-                          width: double.infinity,
-                          height: slideHeight,
-                          child: PageView.builder(
-                            controller: pageController,
-                            itemCount: 11,
-                            onPageChanged: (index) {
-                              setState(() => currentIndex = index);
-                            },
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                child: Image.asset(
-                                  'assets/cilantro/cilantro_slide_${index + 1}.jpg',
-                                  fit: BoxFit.contain,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 1),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              icon: const Icon(Icons.chevron_left),
-                              onPressed: () {
-                                if (currentIndex > 0) {
-                                  currentIndex--;
-                                  pageController.animateToPage(
-                                    currentIndex,
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeInOut,
-                                  );
-                                  setState(() {});
-                                }
-                              },
-                            ),
-                            Text(
-                              '${currentIndex + 1}/11',
-                              style: GoogleFonts.poppins(fontSize: 16),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.chevron_right),
-                              onPressed: () {
-                                if (currentIndex < 10) {
-                                  currentIndex++;
-                                  pageController.animateToPage(
-                                    currentIndex,
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeInOut,
-                                  );
-                                  setState(() {});
-                                }
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text('Close'),
-                        ),
-                      ],
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: Text(
+                      'Minecraft OpenGL – Demo',
+                      style: GoogleFonts.poppins(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                );
-              },
-            );
-          },
-        ),
-      );
-    },
-  );
-}
+                  const SizedBox(height: 12),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      itemCount: videoItems.length,
+                      itemBuilder: (context, index) {
+                        final item = videoItems[index];
+                        return _VideoDemoItem(
+                          title: item['title']!,
+                          videoPath: item['videoPath']!,
+                        );
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Close'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+    );
+  }
+
+  void _showCilantroDemo(BuildContext context) {
+    const videoViewerId = 'cilantroYoutube';
+
+    ui_web.platformViewRegistry.registerViewFactory(videoViewerId, (
+      int viewId,
+    ) {
+      final iframe =
+          html.IFrameElement()
+            ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
+            ..style.border = 'none'
+            ..style.width = '100%'
+            ..style.height = '100%'
+            ..style.display = 'block';
+
+      return iframe;
+    });
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        final screenWidth = MediaQuery.of(context).size.width;
+        final bool isMobile = screenWidth < 600;
+        final double slideHeight = isMobile ? screenWidth * 0.75 : 540;
+
+        return Dialog(
+          insetPadding: const EdgeInsets.all(16),
+          child: StatefulBuilder(
+            builder: (context, setState) {
+              final pageController = PageController();
+              int currentIndex = 0;
+
+              return StatefulBuilder(
+                builder: (context, setState) {
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height * 0.95,
+                    ),
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        children: [
+                          Text(
+                            'App Demo',
+                            style: GoogleFonts.poppins(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            width: double.infinity,
+                            constraints: BoxConstraints(
+                              maxWidth: 720,
+                              maxHeight: isMobile ? screenWidth * 9 / 16 : 405,
+                            ),
+                            child: AspectRatio(
+                              aspectRatio: 16 / 9,
+                              child: HtmlElementView(viewType: videoViewerId),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            'Slide Deck Presentation',
+                            style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(height: 1),
+                          SizedBox(
+                            width: double.infinity,
+                            height: slideHeight,
+                            child: PageView.builder(
+                              controller: pageController,
+                              itemCount: 11,
+                              onPageChanged: (index) {
+                                setState(() => currentIndex = index);
+                              },
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                  ),
+                                  child: Image.asset(
+                                    'assets/cilantro/cilantro_slide_${index + 1}.jpg',
+                                    fit: BoxFit.contain,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 1),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.chevron_left),
+                                onPressed: () {
+                                  if (currentIndex > 0) {
+                                    currentIndex--;
+                                    pageController.animateToPage(
+                                      currentIndex,
+                                      duration: const Duration(
+                                        milliseconds: 300,
+                                      ),
+                                      curve: Curves.easeInOut,
+                                    );
+                                    setState(() {});
+                                  }
+                                },
+                              ),
+                              Text(
+                                '${currentIndex + 1}/11',
+                                style: GoogleFonts.poppins(fontSize: 16),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.chevron_right),
+                                onPressed: () {
+                                  if (currentIndex < 10) {
+                                    currentIndex++;
+                                    pageController.animateToPage(
+                                      currentIndex,
+                                      duration: const Duration(
+                                        milliseconds: 300,
+                                      ),
+                                      curve: Curves.easeInOut,
+                                    );
+                                    setState(() {});
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('Close'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -306,112 +340,119 @@ class ProjectsSection extends StatelessWidget {
             spacing: 24,
             runSpacing: 24,
             alignment: WrapAlignment.center,
-            children: projects.map((project) {
-              return MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut,
-                    width: 320,
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: cardColor,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: borderColor),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
-                          blurRadius: 12,
-                          offset: const Offset(4, 4),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          project['title'] ?? '',
-                          style: GoogleFonts.poppins(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            color: titleColor,
-                          ),
-                        ),
-                        if (project['subtitle'] != null)
-                          Text(
-                            project['subtitle'],
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: textColor.withOpacity(0.8),
+            children:
+                projects.map((project) {
+                  return MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeOut,
+                        width: 320,
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          color: cardColor,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: borderColor),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              blurRadius: 12,
+                              offset: const Offset(4, 4),
                             ),
-                          ),
-                        const SizedBox(height: 12),
-                        if (project['points'] != null)
-                          ...List<Widget>.from(
-                            (project['points'] as List).map(
-                              (point) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 2.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text("• ",
-                                        style: TextStyle(fontSize: 16)),
-                                    Expanded(
-                                      child: Text(
-                                        point,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 15,
-                                          color: textColor.withOpacity(0.8),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        const SizedBox(height: 20),
-                        Row(
-                          children: [
-                            if (project['github'] != null)
-                              TextButton.icon(
-                                onPressed: () =>
-                                    _launchURL(project['github']),
-                                icon: const Icon(Icons.code, size: 18),
-                                label: const Text("GitHub"),
-                              ),
-                            if (project['demo'] != null)
-                              TextButton.icon(
-                                onPressed: () =>
-                                    _launchURL(project['demo']),
-                                icon: const Icon(Icons.launch, size: 18),
-                                label: const Text("Live Demo"),
-                              ),
-                            if (project['videoDemo'] == true)
-                              TextButton.icon(
-                                onPressed: () => _showVideoDemo(context),
-                                icon: const Icon(Icons.play_circle_fill,
-                                    size: 18),
-                                label: const Text("Video Demo"),
-                              ),
-                            if (project['cilantroDemo'] == true)
-                              TextButton.icon(
-                                onPressed: () => _showCilantroDemo(context),
-                                icon: const Icon(Icons.slideshow, size: 18),
-                                label: const Text("View Project Content"),
-                              ),
                           ],
                         ),
-                      ],
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              project['title'] ?? '',
+                              style: GoogleFonts.poppins(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: titleColor,
+                              ),
+                            ),
+                            if (project['subtitle'] != null)
+                              Text(
+                                project['subtitle'],
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: textColor.withOpacity(0.8),
+                                ),
+                              ),
+                            const SizedBox(height: 12),
+                            if (project['points'] != null)
+                              ...List<Widget>.from(
+                                (project['points'] as List).map(
+                                  (point) => Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 2.0,
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          "• ",
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            point,
+                                            style: GoogleFonts.poppins(
+                                              fontSize: 15,
+                                              color: textColor.withOpacity(0.8),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            const SizedBox(height: 20),
+                            Row(
+                              children: [
+                                if (project['github'] != null)
+                                  TextButton.icon(
+                                    onPressed:
+                                        () => _launchURL(project['github']),
+                                    icon: const Icon(Icons.code, size: 18),
+                                    label: const Text("GitHub"),
+                                  ),
+                                if (project['demo'] != null)
+                                  TextButton.icon(
+                                    onPressed:
+                                        () => _launchURL(project['demo']),
+                                    icon: const Icon(Icons.launch, size: 18),
+                                    label: const Text("Live Demo"),
+                                  ),
+                                if (project['videoDemo'] == true)
+                                  TextButton.icon(
+                                    onPressed: () => _showVideoDemo(context),
+                                    icon: const Icon(
+                                      Icons.play_circle_fill,
+                                      size: 18,
+                                    ),
+                                    label: const Text("Video Demo"),
+                                  ),
+                                if (project['cilantroDemo'] == true)
+                                  TextButton.icon(
+                                    onPressed: () => _showCilantroDemo(context),
+                                    icon: const Icon(Icons.slideshow, size: 18),
+                                    label: const Text("View Project Content"),
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.4),
                     ),
-                  ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.4),
-                ),
-              );
-            }).toList(),
+                  );
+                }).toList(),
           ),
         ],
       ),
@@ -429,7 +470,8 @@ class _VideoDemoItem extends StatefulWidget {
   State<_VideoDemoItem> createState() => _VideoDemoItemState();
 }
 
-class _VideoDemoItemState extends State<_VideoDemoItem> with AutomaticKeepAliveClientMixin {
+class _VideoDemoItemState extends State<_VideoDemoItem>
+    with AutomaticKeepAliveClientMixin {
   late final VideoPlayerController _controller;
 
   @override
@@ -456,44 +498,46 @@ class _VideoDemoItemState extends State<_VideoDemoItem> with AutomaticKeepAliveC
   bool get wantKeepAlive => true; // Keeps widget alive during scroll
 
   @override
-Widget build(BuildContext context) {
-  super.build(context); // Needed when using AutomaticKeepAliveClientMixin
+  Widget build(BuildContext context) {
+    super.build(context); // Needed when using AutomaticKeepAliveClientMixin
 
-  final isMobile = MediaQuery.of(context).size.width < 600;
-  final double maxWidth = isMobile
-      ? MediaQuery.of(context).size.width * 0.9
-      : MediaQuery.of(context).size.width * 0.6;
+    final isMobile = MediaQuery.of(context).size.width < 600;
+    final double maxWidth =
+        isMobile
+            ? MediaQuery.of(context).size.width * 0.9
+            : MediaQuery.of(context).size.width * 0.6;
 
-  return Padding(
-    padding: const EdgeInsets.only(bottom: 24.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Center(
-          child: Text(
-            widget.title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: Text(
+              widget.title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          width: maxWidth,
-          height: maxWidth * 9 / 16,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.black,
+          const SizedBox(height: 8),
+          Container(
+            width: maxWidth,
+            height: maxWidth * 9 / 16,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.black,
+            ),
+            clipBehavior: Clip.antiAlias,
+            child:
+                _controller.value.isInitialized
+                    ? VideoPlayer(_controller)
+                    : const Center(child: CircularProgressIndicator()),
           ),
-          clipBehavior: Clip.antiAlias,
-          child: _controller.value.isInitialized
-              ? VideoPlayer(_controller)
-              : const Center(child: CircularProgressIndicator()),
-        ),
-      ],
-    ),
-  );
-}
+        ],
+      ),
+    );
+  }
 }
