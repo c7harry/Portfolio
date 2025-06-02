@@ -162,9 +162,7 @@ class _AboutSectionState extends State<AboutSection> {
           const SizedBox(height: 10),
           Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 800,
-              ),
+              constraints: const BoxConstraints(maxWidth: 800),
               child: Container(
                 decoration: BoxDecoration(
                   color:
@@ -309,10 +307,13 @@ class _AboutSectionState extends State<AboutSection> {
                       height: 35,
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      "hdosanjh209@gmail.com",
-                      style: GoogleFonts.robotoMono(
-                        color: textColor.withOpacity(1.0),
+                    Flexible(
+                      child: Text(
+                        "hdosanjh209@gmail.com",
+                        style: GoogleFonts.robotoMono(
+                          color: textColor.withOpacity(1.0),
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -334,77 +335,57 @@ class _AboutSectionState extends State<AboutSection> {
                   ],
                 ),
                 const SizedBox(height: 12),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () async {
-                      final url = Uri.parse(
-                        'https://www.linkedin.com/in/harpreet-dosanjh209',
-                      );
-                      if (await canLaunchUrl(url)) {
-                        await launchUrl(
-                          url,
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const HoverIcon(
-                          assetPath: 'assets/logos/linkedin.png',
-                          width: 60,
-                          height: 60,
-                        ),
-                        const SizedBox(width: 8),
-                        HoverLinkText(
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const HoverIcon(
+                        assetPath: 'assets/logos/linkedin.png',
+                        width: 36,
+                        height: 36, 
+                      ),
+                      const SizedBox(width: 6),
+                      Flexible(
+                        child: HoverLinkText(
                           text: "linkedin.com/in/harpreet-dosanjh209",
                           color: theme.colorScheme.primary,
+                          fontSize:
+                              13,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 12),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () async {
-                      final url = Uri.parse('https://github.com/c7harry');
-                      if (await canLaunchUrl(url)) {
-                        await launchUrl(
-                          url,
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 300),
-                          transitionBuilder:
-                              (child, animation) => FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              ),
-                          child: HoverIcon(
-                            key: ValueKey(theme.brightness),
-                            assetPath:
-                                theme.brightness == Brightness.dark
-                                    ? 'assets/logos/github-inverted.png'
-                                    : 'assets/logos/github.png',
-                            width: 50,
-                            height: 50,
-                          ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        transitionBuilder:
+                            (child, animation) => FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            ),
+                        child: HoverIcon(
+                          key: ValueKey(theme.brightness),
+                          assetPath:
+                              theme.brightness == Brightness.dark
+                                  ? 'assets/logos/github-inverted.png'
+                                  : 'assets/logos/github.png',
+                          width: 50,
+                          height: 50,
                         ),
-                        const SizedBox(width: 8),
-                        HoverLinkText(
-                          text: "github.com/c7harry",
-                          color: theme.colorScheme.primary,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 8),
+                      HoverLinkText(
+                        text: "github.com/c7harry",
+                        color: theme.colorScheme.primary,
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -419,8 +400,13 @@ class _AboutSectionState extends State<AboutSection> {
 class HoverLinkText extends StatefulWidget {
   final String text;
   final Color color;
+  final double fontSize;
 
-  const HoverLinkText({required this.text, required this.color});
+  const HoverLinkText({
+    required this.text,
+    required this.color,
+    this.fontSize = 15,
+  });
 
   @override
   _HoverLinkTextState createState() => _HoverLinkTextState();
@@ -438,9 +424,12 @@ class _HoverLinkTextState extends State<HoverLinkText> {
         widget.text,
         style: GoogleFonts.robotoMono(
           color: widget.color,
+          fontSize: widget.fontSize,
           decoration:
               _isHovering ? TextDecoration.underline : TextDecoration.none,
         ),
+        softWrap: true,
+        overflow: TextOverflow.visible,
       ),
     );
   }
