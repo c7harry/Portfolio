@@ -259,28 +259,31 @@ class _AboutSectionState extends State<AboutSection> {
 
           const SizedBox(height: 40),
 
-          ElevatedButton.icon(
-                onPressed: _launchURL,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 14,
+          Tooltip(
+                message: "Open resume in new tab",
+                child: ElevatedButton.icon(
+                  onPressed: _launchURL,
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 14,
+                    ),
+                    backgroundColor: theme.colorScheme.primary,
+                    foregroundColor: theme.colorScheme.onPrimary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 10,
+                    shadowColor:
+                        theme.brightness == Brightness.dark
+                            ? Colors.white.withOpacity(0.2)
+                            : Colors.black.withOpacity(0.3),
                   ),
-                  backgroundColor: theme.colorScheme.primary,
-                  foregroundColor: theme.colorScheme.onPrimary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                  icon: const Icon(Icons.open_in_new), // External link icon
+                  label: const Text(
+                    "View Resume",
+                    style: TextStyle(fontSize: 16),
                   ),
-                  elevation: 10,
-                  shadowColor:
-                      theme.brightness == Brightness.dark
-                          ? Colors.white.withOpacity(0.2)
-                          : Colors.black.withOpacity(0.3),
-                ),
-                icon: const Icon(Icons.picture_as_pdf),
-                label: const Text(
-                  "View Resume",
-                  style: TextStyle(fontSize: 16),
                 ),
               )
               .animate()
@@ -302,117 +305,132 @@ class _AboutSectionState extends State<AboutSection> {
 
           const SizedBox(height: 20),
 
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const HoverIcon(
-                    assetPath: 'assets/logos/gmail.png',
-                    width: 40,
-                    height: 35,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    "hdosanjh209@gmail.com",
-                    style: GoogleFonts.robotoMono(
-                      color: textColor.withOpacity(1.0),
+          Container(
+            margin: const EdgeInsets.only(top: 24),
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            decoration: BoxDecoration(
+              color:
+                  theme.brightness == Brightness.dark
+                      ? Colors.white10
+                      : Colors.grey[50],
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: theme.dividerColor.withOpacity(0.18),
+                width: 1.2,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const HoverIcon(
+                      assetPath: 'assets/logos/gmail.png',
+                      width: 40,
+                      height: 35,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "hdosanjh209@gmail.com",
+                      style: GoogleFonts.robotoMono(
+                        color: textColor.withOpacity(1.0),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    IconButton(
+                      tooltip: "Copy Email",
+                      icon: const Icon(Icons.copy, size: 18),
+                      color: theme.colorScheme.primary,
+                      onPressed: () {
+                        Clipboard.setData(
+                          const ClipboardData(text: 'hdosanjh209@gmail.com'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Email copied to clipboard!'),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () async {
+                      final url = Uri.parse(
+                        'https://www.linkedin.com/in/harpreet-dosanjh209',
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const HoverIcon(
+                          assetPath: 'assets/logos/linkedin.png',
+                          width: 60,
+                          height: 60,
+                        ),
+                        const SizedBox(width: 8),
+                        HoverLinkText(
+                          text: "linkedin.com/in/harpreet-dosanjh209",
+                          color: theme.colorScheme.primary,
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  IconButton(
-                    tooltip: "Copy Email",
-                    icon: const Icon(Icons.copy, size: 18),
-                    color: theme.colorScheme.primary,
-                    onPressed: () {
-                      Clipboard.setData(
-                        const ClipboardData(text: 'hdosanjh209@gmail.com'),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Email copied to clipboard!'),
-                        ),
-                      );
+                ),
+                const SizedBox(height: 12),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () async {
+                      final url = Uri.parse('https://github.com/c7harry');
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
                     },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () async {
-                    final url = Uri.parse(
-                      'https://www.linkedin.com/in/harpreet-dosanjh209',
-                    );
-                    if (await canLaunchUrl(url)) {
-                      await launchUrl(
-                        url,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    }
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const HoverIcon(
-                        assetPath: 'assets/logos/linkedin.png',
-                        width: 60,
-                        height: 60,
-                      ),
-                      const SizedBox(width: 8),
-                      HoverLinkText(
-                        text: "linkedin.com/in/harpreet-dosanjh209",
-                        color: theme.colorScheme.primary,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () async {
-                    final url = Uri.parse('https://github.com/c7harry');
-                    if (await canLaunchUrl(url)) {
-                      await launchUrl(
-                        url,
-                        mode: LaunchMode.externalApplication,
-                      );
-                    }
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 300),
-                        transitionBuilder:
-                            (child, animation) => FadeTransition(
-                              opacity: animation,
-                              child: child,
-                            ),
-                        child: HoverIcon(
-                          key: ValueKey(theme.brightness),
-                          assetPath:
-                              theme.brightness == Brightness.dark
-                                  ? 'assets/logos/github-inverted.png'
-                                  : 'assets/logos/github.png',
-                          width: 50,
-                          height: 50,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 300),
+                          transitionBuilder:
+                              (child, animation) => FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              ),
+                          child: HoverIcon(
+                            key: ValueKey(theme.brightness),
+                            assetPath:
+                                theme.brightness == Brightness.dark
+                                    ? 'assets/logos/github-inverted.png'
+                                    : 'assets/logos/github.png',
+                            width: 50,
+                            height: 50,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      HoverLinkText(
-                        text: "github.com/c7harry",
-                        color: theme.colorScheme.primary,
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        HoverLinkText(
+                          text: "github.com/c7harry",
+                          color: theme.colorScheme.primary,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.4),
         ],
       ),
