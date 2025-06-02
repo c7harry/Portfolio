@@ -346,7 +346,7 @@ class ProjectsSection extends StatelessWidget {
               color: titleColor,
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Wrap(
             spacing: 24,
             runSpacing: 24,
