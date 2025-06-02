@@ -114,7 +114,7 @@ class SkillsSection extends StatelessWidget {
               color: isDark ? Colors.white : Colors.black,
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 16),
             padding: const EdgeInsets.all(20),
@@ -157,7 +157,7 @@ class SkillsSection extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 16),
             padding: const EdgeInsets.all(20),
@@ -192,7 +192,7 @@ class SkillsSection extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 16),
             padding: const EdgeInsets.all(20),
