@@ -223,31 +223,28 @@ class _AboutSectionState extends State<AboutSection> {
 
           const SizedBox(height: 30),
 
-          Tooltip(
-                message: "Open resume in new tab",
-                child: ElevatedButton.icon(
-                  onPressed: _launchURL,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 14,
-                    ),
-                    backgroundColor: theme.colorScheme.primary,
-                    foregroundColor: theme.colorScheme.onPrimary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    elevation: 10,
-                    shadowColor:
-                        theme.brightness == Brightness.dark
-                            ? Colors.white.withOpacity(0.2)
-                            : Colors.black.withOpacity(0.3),
+          ElevatedButton.icon(
+                onPressed: _launchURL,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 14,
                   ),
-                  icon: const Icon(Icons.open_in_new),
-                  label: const Text(
-                    "View Resume",
-                    style: TextStyle(fontSize: 16),
+                  backgroundColor: theme.colorScheme.primary,
+                  foregroundColor: theme.colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
+                  elevation: 10,
+                  shadowColor:
+                      theme.brightness == Brightness.dark
+                          ? Colors.white.withOpacity(0.2)
+                          : Colors.black.withOpacity(0.3),
+                ),
+                icon: const Icon(Icons.open_in_new),
+                label: const Text(
+                  "View Resume",
+                  style: TextStyle(fontSize: 16),
                 ),
               )
               .animate()
