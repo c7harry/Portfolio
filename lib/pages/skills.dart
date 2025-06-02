@@ -38,66 +38,70 @@ class SkillsSection extends StatelessWidget {
         spacing: 24,
         runSpacing: 24,
         alignment: WrapAlignment.center,
-        children: items.map((item) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              InkWell(
-                onTap: () {},
-                borderRadius: BorderRadius.circular(40),
-                child: Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: isDark ? Colors.white12 : Colors.grey[100],
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: isDark
-                            ? Colors.white.withOpacity(0.25)
-                            : Colors.black.withOpacity(0.4),
-                        spreadRadius: isDark ? 2 : 4,
-                        blurRadius: isDark ? 8 : 16,
-                        offset: const Offset(0, 6),
-                      ),
-                    ],
+        children:
+            items.map((item) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    borderRadius: BorderRadius.circular(40),
+                    child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: isDark ? Colors.white12 : Colors.grey[100],
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color:
+                                    isDark
+                                        ? Colors.white.withOpacity(0.25)
+                                        : Colors.black.withOpacity(0.4),
+                                spreadRadius: isDark ? 2 : 4,
+                                blurRadius: isDark ? 8 : 16,
+                                offset: const Offset(0, 6),
+                              ),
+                            ],
+                          ),
+                          child: Image.asset(
+                            item['asset'],
+                            width: 40,
+                            height: 40,
+                          ),
+                        )
+                        .animate(onPlay: (controller) => controller.repeat())
+                        .scaleXY(
+                          begin: 1.0,
+                          end: 1.1,
+                          duration: 800.ms,
+                          curve: Curves.easeInOut,
+                        )
+                        .then()
+                        .scaleXY(
+                          begin: 1.1,
+                          end: 1.0,
+                          duration: 800.ms,
+                          curve: Curves.easeInOut,
+                        ),
                   ),
-                  child: Image.asset(
-                    item['asset'],
-                    width: 40,
-                    height: 40,
-                  ),
-                )
-                    .animate(onPlay: (controller) => controller.repeat())
-                    .scaleXY(
-                      begin: 1.0,
-                      end: 1.1,
-                      duration: 800.ms,
-                      curve: Curves.easeInOut,
-                    )
-                    .then()
-                    .scaleXY(
-                      begin: 1.1,
-                      end: 1.0,
-                      duration: 800.ms,
-                      curve: Curves.easeInOut,
+                  const SizedBox(height: 8),
+                  Text(
+                    item['name'],
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: isDark ? Colors.white : Colors.black87,
                     ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                item['name'],
-                style: TextStyle(
-                  fontSize: 14,
-                  color: isDark ? Colors.white : Colors.black87,
-                ),
-              ),
-            ],
-          );
-        }).toList(),
+                  ),
+                ],
+              );
+            }).toList(),
       );
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 24,
+      ), // Removed vertical: 80
       color: isDark ? const Color.fromARGB(255, 9, 10, 9) : Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
