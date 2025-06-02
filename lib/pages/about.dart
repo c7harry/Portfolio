@@ -150,108 +150,71 @@ class _AboutSectionState extends State<AboutSection> {
               ),
             ],
           ),
-
           const SizedBox(height: 20),
-
-          SizedBox(
-            width: 600,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Headline
-                Text(
-                  "About Me",
-                  style: GoogleFonts.poppins(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
+          Text(
+            "About Me",
+            style: GoogleFonts.poppins(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: titleColor,
+            ),
+          ).animate().fadeIn().slideY(begin: 0.2),
+          Container(
+            decoration: BoxDecoration(
+              color:
+                  Theme.of(context).brightness == Brightness.dark
+                      ? Colors.grey[900]
+                      : Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.18)
+                          : Colors.grey.withOpacity(0.12),
+                  blurRadius: 16,
+                  offset: const Offset(0, 4),
                 ),
-                const SizedBox(height: 18),
-                Container(
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? Colors.grey[900]
-                            : Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color:
-                            Theme.of(context).brightness == Brightness.dark
-                                ? Colors.black.withOpacity(0.18)
-                                : Colors.grey.withOpacity(0.12),
-                        blurRadius: 16,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Stack(
-                    children: [
-                      // Accent bar
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        child: Container(
-                          width: 7,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.secondary,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              bottomLeft: Radius.circular(16),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 24,
-                          horizontal: 28,
-                        ),
-                        child: Column(
-                          children: [
-                            _AboutBullet(
-                              icon: Icons.school,
-                              iconColor: Colors.blue[400],
-                              text:
-                                  "Computer Engineering graduate from UC Merced focused on software systems, machine learning, and full-stack development.",
-                            ),
-                            _AboutBullet(
-                              icon: Icons.devices,
-                              iconColor: Colors.purple[400],
-                              text:
-                                  "Built and deployed cross-platform apps using Flutter, React, Flask, Firebase, and TensorFlow.",
-                            ),
-                            _AboutBullet(
-                              icon: Icons.show_chart,
-                              iconColor: Colors.green[400],
-                              text:
-                                  "Experienced in financial strategy, with a background in professional algorithmic trading and technical analysis.",
-                            ),
-                            _AboutBullet(
-                              icon: Icons.agriculture,
-                              iconColor: Colors.teal[400],
-                              text:
-                                  "Developed a real-world ML app for agriculture, improving decisions with image-based predictions.",
-                            ),
-                            _AboutBullet(
-                              icon: Icons.extension,
-                              iconColor: Colors.orange[400],
-                              text:
-                                  "Passionate about building products at the intersection of data, design, and performance.",
-                            ),
-                            _AboutBullet(
-                              icon: Icons.rocket_launch,
-                              iconColor: Colors.redAccent[200],
-                              text:
-                                  "Continuously learning and contributing to open-source, with a focus on clean architecture and scalability.",
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+              ],
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 28),
+            child: Column(
+              children: [
+                _AboutBullet(
+                  icon: Icons.school,
+                  iconColor: Colors.blue[400],
+                  text:
+                      "Computer Engineering graduate from UC Merced focused on software systems, machine learning, and full-stack development.",
+                ),
+                _AboutBullet(
+                  icon: Icons.devices,
+                  iconColor: Colors.purple[400],
+                  text:
+                      "Built and deployed cross-platform apps using Flutter, React, Flask, Firebase, and TensorFlow.",
+                ),
+                _AboutBullet(
+                  icon: Icons.show_chart,
+                  iconColor: Colors.green[400],
+                  text:
+                      "Experienced in financial strategy, with a background in professional algorithmic trading and technical analysis.",
+                ),
+                _AboutBullet(
+                  icon: Icons.agriculture,
+                  iconColor: Colors.teal[400],
+                  text:
+                      "Developed a real-world ML app for agriculture, improving decisions with image-based predictions.",
+                ),
+                _AboutBullet(
+                  icon: Icons.extension,
+                  iconColor: Colors.orange[400],
+                  text:
+                      "Passionate about building products at the intersection of data, design, and performance.",
+                ),
+                _AboutBullet(
+                  icon: Icons.rocket_launch,
+                  iconColor: Colors.redAccent[200],
+                  text:
+                      "Continuously learning and contributing to open-source, with a focus on clean architecture and scalability.",
                 ),
               ],
             ),
@@ -279,7 +242,7 @@ class _AboutSectionState extends State<AboutSection> {
                             ? Colors.white.withOpacity(0.2)
                             : Colors.black.withOpacity(0.3),
                   ),
-                  icon: const Icon(Icons.open_in_new), // External link icon
+                  icon: const Icon(Icons.open_in_new),
                   label: const Text(
                     "View Resume",
                     style: TextStyle(fontSize: 16),
@@ -304,7 +267,14 @@ class _AboutSectionState extends State<AboutSection> {
           ).animate().fadeIn().slideY(begin: 0.2),
 
           const SizedBox(height: 20),
-
+          Text(
+            "Feel free to reach out for collaborations, opportunities, or just a chat!",
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              color: textColor.withOpacity(0.8),
+            ),
+            textAlign: TextAlign.center,
+          ).animate().fadeIn(delay: 100.ms).slideY(begin: 0.2),
           Container(
             margin: const EdgeInsets.only(top: 24),
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
