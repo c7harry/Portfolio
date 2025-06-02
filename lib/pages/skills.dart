@@ -187,12 +187,15 @@ class SkillsSection extends StatelessWidget {
             ),
             child: Column(
               children: [
-                Text(
-                  'Technologies & Frameworks',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: isDark ? Colors.white70 : Colors.black87,
+                Center(
+                  child: Text(
+                    'Technologies & Frameworks',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      color: isDark ? Colors.white70 : Colors.black87,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
