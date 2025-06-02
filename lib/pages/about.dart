@@ -49,8 +49,14 @@ class _HoverIconState extends State<HoverIcon> {
 }
 
 class _AboutSectionState extends State<AboutSection> {
-  final String resumeUrl = 'https://drive.google.com/file/d/1aR8lixMPw33Jjw5VeMzwcV2WVZh5e7Mq/view?usp=sharing';
-  final List<String> titles = ['Software Engineer', 'Full Stack Developer', 'Cyber Security Engineer', 'Flutter Engineer'];
+  final String resumeUrl =
+      'https://drive.google.com/file/d/1aR8lixMPw33Jjw5VeMzwcV2WVZh5e7Mq/view?usp=sharing';
+  final List<String> titles = [
+    'Software Engineer',
+    'Full Stack Developer',
+    'Cyber Security Engineer',
+    'Flutter Engineer',
+  ];
 
   String displayedText = '';
   int currentTitleIndex = 0;
@@ -95,7 +101,10 @@ class _AboutSectionState extends State<AboutSection> {
   }
 
   void _launchURL() async {
-    if (!await launchUrl(Uri.parse(resumeUrl), mode: LaunchMode.externalApplication)) {
+    if (!await launchUrl(
+      Uri.parse(resumeUrl),
+      mode: LaunchMode.externalApplication,
+    )) {
       throw 'Could not launch $resumeUrl';
     }
   }
@@ -146,68 +155,89 @@ class _AboutSectionState extends State<AboutSection> {
 
           const SizedBox(height: 20),
 
-          Container(
-            width: 900,
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: cardColor,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: borderColor),
-            ),
+          SizedBox(
+            width: 600,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Headline
                 Text(
-                  "Who am I?",
+                  "About Me",
                   style: GoogleFonts.poppins(
-                    fontSize: 24,
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: textColor,
                   ),
                 ),
-                const SizedBox(height: 20),
-                ...[
-                  '🎓 Computer Engineering graduate from UC Merced with a focus on software systems, machine learning, and full-stack development.',
-                  '🛠️ Built and deployed cross-platform applications using Flutter, React, Flask, Firebase, and TensorFlow.',
-                  '📊 Experienced in financial strategy, having traded professionally using algorithmic systems and technical analysis.',
-                  '🌱 Developed a real-world ML app for agriculture that improves decision-making with image-based predictions.',
-                  '🧩 Passionate about building products at the intersection of data, design, and performance.',
-                  '🚀 Continuously learning and contributing to open-source, with a strong emphasis on clean architecture and scalability.',
-                ].asMap().entries.map((entry) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6.0),
-                  child: Text(
-                    entry.value,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      height: 1.8,
-                      letterSpacing: 0.4,
-                      color: textColor.withOpacity(0.9),
+                const SizedBox(height: 18),
+                Column(
+                  children: [
+                    _AboutBullet(
+                      icon: Icons.school,
+                      text:
+                          "Computer Engineering graduate from UC Merced focused on software systems, machine learning, and full-stack development.",
                     ),
-                  ).animate().fadeIn(delay: (entry.key * 100).ms),
-                )),
+                    _AboutBullet(
+                      icon: Icons.devices,
+                      text:
+                          "Built and deployed cross-platform apps using Flutter, React, Flask, Firebase, and TensorFlow.",
+                    ),
+                    _AboutBullet(
+                      icon: Icons.show_chart,
+                      text:
+                          "Experienced in financial strategy, with a background in professional algorithmic trading and technical analysis.",
+                    ),
+                    _AboutBullet(
+                      icon: Icons.agriculture,
+                      text:
+                          "Developed a real-world ML app for agriculture, improving decisions with image-based predictions.",
+                    ),
+                    _AboutBullet(
+                      icon: Icons.extension,
+                      text:
+                          "Passionate about building products at the intersection of data, design, and performance.",
+                    ),
+                    _AboutBullet(
+                      icon: Icons.rocket_launch,
+                      text:
+                          "Continuously learning and contributing to open-source, with a focus on clean architecture and scalability.",
+                    ),
+                  ],
+                ),
               ],
-            ).animate().fadeIn().scaleXY(begin: 0.9).slideY(begin: 0.2),
+            ),
           ),
 
           const SizedBox(height: 40),
 
           ElevatedButton.icon(
-            onPressed: _launchURL,
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-              backgroundColor: theme.colorScheme.primary,
-              foregroundColor: theme.colorScheme.onPrimary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              elevation: 10,
-              shadowColor: theme.brightness == Brightness.dark
-                  ? Colors.white.withOpacity(0.2)
-                  : Colors.black.withOpacity(0.3),
-            ),
-            icon: const Icon(Icons.picture_as_pdf),
-            label: const Text("View Resume", style: TextStyle(fontSize: 16)),
-          ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.3).then().shakeY(delay: 400.ms, duration: 800.ms),
+                onPressed: _launchURL,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 14,
+                  ),
+                  backgroundColor: theme.colorScheme.primary,
+                  foregroundColor: theme.colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 10,
+                  shadowColor:
+                      theme.brightness == Brightness.dark
+                          ? Colors.white.withOpacity(0.2)
+                          : Colors.black.withOpacity(0.3),
+                ),
+                icon: const Icon(Icons.picture_as_pdf),
+                label: const Text(
+                  "View Resume",
+                  style: TextStyle(fontSize: 16),
+                ),
+              )
+              .animate()
+              .fadeIn(delay: 200.ms)
+              .slideY(begin: 0.3)
+              .then()
+              .shakeY(delay: 400.ms, duration: 800.ms),
 
           const SizedBox(height: 40),
 
@@ -236,7 +266,9 @@ class _AboutSectionState extends State<AboutSection> {
                   const SizedBox(width: 8),
                   Text(
                     "hdosanjh209@gmail.com",
-                    style: GoogleFonts.robotoMono(color: textColor.withOpacity(1.0)),
+                    style: GoogleFonts.robotoMono(
+                      color: textColor.withOpacity(1.0),
+                    ),
                   ),
                   const SizedBox(width: 8),
                   IconButton(
@@ -248,7 +280,9 @@ class _AboutSectionState extends State<AboutSection> {
                         const ClipboardData(text: 'hdosanjh209@gmail.com'),
                       );
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Email copied to clipboard!')),
+                        const SnackBar(
+                          content: Text('Email copied to clipboard!'),
+                        ),
                       );
                     },
                   ),
@@ -259,9 +293,14 @@ class _AboutSectionState extends State<AboutSection> {
                 cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () async {
-                    final url = Uri.parse('https://www.linkedin.com/in/harpreet-dosanjh209');
+                    final url = Uri.parse(
+                      'https://www.linkedin.com/in/harpreet-dosanjh209',
+                    );
                     if (await canLaunchUrl(url)) {
-                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                      await launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      );
                     }
                   },
                   child: Row(
@@ -288,7 +327,10 @@ class _AboutSectionState extends State<AboutSection> {
                   onTap: () async {
                     final url = Uri.parse('https://github.com/c7harry');
                     if (await canLaunchUrl(url)) {
-                      await launchUrl(url, mode: LaunchMode.externalApplication);
+                      await launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      );
                     }
                   },
                   child: Row(
@@ -296,15 +338,17 @@ class _AboutSectionState extends State<AboutSection> {
                     children: [
                       AnimatedSwitcher(
                         duration: const Duration(milliseconds: 300),
-                        transitionBuilder: (child, animation) => FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        ),
+                        transitionBuilder:
+                            (child, animation) => FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            ),
                         child: HoverIcon(
                           key: ValueKey(theme.brightness),
-                          assetPath: theme.brightness == Brightness.dark
-                              ? 'assets/logos/github-inverted.png'
-                              : 'assets/logos/github.png',
+                          assetPath:
+                              theme.brightness == Brightness.dark
+                                  ? 'assets/logos/github-inverted.png'
+                                  : 'assets/logos/github.png',
                           width: 50,
                           height: 50,
                         ),
@@ -348,8 +392,37 @@ class _HoverLinkTextState extends State<HoverLinkText> {
         widget.text,
         style: GoogleFonts.robotoMono(
           color: widget.color,
-          decoration: _isHovering ? TextDecoration.underline : TextDecoration.none,
+          decoration:
+              _isHovering ? TextDecoration.underline : TextDecoration.none,
         ),
+      ),
+    );
+  }
+}
+
+class _AboutBullet extends StatelessWidget {
+  final IconData icon;
+  final String text;
+
+  const _AboutBullet({required this.icon, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: theme.primaryColor, size: 22),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: GoogleFonts.poppins(fontSize: 15, height: 1.5),
+            ),
+          ),
+        ],
       ),
     );
   }
