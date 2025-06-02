@@ -12,7 +12,7 @@ class ProjectsSection extends StatelessWidget {
       'title': 'TaskPilot',
       'subtitle': '🚀 Chrome Extension - Bay Valley Tech Challenge',
       'points': [
-        'Built with React, Framer Motion, and TailwindCSS as a Chrome Extension in 15 hours.',
+        'Built with React, Framer Motion, and TailwindCSS as a Chrome Extension in 15-hours.',
         'Helps users organize and track tasks for work and personal life, making daily planning easier.',
         'Supports task priorities, due dates, calendar integration, and dark mode.',
         'Uses Chrome Storage API for saving your data automatically.',
@@ -20,6 +20,8 @@ class ProjectsSection extends StatelessWidget {
       'github':
           'https://github.com/c7harry/module-2-js-final-project-Harpreet-Dosanjh',
       'demo': 'https://module-2-js-final-project-harpreet.onrender.com',
+      'accentColor': Color(0xFFe3f2fd),
+      'accentIcon': Icons.check_circle_outline,
     },
     {
       'title': 'Portfolio',
@@ -32,6 +34,8 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/my_portfolio',
       'demo': 'https://portfolio-874c2.web.app/',
+      'accentColor': Color(0xFFf3e5f5),
+      'accentIcon': Icons.person_outline,
     },
     {
       'title': 'Bobcat Buzz',
@@ -44,6 +48,8 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/CSE-106-Final-Project',
       'demo': 'https://bobcat-buzz.onrender.com/',
+      'accentColor': Color(0xFFe8f5e9),
+      'accentIcon': Icons.lock_outline,
     },
     {
       'title': 'CraftMail',
@@ -56,6 +62,8 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/bootstrap-email-dosanjh',
       'demo': 'https://bootstrap-email-dosanjh.onrender.com',
+      'accentColor': Color(0xFFfff3e0),
+      'accentIcon': Icons.email_outlined,
     },
     {
       'title': 'Minecraft',
@@ -68,6 +76,8 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/Minecraft-OpenGL',
       'videoDemo': true,
+      'accentColor': Color(0xFFede7f6),
+      'accentIcon': Icons.videogame_asset_outlined,
     },
     {
       'title': 'Cilantro Estimating',
@@ -79,6 +89,8 @@ class ProjectsSection extends StatelessWidget {
         'Developed in partnership with SupHerb Farms and featured at UC Merced’s Innovate 2 Grow.',
       ],
       'cilantroDemo': true,
+      'accentColor': Color(0xFFf1f8e9),
+      'accentIcon': Icons.agriculture_outlined,
     },
   ];
 
@@ -397,43 +409,91 @@ class _ProjectCardState extends State<_ProjectCard> {
     final showExpand = points.length > 1;
     final visiblePoints = expanded ? points : points.take(1);
 
+    final accentColor =
+        project['accentColor'] as Color? ??
+        Theme.of(context).colorScheme.secondary.withOpacity(0.15);
+    final accentIcon = project['accentIcon'] as IconData? ?? Icons.apps;
+
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final headerTextColor = isDark ? Colors.black : Colors.black;
+    final subtitleTextColor =
+        isDark
+            ? Colors.white.withOpacity(0.85)
+            : widget.textColor.withOpacity(0.7);
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
       width: 320,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         color: widget.cardColor,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(color: widget.borderColor),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 12,
-            offset: const Offset(4, 4),
+            color: accentColor.withOpacity(0.25),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            project['title'] ?? '',
-            style: GoogleFonts.poppins(
-              fontSize: 19,
-              fontWeight: FontWeight.w600,
-              color: widget.titleColor,
+          // Accent header
+          Container(
+            decoration: BoxDecoration(
+              color: accentColor,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(18),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: isDark ? Colors.grey[900] : Colors.white,
+                  child: Icon(
+                    accentIcon,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    project['title'] ?? '',
+                    style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: headerTextColor,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black.withOpacity(isDark ? 0.08 : 0.12),
+                          blurRadius: 2,
+                          offset: const Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           if (project['subtitle'] != null)
             Padding(
-              padding: const EdgeInsets.only(top: 2.0, bottom: 8.0),
+              padding: const EdgeInsets.only(
+                top: 10.0,
+                left: 20,
+                right: 20,
+                bottom: 8.0,
+              ),
               child: Text(
                 project['subtitle'],
                 style: GoogleFonts.poppins(
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  color: widget.textColor.withOpacity(0.7),
+                  color: subtitleTextColor,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -441,68 +501,81 @@ class _ProjectCardState extends State<_ProjectCard> {
             ),
           if (points.isNotEmpty) ...[
             Divider(height: 18, color: widget.borderColor),
-            ...visiblePoints.map(
-              (point) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("• ", style: TextStyle(fontSize: 15)),
-                    Expanded(
-                      child: Text(
-                        point,
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: widget.textColor.withOpacity(0.8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  ...visiblePoints.map(
+                    (point) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text("• ", style: TextStyle(fontSize: 15)),
+                          Expanded(
+                            child: Text(
+                              point,
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: widget.textColor.withOpacity(0.85),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  if (showExpand)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: const Size(0, 0),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        onPressed: () => setState(() => expanded = !expanded),
+                        child: Text(
+                          expanded ? "Show less" : "Show more",
+                          style: GoogleFonts.poppins(fontSize: 13),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                ],
               ),
             ),
-            if (showExpand)
-              TextButton(
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  minimumSize: const Size(0, 0),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-                onPressed: () => setState(() => expanded = !expanded),
-                child: Text(
-                  expanded ? "Show less" : "Show more",
-                  style: GoogleFonts.poppins(fontSize: 13),
-                ),
-              ),
           ],
           Divider(height: 18, color: widget.borderColor),
-          Row(
-            children: [
-              if (project['github'] != null)
-                IconButton(
-                  tooltip: "GitHub",
-                  icon: const Icon(Icons.code, size: 18),
-                  onPressed: () => widget.launchURL(project['github']),
-                ),
-              if (project['demo'] != null)
-                IconButton(
-                  tooltip: "Live Demo",
-                  icon: const Icon(Icons.launch, size: 18),
-                  onPressed: () => widget.launchURL(project['demo']),
-                ),
-              if (project['videoDemo'] == true)
-                IconButton(
-                  tooltip: "Video Demo",
-                  icon: const Icon(Icons.play_circle_fill, size: 18),
-                  onPressed: () => widget.showVideoDemo(context),
-                ),
-              if (project['cilantroDemo'] == true)
-                IconButton(
-                  tooltip: "View Project Content",
-                  icon: const Icon(Icons.slideshow, size: 18),
-                  onPressed: () => widget.showCilantroDemo(context),
-                ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            child: Row(
+              children: [
+                if (project['github'] != null)
+                  IconButton(
+                    tooltip: "GitHub",
+                    icon: const Icon(Icons.code, size: 18),
+                    onPressed: () => widget.launchURL(project['github']),
+                  ),
+                if (project['demo'] != null)
+                  IconButton(
+                    tooltip: "Live Demo",
+                    icon: const Icon(Icons.launch, size: 18),
+                    onPressed: () => widget.launchURL(project['demo']),
+                  ),
+                if (project['videoDemo'] == true)
+                  IconButton(
+                    tooltip: "Video Demo",
+                    icon: const Icon(Icons.play_circle_fill, size: 18),
+                    onPressed: () => widget.showVideoDemo(context),
+                  ),
+                if (project['cilantroDemo'] == true)
+                  IconButton(
+                    tooltip: "View Project Content",
+                    icon: const Icon(Icons.slideshow, size: 18),
+                    onPressed: () => widget.showCilantroDemo(context),
+                  ),
+              ],
+            ),
           ),
         ],
       ),
@@ -545,11 +618,11 @@ class _VideoDemoItemState extends State<_VideoDemoItem>
   }
 
   @override
-  bool get wantKeepAlive => true; // Keeps widget alive during scroll
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
-    super.build(context); // Needed when using AutomaticKeepAliveClientMixin
+    super.build(context);
 
     final isMobile = MediaQuery.of(context).size.width < 600;
     final double maxWidth =
