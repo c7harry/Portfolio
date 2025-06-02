@@ -8,21 +8,24 @@ class CertificatesSection extends StatelessWidget {
       'issuer': 'MyForexFunds',
       'date': 'Jun 2022',
       'image': 'assets/images/myforexfunds_stage1_2.jpg',
-      'link': 'https://drive.google.com/file/d/156zTGXkaO_88Tepb7uX_eFOt1TiJp8NR/view'
+      'link':
+          'https://drive.google.com/file/d/156zTGXkaO_88Tepb7uX_eFOt1TiJp8NR/view',
     },
     {
       'title': 'Account Management Stage 1',
       'issuer': 'FundingPips',
       'date': 'Apr 2024',
       'image': 'assets/images/fundingpips_stage1.png',
-      'link': 'https://app.fundingpips.com/certificates/verify/363f0140-6b61-4d49-81cd-43ada36850c3'
+      'link':
+          'https://app.fundingpips.com/certificates/verify/363f0140-6b61-4d49-81cd-43ada36850c3',
     },
     {
       'title': 'Account Management Stage 2',
       'issuer': 'FundingPips',
       'date': 'Jul 2024',
       'image': 'assets/images/fundingpips_stage2.png',
-      'link': 'https://app.fundingpips.com/certificates/verify/893a6efb-2afb-4bf4-a502-d358afd74f87'
+      'link':
+          'https://app.fundingpips.com/certificates/verify/893a6efb-2afb-4bf4-a502-d358afd74f87',
     },
   ];
 
@@ -30,25 +33,29 @@ class CertificatesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 0.0,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
             child: Text(
               'Certificates',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ),
           const SizedBox(height: 24),
           LayoutBuilder(
             builder: (context, constraints) {
-              int crossAxisCount = constraints.maxWidth > 900
-                  ? 3
-                  : constraints.maxWidth > 600
+              int crossAxisCount =
+                  constraints.maxWidth > 900
+                      ? 3
+                      : constraints.maxWidth > 600
                       ? 2
                       : 1;
 
@@ -95,12 +102,7 @@ class CertificateCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (cert['image'] != null)
-          Expanded(
-            child: Image.asset(
-              cert['image']!,
-              fit: BoxFit.contain,
-            ),
-          ),
+          Expanded(child: Image.asset(cert['image']!, fit: BoxFit.contain)),
         const SizedBox(height: 8),
         Text(
           cert['title'] ?? '',
@@ -122,10 +124,7 @@ class CertificateCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: hasLink ? () => _launchLink(cert['link']!) : null,
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: cardContent,
-        ),
+        child: Padding(padding: const EdgeInsets.all(12.0), child: cardContent),
       ),
     );
   }
