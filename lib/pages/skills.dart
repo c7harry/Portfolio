@@ -9,6 +9,7 @@ class SkillsSection extends StatelessWidget {
     {'name': 'Dart', 'asset': 'assets/images/dart.png'},
     {'name': 'HTML', 'asset': 'assets/images/html.png'},
     {'name': 'CSS', 'asset': 'assets/images/css.png'},
+    {'name': 'C', 'asset': 'assets/logos/c.png'},
   ];
 
   final List<Map<String, dynamic>> technologies = [
@@ -20,6 +21,11 @@ class SkillsSection extends StatelessWidget {
     {'name': 'Keras', 'asset': 'assets/images/keras.png'},
     {'name': 'Flask', 'asset': 'assets/images/flask.png'},
     {'name': 'OpenGL', 'asset': 'assets/images/openGL.png'},
+    {'name': 'Framer Motion', 'asset': 'assets/logos/framer_motion.png'},
+    {'name': 'TailwindCSS', 'asset': 'assets/logos/tailwindcss.png'},
+    {'name': 'SQLite', 'asset': 'assets/logos/sqlite.png'},
+    {'name': 'GitHub Actions', 'asset': 'assets/logos/github_actions.png'},
+    {'name': 'Chrome Extensions', 'asset': 'assets/logos/chrome.png'},
   ];
 
   final List<Map<String, dynamic>> tools = [
@@ -27,6 +33,8 @@ class SkillsSection extends StatelessWidget {
     {'name': 'Android Studio', 'asset': 'assets/images/android_studio.png'},
     {'name': 'Google Colab', 'asset': 'assets/images/colab.png'},
     {'name': 'TradingView', 'asset': 'assets/images/tradingview.png'},
+    {'name': 'CI/CD', 'asset': 'assets/logos/cicd.png'},
+    {'name': 'Google Cloud', 'asset': 'assets/logos/google_cloud.png'},
   ];
 
   @override

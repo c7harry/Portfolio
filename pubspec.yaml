@@ -89,6 +89,15 @@ flutter:
     - assets/images/tensorflow.png
     - assets/images/openGL.png
 
+    - assets/logos/cicd.png
+    - assets/logos/google_cloud.png
+    - assets/logos/tailwindcss.png
+    - assets/logos/sqlite.png
+    - assets/logos/github_actions.png
+    - assets/logos/chrome.png
+    - assets/logos/framer_motion.png
+    - assets/logos/c.png
+
     #Videos
     - assets/videos/treecloud.mp4
     - assets/videos/terrain.mp4
