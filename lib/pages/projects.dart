@@ -2,7 +2,6 @@ import 'dart:html' as html;
 import 'dart:ui_web' as ui_web;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_player/video_player.dart';
@@ -11,12 +10,12 @@ class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
       'title': 'TaskPilot',
-      'subtitle': '🚀 React Chrome Extension for Task Management',
+      'subtitle': '🚀 Chrome Extension - Bay Valley Tech Challenge',
       'points': [
-        'Built a productivity-focused Chrome Extension in under 12 hours using React, Framer Motion, and Tailwind-style design.',
-        'Implements task tracking by profile (Work/Personal), priorities, due dates, calendar integration, and dark mode.',
-        'Utilizes Chrome Storage API for data persistence and session management.',
-        'Features a responsive, modern UI with interactive calendar, task filters, and completion system.',
+        'Built with React, Framer Motion, and TailwindCSS as a Chrome Extension in 15 hours.',
+        'Helps users organize and track tasks for work and personal life, making daily planning easier.',
+        'Supports task priorities, due dates, calendar integration, and dark mode.',
+        'Uses Chrome Storage API for saving your data automatically.',
       ],
       'github':
           'https://github.com/c7harry/module-2-js-final-project-Harpreet-Dosanjh',
@@ -24,60 +23,60 @@ class ProjectsSection extends StatelessWidget {
     },
     {
       'title': 'Portfolio',
-      'subtitle': '🎯 Interactive Showcase + Hosting',
+      'subtitle': '🎯 Interactive Developer Showcase',
       'points': [
-        'Designed and built with Flutter to demonstrate UI, animation, and state management expertise.',
-        'Deployed using Firebase Hosting and automated with GitHub Actions CI/CD pipeline.',
-        'Features responsive layout, project modals, and embedded media for a dynamic user experience.',
-        'Includes self-hosted project demos, source code, and resume for recruiter-friendly navigation.',
+        'Created using Flutter, deployed with Firebase Hosting and GitHub Actions.',
+        'A personal website that highlights my projects, skills, and resume for recruiters and collaborators.',
+        'Features a responsive layout, project popups, and embedded videos.',
+        'Includes links to live demos and source code for easy navigation.',
       ],
       'github': 'https://github.com/c7harry/my_portfolio',
       'demo': 'https://portfolio-874c2.web.app/',
     },
     {
       'title': 'Bobcat Buzz',
-      'subtitle': '🔐 Secure User Portal + Hosting',
+      'subtitle': '🔐 Student Portal',
       'points': [
-        'Developed a user authentication system with hashed passwords and session tracking using Flask and SQLite.',
-        'Implemented custom form validation, secure routing, and basic RBAC logic.',
-        'Responsive UI and portal structure designed for student access to protected content.',
-        'Deployed to Render with HTTPS and minimal latency for real-world usability testing.',
+        'Developed with Flask (Python) and SQLite for secure user authentication.',
+        'Provides a safe online space for students to access protected content and resources.',
+        'Includes custom form validation, secure routing, and role-based access.',
+        'Deployed with HTTPS for privacy and reliability.',
       ],
       'github': 'https://github.com/c7harry/CSE-106-Final-Project',
       'demo': 'https://bobcat-buzz.onrender.com/',
     },
     {
       'title': 'CraftMail',
-      'subtitle': '📬 Responsive Email UI – Bay Valley Tech Challenge',
+      'subtitle': '📬 Responsive Email Client - Bay Valley Tech Challenge',
       'points': [
-        'Designed and built a Gmail-inspired email client using HTML, CSS, and Bootstrap in under 24 hours.',
-        'Implemented message filtering by user and folder tabs (Primary, Promotions, Social) with dynamic interactivity.',
-        'Integrated a responsive layout with mobile-first design, smooth transitions, and accessible navigation.',
-        'Included features such as composing messages, inbox interactivity, and animations to enhance UX.',
+        'Built using HTML, CSS, and Bootstrap in 15-hours.',
+        'Lets users read, filter, and organize emails in a familiar, Gmail-like interface.',
+        'Supports message filtering, folder tabs, and composing new messages.',
+        'Designed for mobile and desktop with smooth transitions and accessible navigation.',
       ],
       'github': 'https://github.com/c7harry/bootstrap-email-dosanjh',
       'demo': 'https://bootstrap-email-dosanjh.onrender.com',
     },
     {
       'title': 'Minecraft',
-      'subtitle': '🧱 3D Voxel Engine in C++',
+      'subtitle': '🧱 3D Voxel Engine',
       'points': [
-        'Engineered a Minecraft-inspired voxel renderer using OpenGL and GLSL for real-time 3D graphics.',
-        'Built custom terrain generation logic with dynamic chunk management.',
-        'Implemented block selection, placement, and destruction with efficient memory handling.',
-        'Optimized performance through shader manipulation and depth buffering techniques.',
+        'Engineered in C++ using OpenGL and GLSL for real-time 3D graphics.',
+        'A sandbox game engine that lets users build and explore blocky worlds, inspired by Minecraft.',
+        'Features custom terrain generation, block placement, and destruction.',
+        'Optimized for smooth performance with advanced graphics techniques.',
       ],
       'github': 'https://github.com/c7harry/Minecraft-OpenGL',
       'videoDemo': true,
     },
     {
       'title': 'Cilantro Estimating',
-      'subtitle': '🌿 AI-Powered Yield Forecasting App',
+      'subtitle': '🌿 AI Yield Forecasting',
       'points': [
-        'Led development of a computer vision web app using TensorFlow and Keras for crop yield estimation.',
-        'Integrated image-based inference with a Flutter frontend and Flask API backend.',
-        'Enabled field log tracking and harvesting insights through intuitive UI and analytics dashboard.',
-        'Designed under NDA in collaboration with SupHerb Farms; featured at UC Merced’s Innovate 2 Grow.',
+        'Web app built with Flutter (frontend), Flask (backend), and TensorFlow/Keras for AI.',
+        'Helps farmers estimate crop yields from photos, making harvest planning more accurate and efficient.',
+        'Includes field log tracking and an analytics dashboard for insights.',
+        'Developed in partnership with SupHerb Farms and featured at UC Merced’s Innovate 2 Grow.',
       ],
       'cilantroDemo': true,
     },
@@ -341,118 +340,169 @@ class ProjectsSection extends StatelessWidget {
             runSpacing: 24,
             alignment: WrapAlignment.center,
             children:
-                projects.map((project) {
-                  return MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeOut,
-                        width: 320,
-                        padding: const EdgeInsets.all(24),
-                        decoration: BoxDecoration(
-                          color: cardColor,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: borderColor),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.05),
-                              blurRadius: 12,
-                              offset: const Offset(4, 4),
-                            ),
-                          ],
+                projects
+                    .map(
+                      (project) => _ProjectCard(
+                        project: project,
+                        textColor: textColor,
+                        titleColor: titleColor,
+                        cardColor: cardColor,
+                        borderColor: borderColor,
+                        launchURL: _launchURL,
+                        showVideoDemo: _showVideoDemo,
+                        showCilantroDemo: _showCilantroDemo,
+                      ),
+                    )
+                    .toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProjectCard extends StatefulWidget {
+  final Map<String, dynamic> project;
+  final Color textColor;
+  final Color titleColor;
+  final Color cardColor;
+  final Color borderColor;
+  final void Function(String url) launchURL;
+  final void Function(BuildContext context) showVideoDemo;
+  final void Function(BuildContext context) showCilantroDemo;
+
+  const _ProjectCard({
+    required this.project,
+    required this.textColor,
+    required this.titleColor,
+    required this.cardColor,
+    required this.borderColor,
+    required this.launchURL,
+    required this.showVideoDemo,
+    required this.showCilantroDemo,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<_ProjectCard> {
+  bool expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final project = widget.project;
+    final points = (project['points'] as List?) ?? [];
+    final showExpand = points.length > 1;
+    final visiblePoints = expanded ? points : points.take(1);
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+      width: 320,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: widget.cardColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: widget.borderColor),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 12,
+            offset: const Offset(4, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            project['title'] ?? '',
+            style: GoogleFonts.poppins(
+              fontSize: 19,
+              fontWeight: FontWeight.w600,
+              color: widget.titleColor,
+            ),
+          ),
+          if (project['subtitle'] != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 2.0, bottom: 8.0),
+              child: Text(
+                project['subtitle'],
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: widget.textColor.withOpacity(0.7),
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          if (points.isNotEmpty) ...[
+            Divider(height: 18, color: widget.borderColor),
+            ...visiblePoints.map(
+              (point) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("• ", style: TextStyle(fontSize: 15)),
+                    Expanded(
+                      child: Text(
+                        point,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: widget.textColor.withOpacity(0.8),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              project['title'] ?? '',
-                              style: GoogleFonts.poppins(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: titleColor,
-                              ),
-                            ),
-                            if (project['subtitle'] != null)
-                              Text(
-                                project['subtitle'],
-                                style: GoogleFonts.poppins(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: textColor.withOpacity(0.8),
-                                ),
-                              ),
-                            const SizedBox(height: 12),
-                            if (project['points'] != null)
-                              ...List<Widget>.from(
-                                (project['points'] as List).map(
-                                  (point) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 2.0,
-                                    ),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "• ",
-                                          style: TextStyle(fontSize: 16),
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            point,
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 15,
-                                              color: textColor.withOpacity(0.8),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                if (project['github'] != null)
-                                  TextButton.icon(
-                                    onPressed:
-                                        () => _launchURL(project['github']),
-                                    icon: const Icon(Icons.code, size: 18),
-                                    label: const Text("GitHub"),
-                                  ),
-                                if (project['demo'] != null)
-                                  TextButton.icon(
-                                    onPressed:
-                                        () => _launchURL(project['demo']),
-                                    icon: const Icon(Icons.launch, size: 18),
-                                    label: const Text("Live Demo"),
-                                  ),
-                                if (project['videoDemo'] == true)
-                                  TextButton.icon(
-                                    onPressed: () => _showVideoDemo(context),
-                                    icon: const Icon(
-                                      Icons.play_circle_fill,
-                                      size: 18,
-                                    ),
-                                    label: const Text("Video Demo"),
-                                  ),
-                                if (project['cilantroDemo'] == true)
-                                  TextButton.icon(
-                                    onPressed: () => _showCilantroDemo(context),
-                                    icon: const Icon(Icons.slideshow, size: 18),
-                                    label: const Text("View Project Content"),
-                                  ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.4),
+                      ),
                     ),
-                  );
-                }).toList(),
+                  ],
+                ),
+              ),
+            ),
+            if (showExpand)
+              TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  minimumSize: const Size(0, 0),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                onPressed: () => setState(() => expanded = !expanded),
+                child: Text(
+                  expanded ? "Show less" : "Show more",
+                  style: GoogleFonts.poppins(fontSize: 13),
+                ),
+              ),
+          ],
+          Divider(height: 18, color: widget.borderColor),
+          Row(
+            children: [
+              if (project['github'] != null)
+                IconButton(
+                  tooltip: "GitHub",
+                  icon: const Icon(Icons.code, size: 18),
+                  onPressed: () => widget.launchURL(project['github']),
+                ),
+              if (project['demo'] != null)
+                IconButton(
+                  tooltip: "Live Demo",
+                  icon: const Icon(Icons.launch, size: 18),
+                  onPressed: () => widget.launchURL(project['demo']),
+                ),
+              if (project['videoDemo'] == true)
+                IconButton(
+                  tooltip: "Video Demo",
+                  icon: const Icon(Icons.play_circle_fill, size: 18),
+                  onPressed: () => widget.showVideoDemo(context),
+                ),
+              if (project['cilantroDemo'] == true)
+                IconButton(
+                  tooltip: "View Project Content",
+                  icon: const Icon(Icons.slideshow, size: 18),
+                  onPressed: () => widget.showCilantroDemo(context),
+                ),
+            ],
           ),
         ],
       ),
