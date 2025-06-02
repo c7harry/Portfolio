@@ -150,7 +150,7 @@ class _AboutSectionState extends State<AboutSection> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Text(
             "About Me",
             style: GoogleFonts.poppins(
@@ -159,6 +159,7 @@ class _AboutSectionState extends State<AboutSection> {
               color: titleColor,
             ),
           ).animate().fadeIn().slideY(begin: 0.2),
+          const SizedBox(height: 10),
           Container(
             decoration: BoxDecoration(
               color:
@@ -220,7 +221,7 @@ class _AboutSectionState extends State<AboutSection> {
             ),
           ),
 
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
 
           Tooltip(
                 message: "Open resume in new tab",
@@ -255,7 +256,7 @@ class _AboutSectionState extends State<AboutSection> {
               .then()
               .shakeY(delay: 400.ms, duration: 800.ms),
 
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
 
           Text(
             "Contact Info",
@@ -266,7 +267,7 @@ class _AboutSectionState extends State<AboutSection> {
             ),
           ).animate().fadeIn().slideY(begin: 0.2),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Text(
             "Feel free to reach out for collaborations, opportunities, or just a chat!",
             style: GoogleFonts.poppins(
