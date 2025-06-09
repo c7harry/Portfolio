@@ -121,34 +121,52 @@ class _AboutSectionState extends State<AboutSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "I am a ",
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: textColor,
-                ),
-              ),
-              Text(
-                displayedText,
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: theme.colorScheme.primary,
-                ),
-              ),
-              Text(
-                "_",
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: theme.colorScheme.primary,
-                ),
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 0,
+            ), // Remove extra padding
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: 700,
+                  ), // Increase maxWidth if possible
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      // Remove mainAxisAlignment to left-align
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "I am a ",
+                          style: GoogleFonts.poppins(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                            color: textColor,
+                          ),
+                        ),
+                        Text(
+                          displayedText,
+                          style: GoogleFonts.poppins(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                            color: theme.colorScheme.primary,
+                          ),
+                        ),
+                        Text(
+                          "_",
+                          style: GoogleFonts.poppins(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                            color: theme.colorScheme.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 10),
           Text(
@@ -343,15 +361,14 @@ class _AboutSectionState extends State<AboutSection> {
                       const HoverIcon(
                         assetPath: 'assets/logos/linkedin.png',
                         width: 36,
-                        height: 36, 
+                        height: 36,
                       ),
                       const SizedBox(width: 6),
                       Flexible(
                         child: HoverLinkText(
                           text: "linkedin.com/in/harpreet-dosanjh209",
                           color: theme.colorScheme.primary,
-                          fontSize:
-                              13,
+                          fontSize: 13,
                         ),
                       ),
                     ],
