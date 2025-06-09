@@ -326,12 +326,21 @@ class _AboutSectionState extends State<AboutSection> {
                     ),
                     const SizedBox(width: 8),
                     Flexible(
-                      child: Text(
-                        "hdosanjh209@gmail.com",
-                        style: GoogleFonts.robotoMono(
-                          color: textColor.withOpacity(1.0),
+                      child: GestureDetector(
+                        onTap: () async {
+                          final emailUri = Uri(
+                            scheme: 'mailto',
+                            path: 'hdosanjh209@gmail.com',
+                          );
+                          await launchUrl(emailUri);
+                        },
+                        child: SelectableText(
+                          "hdosanjh209@gmail.com",
+                          style: GoogleFonts.robotoMono(
+                            color: textColor.withOpacity(1.0),
+                            decoration: TextDecoration.underline,
+                          ),
                         ),
-                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -353,56 +362,78 @@ class _AboutSectionState extends State<AboutSection> {
                   ],
                 ),
                 const SizedBox(height: 12),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const HoverIcon(
-                        assetPath: 'assets/logos/linkedin.png',
-                        width: 36,
-                        height: 36,
-                      ),
-                      const SizedBox(width: 6),
-                      Flexible(
-                        child: HoverLinkText(
-                          text: "linkedin.com/in/harpreet-dosanjh209",
-                          color: theme.colorScheme.primary,
-                          fontSize: 13,
+                GestureDetector(
+                  onTap: () async {
+                    await launchUrl(
+                      Uri.parse("https://linkedin.com/in/harpreet-dosanjh209"),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const HoverIcon(
+                          assetPath: 'assets/logos/linkedin.png',
+                          width: 36,
+                          height: 36,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 6),
+                        Flexible(
+                          child: SelectableText(
+                            "linkedin.com/in/harpreet-dosanjh209",
+                            style: GoogleFonts.robotoMono(
+                              color: theme.colorScheme.primary,
+                              fontSize: 13,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 12),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 300),
-                        transitionBuilder:
-                            (child, animation) => FadeTransition(
-                              opacity: animation,
-                              child: child,
-                            ),
-                        child: HoverIcon(
-                          key: ValueKey(theme.brightness),
-                          assetPath:
-                              theme.brightness == Brightness.dark
-                                  ? 'assets/logos/github-inverted.png'
-                                  : 'assets/logos/github.png',
-                          width: 50,
-                          height: 50,
+                GestureDetector(
+                  onTap: () async {
+                    await launchUrl(
+                      Uri.parse("https://github.com/c7harry"),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 300),
+                          transitionBuilder:
+                              (child, animation) => FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              ),
+                          child: HoverIcon(
+                            key: ValueKey(theme.brightness),
+                            assetPath:
+                                theme.brightness == Brightness.dark
+                                    ? 'assets/logos/github-inverted.png'
+                                    : 'assets/logos/github.png',
+                            width: 50,
+                            height: 50,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      HoverLinkText(
-                        text: "github.com/c7harry",
-                        color: theme.colorScheme.primary,
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        SelectableText(
+                          "github.com/c7harry",
+                          style: GoogleFonts.robotoMono(
+                            color: theme.colorScheme.primary,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
