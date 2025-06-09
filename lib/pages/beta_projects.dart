@@ -14,7 +14,7 @@ class BetaProjectsSection extends StatelessWidget {
         'Built with React and Material UI; all data is stored locally for privacy—no account required.',
       ],
       'github': 'https://github.com/c7harry/BayClock',
-      'demo': 'https://bayclock.onrender.com/',
+      'demo': 'https://bayclock.netlify.app/',
       'accentColor': Color(0xFF80cbc4),
       'accentIcon': Icons.access_time_outlined,
       'todo': [
@@ -234,194 +234,140 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
             Divider(height: 18, color: widget.borderColor),
             Padding(
               padding: const EdgeInsets.fromLTRB(18, 0, 18, 14),
-              child:
-                  isMobile
-                      ? Column(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Features
+                  Text(
+                    "Features",
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.amber[900],
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  ...points.map(
+                    (point) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2.0),
+                      child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Features
-                          Text(
-                            "Features",
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.amber[900],
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          ...points.map(
-                            (point) => Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 2.0,
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "• ",
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      point,
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        color: widget.textColor.withOpacity(
-                                          0.85,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          if (project['todo'] != null &&
-                              (project['todo'] as List).isNotEmpty)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "To Do",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.amber[900],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  ...((project['todo'] as List).map(
-                                    (todo) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 2.0,
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "– ",
-                                            style: TextStyle(fontSize: 14),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              todo,
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 13,
-                                                color: widget.textColor
-                                                    .withOpacity(0.7),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )),
-                                ],
-                              ),
-                            ),
-                        ],
-                      )
-                      : Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Features (left)
+                          const Text("• ", style: TextStyle(fontSize: 15)),
                           Expanded(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Text(
+                              point,
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: widget.textColor.withOpacity(0.85),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // To Do (always below features)
+                  if (project['todo'] != null &&
+                      (project['todo'] as List).isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 18.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.amber[50],
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: Colors.amber[300]!,
+                            width: 1.2,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.amber.withOpacity(0.08),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 14,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
                               children: [
+                                const Icon(
+                                  Icons.rocket_launch,
+                                  color: Colors.amber,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 6),
                                 Text(
-                                  "Features",
+                                  "To Do",
                                   style: GoogleFonts.poppins(
                                     fontSize: 15,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w700,
                                     color: Colors.amber[900],
                                   ),
                                 ),
-                                const SizedBox(height: 4),
-                                ...points.map(
-                                  (point) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 2.0,
-                                    ),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          "• ",
-                                          style: TextStyle(fontSize: 15),
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            point,
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 14,
-                                              color: widget.textColor
-                                                  .withOpacity(0.85),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                const SizedBox(width: 8),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.amber[200],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Text(
+                                    "Coming Soon!",
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.amber[900],
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                          const SizedBox(width: 48),
-                          // To Do (right)
-                          if (project['todo'] != null &&
-                              (project['todo'] as List).isNotEmpty)
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "To Do",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.amber[900],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  ...((project['todo'] as List).map(
-                                    (todo) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 2.0,
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "– ",
-                                            style: TextStyle(fontSize: 14),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              todo,
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 13,
-                                                color: widget.textColor
-                                                    .withOpacity(0.7),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                            const SizedBox(height: 8),
+                            ...((project['todo'] as List).map(
+                              (todo) => Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 3.0,
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "– ",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.amber,
                                       ),
                                     ),
-                                  )),
-                                ],
+                                    Expanded(
+                                      child: Text(
+                                        todo,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 13,
+                                          color: Colors.amber[900],
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                        ],
+                            )),
+                          ],
+                        ),
                       ),
+                    ),
+                ],
+              ),
             ),
             Divider(height: 18, color: widget.borderColor),
             Padding(
