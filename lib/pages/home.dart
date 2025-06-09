@@ -3,6 +3,7 @@ import 'package:my_portfolio/pages/about.dart';
 import 'package:my_portfolio/pages/skills.dart';
 import 'package:my_portfolio/pages/projects.dart';
 import 'package:my_portfolio/pages/certificates.dart';
+import 'package:my_portfolio/pages/beta_projects.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback toggleTheme;
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey skillsKey = GlobalKey();
   final GlobalKey projectsKey = GlobalKey();
   final GlobalKey certificatesKey = GlobalKey();
+  final GlobalKey betaProjectsKey = GlobalKey();
 
   void scrollTo(GlobalKey key) {
     Scrollable.ensureVisible(
@@ -54,7 +56,9 @@ class _HomePageState extends State<HomePage> {
             const Text("Harpreet Dosanjh"),
             const Spacer(),
             IconButton(
-              icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+              icon: Icon(
+                widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+              ),
               onPressed: widget.toggleTheme,
               tooltip: 'Toggle Theme',
             ),
@@ -68,6 +72,10 @@ class _HomePageState extends State<HomePage> {
                 child: const Text("Skills"),
               ),
               TextButton(
+                onPressed: () => scrollTo(betaProjectsKey),
+                child: const Text("Beta Lab"),
+              ),
+              TextButton(
                 onPressed: () => scrollTo(projectsKey),
                 child: const Text("Projects"),
               ),
@@ -79,74 +87,84 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      drawer: isMobile
-          ? Drawer(
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(16, 40, 16, 12),
-                    decoration: BoxDecoration(
-                      color: theme.primaryColor.withOpacity(0.1),
+      drawer:
+          isMobile
+              ? Drawer(
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(16, 40, 16, 12),
+                      decoration: BoxDecoration(
+                        color: theme.primaryColor.withOpacity(0.1),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Image.asset(
+                                widget.isDarkMode
+                                    ? 'assets/images/logo.png'
+                                    : 'assets/images/logo-inverted.png',
+                                height: 40,
+                              ),
+                              const SizedBox(width: 8),
+                              const Text("Harpreet Dosanjh"),
+                            ],
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              widget.isDarkMode
-                                  ? 'assets/images/logo.png'
-                                  : 'assets/images/logo-inverted.png',
-                              height: 40,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text("Harpreet Dosanjh"),
-                          ],
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () => Navigator.pop(context),
-                        )
-                      ],
+                    ListTile(
+                      title: const Text("About"),
+                      onTap: () {
+                        Navigator.pop(context);
+                        scrollTo(aboutKey);
+                      },
                     ),
-                  ),
-                  ListTile(
-                    title: const Text("About"),
-                    onTap: () {
-                      Navigator.pop(context);
-                      scrollTo(aboutKey);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text("Skills"),
-                    onTap: () {
-                      Navigator.pop(context);
-                      scrollTo(skillsKey);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text("Projects"),
-                    onTap: () {
-                      Navigator.pop(context);
-                      scrollTo(projectsKey);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text("Certificates"),
-                    onTap: () {
-                      Navigator.pop(context);
-                      scrollTo(certificatesKey);
-                    },
-                  ),
-                ],
-              ),
-            )
-          : null,
+                    ListTile(
+                      title: const Text("Skills"),
+                      onTap: () {
+                        Navigator.pop(context);
+                        scrollTo(skillsKey);
+                      },
+                    ),
+                    ListTile(
+                      title: const Text("Beta Lab"),
+                      onTap: () {
+                        Navigator.pop(context);
+                        scrollTo(betaProjectsKey);
+                      },
+                    ),
+                    ListTile(
+                      title: const Text("Projects"),
+                      onTap: () {
+                        Navigator.pop(context);
+                        scrollTo(projectsKey);
+                      },
+                    ),
+
+                    ListTile(
+                      title: const Text("Certificates"),
+                      onTap: () {
+                        Navigator.pop(context);
+                        scrollTo(certificatesKey);
+                      },
+                    ),
+                  ],
+                ),
+              )
+              : null,
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(key: aboutKey, child: AboutSection()),
             Container(key: skillsKey, child: SkillsSection()),
+            Container(key: betaProjectsKey, child: BetaProjectsSection()),
             Container(key: projectsKey, child: ProjectsSection()),
             Container(key: certificatesKey, child: CertificatesSection()),
           ],
