@@ -5,18 +5,26 @@ import 'package:url_launcher/url_launcher.dart';
 class BetaProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> betaProjects = [
     {
-      'title': 'BetaApp',
-      'subtitle': '🧪 Experimental Mobile App',
+      'title': 'Bayclock',
+      'subtitle': '⏰ Modern Timesheet & Work Hours Web App',
       'points': [
-        'Built with Flutter and Firebase.',
-        'Features real-time collaboration and AI-powered suggestions.',
-        'Currently in closed beta for select users.',
-        'Feedback is highly appreciated to improve the product.',
+        'Visualizes weekly work hours in a dynamic, interactive calendar grid and supports multi-hour/cross-day entries.',
+        'Lets users log time entries with project tags, descriptions, and precise start/end times, including detailed entry dialogs with edit/delete options.',
+        'Displays real-time daily and weekly totals, with color-coded highlights for overtime and robust date handling using date-fns.',
+        'Built with React and Material UI; all data is stored locally for privacy—no account required.',
       ],
-      'github': 'https://github.com/yourusername/betaapp',
-      'demo': 'https://betaapp-demo.web.app/',
-      'accentColor': Color(0xFFffe082),
-      'accentIcon': Icons.science_outlined,
+      'github': 'https://github.com/c7harry/BayClock',
+      'demo': 'https://bayclock.onrender.com/',
+      'accentColor': Color(0xFF80cbc4),
+      'accentIcon': Icons.access_time_outlined,
+      'todo': [
+        'Add workspace/tenant support for all records.',
+        'Add audit trail search and reporting/analytics for employers.',
+        'Add time entry approval workflow and RBAC (role-based access control).',
+        'Export time entries to CSV and Excel; add google calendar support.',
+        'Add a SQL database for persistent data storage.',
+        'Add employee dashboard and workspace management features.',
+      ],
     },
   ];
 
@@ -108,14 +116,10 @@ class _BetaProjectCard extends StatefulWidget {
 }
 
 class _BetaProjectCardState extends State<_BetaProjectCard> {
-  bool expanded = false;
-
   @override
   Widget build(BuildContext context) {
     final project = widget.project;
     final points = (project['points'] as List?) ?? [];
-    final showExpand = points.length > 1;
-    final visiblePoints = expanded ? points : points.take(1);
 
     final accentColor =
         project['accentColor'] as Color? ??
@@ -132,7 +136,8 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
-      width: 320,
+      width: 960,
+      constraints: const BoxConstraints(minHeight: 370, maxHeight: 900),
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         color: widget.cardColor,
@@ -146,144 +151,199 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Accent header
-          Container(
-            decoration: BoxDecoration(
-              color: accentColor,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(18),
+      child: SingleChildScrollView(
+        padding: EdgeInsets.zero,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Accent header
+            Container(
+              decoration: BoxDecoration(
+                color: accentColor,
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(18),
+                ),
               ),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: isDark ? Colors.grey[900] : Colors.white,
-                  child: Icon(accentIcon, color: Colors.amber[800]),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    project['title'] ?? '',
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: headerTextColor,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 8),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.amber[800],
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(
-                    "BETA",
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          if (project['subtitle'] != null)
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10.0,
-                left: 20,
-                right: 20,
-                bottom: 8.0,
-              ),
-              child: Text(
-                project['subtitle'],
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: subtitleTextColor,
-                ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          if (points.isNotEmpty) ...[
-            Divider(height: 18, color: widget.borderColor),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+              child: Row(
                 children: [
-                  ...visiblePoints.map(
-                    (point) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("• ", style: TextStyle(fontSize: 15)),
-                          Expanded(
-                            child: Text(
-                              point,
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: widget.textColor.withOpacity(0.85),
-                              ),
-                            ),
-                          ),
-                        ],
+                  CircleAvatar(
+                    backgroundColor: isDark ? Colors.grey[900] : Colors.white,
+                    child: Icon(accentIcon, color: Colors.amber[800]),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      project['title'] ?? '',
+                      style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: headerTextColor,
                       ),
                     ),
                   ),
-                  if (showExpand)
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: const Size(0, 0),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  Container(
+                    margin: const EdgeInsets.only(left: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.amber[800],
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      "BETA",
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (project['subtitle'] != null)
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 10.0,
+                  left: 20,
+                  right: 20,
+                  bottom: 8.0,
+                ),
+                child: Text(
+                  project['subtitle'],
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: subtitleTextColor,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            Divider(height: 18, color: widget.borderColor),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18, 0, 18, 14),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Points (Features) on the left
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Features",
+                          style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.amber[900],
+                          ),
                         ),
-                        onPressed: () => setState(() => expanded = !expanded),
-                        child: Text(
-                          expanded ? "Show less" : "Show more",
-                          style: GoogleFonts.poppins(fontSize: 13),
+                        const SizedBox(height: 4),
+                        ...points.map(
+                          (point) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  "• ",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    point,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      color: widget.textColor.withOpacity(0.85),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 48), // More space between columns
+                  // To Do on the right
+                  if (project['todo'] != null &&
+                      (project['todo'] as List).isNotEmpty)
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "To Do",
+                            style: GoogleFonts.poppins(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.amber[900],
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          ...((project['todo'] as List).map(
+                            (todo) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 2.0,
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "– ",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      todo,
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 13,
+                                        color: widget.textColor.withOpacity(
+                                          0.7,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                        ],
                       ),
                     ),
                 ],
               ),
             ),
-          ],
-          Divider(height: 18, color: widget.borderColor),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            child: Row(
-              children: [
-                if (project['github'] != null)
-                  IconButton(
-                    tooltip: "GitHub",
-                    icon: const Icon(Icons.code, size: 18),
-                    onPressed: () => widget.launchURL(project['github']),
-                  ),
-                if (project['demo'] != null)
-                  IconButton(
-                    tooltip: "Live Demo",
-                    icon: const Icon(Icons.launch, size: 18),
-                    onPressed: () => widget.launchURL(project['demo']),
-                  ),
-              ],
+            Divider(height: 18, color: widget.borderColor),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              child: Row(
+                children: [
+                  if (project['github'] != null)
+                    IconButton(
+                      tooltip: "GitHub",
+                      icon: const Icon(Icons.code, size: 18),
+                      onPressed: () => widget.launchURL(project['github']),
+                    ),
+                  if (project['demo'] != null)
+                    IconButton(
+                      tooltip: "Live Demo",
+                      icon: const Icon(Icons.launch, size: 18),
+                      onPressed: () => widget.launchURL(project['demo']),
+                    ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
