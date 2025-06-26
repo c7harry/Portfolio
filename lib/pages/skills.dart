@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SkillsSection extends StatelessWidget {
   final List<Map<String, dynamic>> languages = [
@@ -128,39 +129,84 @@ class SkillsSection extends StatelessWidget {
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 16),
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: isDark ? Colors.white10 : Colors.white,
-                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors:
+                          isDark
+                              ? [
+                                const Color(0xFF1A1B23),
+                                const Color(0xFF2A2D3A),
+                              ]
+                              : [Colors.white, const Color(0xFFF8FAFF)],
+                    ),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color:
                           isDark
-                              ? Colors.white24
-                              : Colors.grey.withOpacity(0.25),
+                              ? const Color(0xFF3D4157).withOpacity(0.6)
+                              : const Color(0xFFE1E8F7),
                       width: 1.5,
                     ),
                     boxShadow: [
                       BoxShadow(
                         color:
                             isDark
-                                ? Colors.black26
-                                : Colors.grey.withOpacity(0.10),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
+                                ? Colors.black.withOpacity(0.3)
+                                : const Color(0xFF6366F1).withOpacity(0.08),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                        spreadRadius: 0,
+                      ),
+                      BoxShadow(
+                        color:
+                            isDark
+                                ? Colors.white.withOpacity(0.05)
+                                : Colors.white,
+                        blurRadius: 1,
+                        offset: const Offset(0, 1),
+                        spreadRadius: 0,
                       ),
                     ],
                   ),
                   child: Column(
                     children: [
-                      Text(
-                        'Languages',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: isDark ? Colors.white70 : Colors.black87,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF6366F1).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xFF6366F1).withOpacity(0.2),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.code,
+                              color: const Color(0xFF6366F1),
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Languages',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF6366F1),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 24),
                       buildIconGrid(languages),
                     ],
                   ),
@@ -174,42 +220,84 @@ class SkillsSection extends StatelessWidget {
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 16),
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: isDark ? Colors.white10 : Colors.white,
-                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors:
+                          isDark
+                              ? [
+                                const Color(0xFF1A1B23),
+                                const Color(0xFF2A2D3A),
+                              ]
+                              : [Colors.white, const Color(0xFFF0FDF4)],
+                    ),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color:
                           isDark
-                              ? Colors.white24
-                              : Colors.grey.withOpacity(0.25),
+                              ? const Color(0xFF3D4157).withOpacity(0.6)
+                              : const Color(0xFFDCFCE7),
                       width: 1.5,
                     ),
                     boxShadow: [
                       BoxShadow(
                         color:
                             isDark
-                                ? Colors.black26
-                                : Colors.grey.withOpacity(0.10),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
+                                ? Colors.black.withOpacity(0.3)
+                                : const Color(0xFF10B981).withOpacity(0.08),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                        spreadRadius: 0,
+                      ),
+                      BoxShadow(
+                        color:
+                            isDark
+                                ? Colors.white.withOpacity(0.05)
+                                : Colors.white,
+                        blurRadius: 1,
+                        offset: const Offset(0, 1),
+                        spreadRadius: 0,
                       ),
                     ],
                   ),
                   child: Column(
                     children: [
-                      Center(
-                        child: Text(
-                          'Technologies & Frameworks',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
-                            color: isDark ? Colors.white70 : Colors.black87,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF10B981).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xFF10B981).withOpacity(0.2),
+                            width: 1,
                           ),
                         ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.engineering,
+                              color: const Color(0xFF10B981),
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Technologies & Frameworks',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF10B981),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 24),
                       buildIconGrid(technologies),
                     ],
                   ),
@@ -223,39 +311,84 @@ class SkillsSection extends StatelessWidget {
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.symmetric(vertical: 16),
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: isDark ? Colors.white10 : Colors.white,
-                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors:
+                          isDark
+                              ? [
+                                const Color(0xFF1A1B23),
+                                const Color(0xFF2A2D3A),
+                              ]
+                              : [Colors.white, const Color(0xFFFEF3F2)],
+                    ),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color:
                           isDark
-                              ? Colors.white24
-                              : Colors.grey.withOpacity(0.25),
+                              ? const Color(0xFF3D4157).withOpacity(0.6)
+                              : const Color(0xFFFECDCA),
                       width: 1.5,
                     ),
                     boxShadow: [
                       BoxShadow(
                         color:
                             isDark
-                                ? Colors.black26
-                                : Colors.grey.withOpacity(0.10),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
+                                ? Colors.black.withOpacity(0.3)
+                                : const Color(0xFFEF4444).withOpacity(0.08),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                        spreadRadius: 0,
+                      ),
+                      BoxShadow(
+                        color:
+                            isDark
+                                ? Colors.white.withOpacity(0.05)
+                                : Colors.white,
+                        blurRadius: 1,
+                        offset: const Offset(0, 1),
+                        spreadRadius: 0,
                       ),
                     ],
                   ),
                   child: Column(
                     children: [
-                      Text(
-                        'Tools & Platforms',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: isDark ? Colors.white70 : Colors.black87,
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEF4444).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xFFEF4444).withOpacity(0.2),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.build,
+                              color: const Color(0xFFEF4444),
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Tools & Platforms',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFFEF4444),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 24),
                       buildIconGrid(tools),
                     ],
                   ),
