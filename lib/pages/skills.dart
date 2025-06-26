@@ -135,10 +135,7 @@ class SkillsSection extends StatelessWidget {
                         end: Alignment.bottomRight,
                         colors:
                             isDark
-                                ? [
-                                  const Color(0xFF1A1B23),
-                                  const Color(0xFF2A2D3A),
-                                ]
+                                ? [Colors.grey[900]!, Colors.grey[900]!]
                                 : [Colors.white, const Color(0xFFF8FAFF)],
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -226,10 +223,7 @@ class SkillsSection extends StatelessWidget {
                         end: Alignment.bottomRight,
                         colors:
                             isDark
-                                ? [
-                                  const Color(0xFF1A1B23),
-                                  const Color(0xFF2A2D3A),
-                                ]
+                                ? [Colors.grey[900]!, Colors.grey[900]!]
                                 : [Colors.white, const Color(0xFFF0FDF4)],
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -322,10 +316,7 @@ class SkillsSection extends StatelessWidget {
                         end: Alignment.bottomRight,
                         colors:
                             isDark
-                                ? [
-                                  const Color(0xFF1A1B23),
-                                  const Color(0xFF2A2D3A),
-                                ]
+                                ? [Colors.grey[900]!, Colors.grey[900]!]
                                 : [Colors.white, const Color(0xFFFEF3F2)],
                       ),
                       borderRadius: BorderRadius.circular(20),

@@ -120,12 +120,40 @@ class CertificateCard extends StatelessWidget {
     );
 
     return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: hasLink ? () => _launchLink(cert['link']!) : null,
-        child: Padding(padding: const EdgeInsets.all(12.0), child: cardContent),
+      color: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color:
+              Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white.withOpacity(0.05)
+                  : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: Theme.of(context).dividerColor.withOpacity(0.1),
+            width: 1,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color:
+                  Theme.of(context).brightness == Brightness.dark
+                      ? Colors.black.withOpacity(0.3)
+                      : Colors.grey.withOpacity(0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: InkWell(
+          onTap: hasLink ? () => _launchLink(cert['link']!) : null,
+          borderRadius: BorderRadius.circular(20),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: cardContent,
+          ),
+        ),
       ),
     );
   }

@@ -245,9 +245,9 @@ class AnimatedBackgroundPainter extends CustomPainter {
       if (x < -50 || x > size.width + 50 || y < -50 || y > size.height + 50)
         continue;
 
-      final opacity = (0.005 +
-              math.sin(particleProgress * 2 * math.pi + i) * 0.003)
-          .clamp(0.0, 0.02);
+      final opacity = (0.02 +
+              math.sin(particleProgress * 2 * math.pi + i) * 0.015)
+          .clamp(0.0, 0.08);
 
       final paint =
           Paint()
@@ -287,15 +287,15 @@ class AnimatedBackgroundPainter extends CustomPainter {
           floatingProgress * 2 * math.pi + scrollProgress * math.pi;
 
       // Dynamic opacity
-      final baseOpacity = isDark ? 0.015 : 0.02;
+      final baseOpacity = isDark ? 0.06 : 0.08;
       final dynamicOpacity =
-          baseOpacity + math.sin(particleProgress * 2 * math.pi + i) * 0.005;
+          baseOpacity + math.sin(particleProgress * 2 * math.pi + i) * 0.02;
 
       final paint =
           Paint()
             ..color = _getShapeColor(
               i,
-            ).withOpacity(dynamicOpacity.clamp(0.0, 0.03))
+            ).withOpacity(dynamicOpacity.clamp(0.0, 0.12))
             ..style = PaintingStyle.fill;
 
       canvas.save();
@@ -353,7 +353,7 @@ class AnimatedBackgroundPainter extends CustomPainter {
         path.lineTo(x, y);
       }
 
-      final opacity = (isDark ? 0.008 : 0.012) * (1.0 - layer * 0.2);
+      final opacity = (isDark ? 0.03 : 0.045) * (1.0 - layer * 0.2);
       final paint =
           Paint()
             ..color = _getWaveColor(layer).withOpacity(opacity)
@@ -372,9 +372,9 @@ class AnimatedBackgroundPainter extends CustomPainter {
     final paint =
         Paint()
           ..color = (isDark ? Colors.white : Colors.black).withOpacity(
-            0.003 + scrollProgress * 0.002,
+            0.015 + scrollProgress * 0.01,
           )
-          ..strokeWidth = 0.3 + scrollProgress * 0.2
+          ..strokeWidth = 0.8 + scrollProgress * 0.4
           ..style = PaintingStyle.stroke;
 
     // Diagonal grid with scroll influence
@@ -419,9 +419,9 @@ class AnimatedBackgroundPainter extends CustomPainter {
         final paint =
             Paint()
               ..color = (isDark ? Colors.cyan : Colors.indigo).withOpacity(
-                0.1 * lineProgress,
+                0.3 * lineProgress,
               )
-              ..strokeWidth = 2.0
+              ..strokeWidth = 3.0
               ..style = PaintingStyle.stroke;
 
         canvas.drawLine(Offset(startX, startY), Offset(endX, startY), paint);
@@ -431,11 +431,11 @@ class AnimatedBackgroundPainter extends CustomPainter {
           final particlePaint =
               Paint()
                 ..color = (isDark ? Colors.cyan : Colors.indigo).withOpacity(
-                  0.3 * lineProgress,
+                  0.6 * lineProgress,
                 )
                 ..style = PaintingStyle.fill;
 
-          canvas.drawCircle(Offset(endX, startY), 3.0, particlePaint);
+          canvas.drawCircle(Offset(endX, startY), 4.0, particlePaint);
         }
       }
     }
@@ -451,11 +451,11 @@ class AnimatedBackgroundPainter extends CustomPainter {
     // Create glow effect with multiple circles
     final glowPaint =
         Paint()
-          ..color = paint.color.withOpacity(paint.color.opacity * 0.3)
+          ..color = paint.color.withOpacity(paint.color.opacity * 0.6)
           ..style = PaintingStyle.fill;
 
     // Outer glow
-    canvas.drawCircle(center, radius * 2, glowPaint);
+    canvas.drawCircle(center, radius * 2.5, glowPaint);
     // Main particle
     canvas.drawCircle(center, radius, paint);
   }
