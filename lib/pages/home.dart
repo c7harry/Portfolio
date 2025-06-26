@@ -34,9 +34,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isMobile = MediaQuery.of(context).size.width < 600;
+    final isVerySmallScreen = MediaQuery.of(context).size.width <= 320;
 
     return Scaffold(
       appBar: AppBar(
+        titleSpacing: isMobile ? 8 : 16,
         title: Row(
           children: [
             AnimatedSwitcher(
@@ -49,11 +51,11 @@ class _HomePageState extends State<HomePage> {
                     ? 'assets/images/logo.png'
                     : 'assets/images/logo-inverted.png',
                 key: ValueKey<bool>(widget.isDarkMode),
-                height: 50,
+                height: isMobile ? 50 : 50,
               ),
             ),
-            const SizedBox(width: 8),
-            const Text("Harpreet Dosanjh"),
+            SizedBox(width: isMobile ? 4 : 8),
+            Text(isVerySmallScreen ? "Harpreet" : "Harpreet Dosanjh"),
             const Spacer(),
             IconButton(
               icon: Icon(
@@ -108,8 +110,12 @@ class _HomePageState extends State<HomePage> {
                                     : 'assets/images/logo-inverted.png',
                                 height: 40,
                               ),
-                              const SizedBox(width: 8),
-                              const Text("Harpreet Dosanjh"),
+                              SizedBox(width: isMobile ? 4 : 8),
+                              Text(
+                                isVerySmallScreen
+                                    ? "Harpreet"
+                                    : "Harpreet Dosanjh",
+                              ),
                             ],
                           ),
                           IconButton(

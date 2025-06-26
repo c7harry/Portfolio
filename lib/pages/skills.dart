@@ -286,12 +286,17 @@ class SkillsSection extends StatelessWidget {
                               size: 20,
                             ),
                             const SizedBox(width: 8),
-                            Text(
-                              'Technologies & Frameworks',
-                              style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF10B981),
+                            Flexible(
+                              child: Text(
+                                'Technologies & Frameworks',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color(0xFF10B981),
+                                ),
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                               ),
                             ),
                           ],
@@ -377,12 +382,17 @@ class SkillsSection extends StatelessWidget {
                               size: 20,
                             ),
                             const SizedBox(width: 8),
-                            Text(
-                              'Tools & Platforms',
-                              style: GoogleFonts.poppins(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFFEF4444),
+                            Flexible(
+                              child: Text(
+                                'Tools & Platforms',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color(0xFFEF4444),
+                                ),
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                               ),
                             ),
                           ],
