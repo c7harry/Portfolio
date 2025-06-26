@@ -96,7 +96,7 @@ class _HeroSectionState extends State<HeroSection> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Add a small SizedBox for minimal top spacing
-            const SizedBox(height: 8),
+            const SizedBox(height: 40),
             // Animated Profile Picture
             Container(
                   width: isMobile ? 120 : 150,
@@ -263,7 +263,7 @@ class _HeroSectionState extends State<HeroSection> {
                 .fadeIn(delay: 1000.ms)
                 .slideY(begin: 0.3, duration: 600.ms),
 
-            const SizedBox(height: 60),
+            const SizedBox(height: 120),
             // Scroll down indicator
             Column(
                   children: [
