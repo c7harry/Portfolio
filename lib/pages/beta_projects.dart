@@ -65,51 +65,56 @@ class BetaProjectsSection extends StatelessWidget {
     final borderColor = theme.dividerColor.withOpacity(0.1);
 
     return Container(
-      color: theme.scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.science, color: Colors.amber[800], size: 36),
-              const SizedBox(width: 12),
-              Text(
-                "Beta Lab",
-                style: GoogleFonts.poppins(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.amber[900],
+      color: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.science, color: Colors.amber[800], size: 36),
+                const SizedBox(width: 12),
+                Text(
+                  "Beta Lab",
+                  style: GoogleFonts.poppins(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber[900],
+                  ),
                 ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              "These projects are experimental and may change or break at any time. Your feedback is welcome!",
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                color: Colors.amber[900],
               ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Text(
-            "These projects are experimental and may change or break at any time. Your feedback is welcome!",
-            style: GoogleFonts.poppins(fontSize: 16, color: Colors.amber[900]),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 32),
-          Wrap(
-            spacing: 24,
-            runSpacing: 24,
-            alignment: WrapAlignment.center,
-            children:
-                betaProjects
-                    .map(
-                      (project) => _BetaProjectCard(
-                        project: project,
-                        textColor: textColor,
-                        titleColor: titleColor,
-                        cardColor: cardColor,
-                        borderColor: borderColor,
-                        launchURL: _launchURL,
-                      ),
-                    )
-                    .toList(),
-          ),
-        ],
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 32),
+            Wrap(
+              spacing: 24,
+              runSpacing: 24,
+              alignment: WrapAlignment.center,
+              children:
+                  betaProjects
+                      .map(
+                        (project) => _BetaProjectCard(
+                          project: project,
+                          textColor: textColor,
+                          titleColor: titleColor,
+                          cardColor: cardColor,
+                          borderColor: borderColor,
+                          launchURL: _launchURL,
+                        ),
+                      )
+                      .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -150,10 +155,6 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final headerTextColor = isDark ? Colors.black : Colors.black;
-    final subtitleTextColor =
-        isDark
-            ? widget.textColor.withOpacity(0.7)
-            : widget.textColor.withOpacity(0.6);
 
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 600;

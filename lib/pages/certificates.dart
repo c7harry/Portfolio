@@ -31,52 +31,53 @@ class CertificatesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 0.0,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              'Certificates',
-              style: Theme.of(
-                context,
-              ).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          const SizedBox(height: 24),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              int crossAxisCount =
-                  constraints.maxWidth > 900
-                      ? 3
-                      : constraints.maxWidth > 600
-                      ? 2
-                      : 1;
+    final theme = Theme.of(context);
 
-              return GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: certificates.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
-                  childAspectRatio: 3 / 2,
+    return Container(
+      color: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Text(
+                'Certificates',
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
-                itemBuilder: (context, index) {
-                  final cert = certificates[index];
-                  return CertificateCard(cert: cert);
-                },
-              );
-            },
-          ),
-        ],
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 24),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                int crossAxisCount =
+                    constraints.maxWidth > 900
+                        ? 3
+                        : constraints.maxWidth > 600
+                        ? 2
+                        : 1;
+
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: certificates.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 20,
+                    childAspectRatio: 3 / 2,
+                  ),
+                  itemBuilder: (context, index) {
+                    final cert = certificates[index];
+                    return CertificateCard(cert: cert);
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

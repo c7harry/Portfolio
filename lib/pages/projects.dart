@@ -334,40 +334,42 @@ class ProjectsSection extends StatelessWidget {
     final borderColor = theme.dividerColor.withOpacity(0.1);
 
     return Container(
-      color: theme.scaffoldBackgroundColor,
-      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
-      child: Column(
-        children: [
-          Text(
-            "Projects",
-            style: GoogleFonts.poppins(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-              color: titleColor,
+      color: Colors.transparent,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+        child: Column(
+          children: [
+            Text(
+              "Projects",
+              style: GoogleFonts.poppins(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: titleColor,
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Wrap(
-            spacing: 24,
-            runSpacing: 24,
-            alignment: WrapAlignment.center,
-            children:
-                projects
-                    .map(
-                      (project) => _ProjectCard(
-                        project: project,
-                        textColor: textColor,
-                        titleColor: titleColor,
-                        cardColor: cardColor,
-                        borderColor: borderColor,
-                        launchURL: _launchURL,
-                        showVideoDemo: _showVideoDemo,
-                        showCilantroDemo: _showCilantroDemo,
-                      ),
-                    )
-                    .toList(),
-          ),
-        ],
+            const SizedBox(height: 20),
+            Wrap(
+              spacing: 24,
+              runSpacing: 24,
+              alignment: WrapAlignment.center,
+              children:
+                  projects
+                      .map(
+                        (project) => _ProjectCard(
+                          project: project,
+                          textColor: textColor,
+                          titleColor: titleColor,
+                          cardColor: cardColor,
+                          borderColor: borderColor,
+                          launchURL: _launchURL,
+                          showVideoDemo: _showVideoDemo,
+                          showCilantroDemo: _showCilantroDemo,
+                        ),
+                      )
+                      .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }

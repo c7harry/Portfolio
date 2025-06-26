@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/pages/hero_section.dart';
 import 'package:my_portfolio/pages/about.dart';
 import 'package:my_portfolio/pages/skills.dart';
 import 'package:my_portfolio/pages/projects.dart';
 import 'package:my_portfolio/pages/certificates.dart';
 import 'package:my_portfolio/pages/beta_projects.dart';
+import 'package:my_portfolio/pages/footer_section.dart';
+import '../widgets/continuous_background.dart';
 
 class HomePage extends StatefulWidget {
   final VoidCallback toggleTheme;
@@ -16,11 +19,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey heroKey = GlobalKey();
   final GlobalKey aboutKey = GlobalKey();
   final GlobalKey skillsKey = GlobalKey();
   final GlobalKey projectsKey = GlobalKey();
   final GlobalKey certificatesKey = GlobalKey();
   final GlobalKey betaProjectsKey = GlobalKey();
+  final GlobalKey footerKey = GlobalKey();
 
   void scrollTo(GlobalKey key) {
     Scrollable.ensureVisible(
@@ -66,6 +71,10 @@ class _HomePageState extends State<HomePage> {
             ),
             if (!isMobile) ...[
               TextButton(
+                onPressed: () => scrollTo(heroKey),
+                child: const Text("Home"),
+              ),
+              TextButton(
                 onPressed: () => scrollTo(aboutKey),
                 child: const Text("About"),
               ),
@@ -84,6 +93,10 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 onPressed: () => scrollTo(certificatesKey),
                 child: const Text("Certificates"),
+              ),
+              TextButton(
+                onPressed: () => scrollTo(footerKey),
+                child: const Text("Contact"),
               ),
             ],
           ],
@@ -126,6 +139,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
+                      title: const Text("Home"),
+                      onTap: () {
+                        Navigator.pop(context);
+                        scrollTo(heroKey);
+                      },
+                    ),
+                    ListTile(
                       title: const Text("About"),
                       onTap: () {
                         Navigator.pop(context);
@@ -161,19 +181,44 @@ class _HomePageState extends State<HomePage> {
                         scrollTo(certificatesKey);
                       },
                     ),
+                    ListTile(
+                      title: const Text("Contact"),
+                      onTap: () {
+                        Navigator.pop(context);
+                        scrollTo(footerKey);
+                      },
+                    ),
                   ],
                 ),
               )
               : null,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(key: aboutKey, child: AboutSection()),
-            Container(key: skillsKey, child: SkillsSection()),
-            Container(key: betaProjectsKey, child: BetaProjectsSection()),
-            Container(key: projectsKey, child: ProjectsSection()),
-            Container(key: certificatesKey, child: CertificatesSection()),
-          ],
+      body: ContinuousBackground(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                key: heroKey,
+                child: HeroSection(onContactPressed: () => scrollTo(footerKey)),
+              ),
+              Container(key: aboutKey, child: AboutSection()),
+              Container(key: skillsKey, child: SkillsSection()),
+              Container(key: betaProjectsKey, child: BetaProjectsSection()),
+              Container(key: projectsKey, child: ProjectsSection()),
+              Container(key: certificatesKey, child: CertificatesSection()),
+              Container(
+                key: footerKey,
+                child: FooterSection(
+                  navigationCallbacks: {
+                    'about': () => scrollTo(aboutKey),
+                    'skills': () => scrollTo(skillsKey),
+                    'projects': () => scrollTo(projectsKey),
+                    'certificates': () => scrollTo(certificatesKey),
+                    'contact': () => scrollTo(footerKey),
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
