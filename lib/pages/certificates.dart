@@ -49,7 +49,7 @@ class CertificatesSection extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
             LayoutBuilder(
               builder: (context, constraints) {
                 int crossAxisCount =

@@ -28,7 +28,7 @@ class _AboutSectionState extends State<AboutSection> {
                 color: titleColor,
               ),
             ).animate().fadeIn().slideY(begin: 0.2),
-            const SizedBox(height: 10),
+            const SizedBox(height: 30),
             Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 800),
