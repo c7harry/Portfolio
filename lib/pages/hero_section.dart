@@ -263,7 +263,7 @@ class _HeroSectionState extends State<HeroSection> {
                 .fadeIn(delay: 1000.ms)
                 .slideY(begin: 0.3, duration: 600.ms),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 60),
             // Scroll down indicator
             Column(
                   children: [
