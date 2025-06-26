@@ -152,8 +152,8 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
     final headerTextColor = isDark ? Colors.black : Colors.black;
     final subtitleTextColor =
         isDark
-            ? Colors.amber[900]!.withOpacity(0.85)
-            : widget.textColor.withOpacity(0.7);
+            ? widget.textColor.withOpacity(0.7)
+            : widget.textColor.withOpacity(0.6);
 
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 600;
@@ -198,7 +198,10 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                 children: [
                   CircleAvatar(
                     backgroundColor: isDark ? Colors.grey[900] : Colors.white,
-                    child: Icon(accentIcon, color: Colors.amber[800]),
+                    child: Icon(
+                      accentIcon,
+                      color: isDark ? Colors.white : Colors.black87,
+                    ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -247,7 +250,7 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: subtitleTextColor,
+                    color: isDark ? Colors.white : Colors.black,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -265,7 +268,7 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      color: Colors.amber[900],
+                      color: isDark ? Colors.white : Colors.black87,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -275,13 +278,19 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("• ", style: TextStyle(fontSize: 15)),
+                          Text(
+                            "• ",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: isDark ? Colors.white : Colors.black87,
+                            ),
+                          ),
                           Expanded(
                             child: Text(
                               point,
                               style: GoogleFonts.poppins(
                                 fontSize: 14,
-                                color: widget.textColor.withOpacity(0.85),
+                                color: isDark ? Colors.white : Colors.black87,
                               ),
                             ),
                           ),
@@ -296,15 +305,15 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                       padding: const EdgeInsets.only(top: 18.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.amber[50],
+                          color: accentColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
-                            color: Colors.amber[300]!,
+                            color: accentColor.withOpacity(0.3),
                             width: 1.2,
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.amber.withOpacity(0.08),
+                              color: accentColor.withOpacity(0.08),
                               blurRadius: 8,
                               offset: const Offset(0, 2),
                             ),
@@ -319,9 +328,9 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                           children: [
                             Row(
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.rocket_launch,
-                                  color: Colors.amber,
+                                  color: isDark ? Colors.white : Colors.black,
                                   size: 20,
                                 ),
                                 const SizedBox(width: 6),
@@ -330,7 +339,8 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                                   style: GoogleFonts.poppins(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w700,
-                                    color: Colors.amber[900],
+                                    color:
+                                        isDark ? Colors.white : Colors.black87,
                                   ),
                                 ),
                                 const SizedBox(width: 8),
@@ -340,15 +350,16 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                                     vertical: 2,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.amber[200],
-                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.amber[800],
+                                    borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: Text(
                                     "Coming Soon!",
                                     style: GoogleFonts.poppins(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.amber[900],
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      letterSpacing: 1.2,
                                     ),
                                   ),
                                 ),
@@ -363,11 +374,14 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
-                                      "– ",
+                                    Text(
+                                      "• ",
                                       style: TextStyle(
                                         fontSize: 14,
-                                        color: Colors.amber,
+                                        color:
+                                            isDark
+                                                ? Colors.white
+                                                : Colors.black87,
                                       ),
                                     ),
                                     Expanded(
@@ -375,7 +389,10 @@ class _BetaProjectCardState extends State<_BetaProjectCard> {
                                         todo,
                                         style: GoogleFonts.poppins(
                                           fontSize: 13,
-                                          color: Colors.amber[900],
+                                          color:
+                                              isDark
+                                                  ? Colors.white
+                                                  : Colors.black87,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
