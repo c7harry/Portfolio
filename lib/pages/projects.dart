@@ -68,6 +68,26 @@ class _ProjectsSectionState extends State<ProjectsSection>
       'gradient': [Color(0xFF10B981), Color(0xFF059669)],
     },
     {
+      'title': 'CraftMail',
+      'subtitle': 'Responsive Email Client',
+      'description':
+          'Bay Valley Tech Challenge',
+      'points': [
+        'Built using HTML, CSS, and Bootstrap in 8-hours.',
+        'Supports message filtering, folder tabs, and composing new messages.',
+        'Designed for mobile and desktop with smooth transitions and accessible navigation.',
+      ],
+      'github': 'https://github.com/c7harry/bootstrap-email-dosanjh',
+      'demo': 'https://bootstrap-email-dosanjh.onrender.com',
+      'primaryColor': Color(0xFFfff3e0),
+      'icon': Icons.email_outlined,
+      'techStack': ['HTML', 'CSS', 'Bootstrap'],
+      'category': 'Development',
+      'featured': false,
+      'metrics': {},
+      'gradient': [Color(0xFFfff3e0), Color(0xFFffe0b2)],
+    },
+    {
       'title': 'Cilantro Estimating',
       'subtitle': 'AI Yield Forecasting for Agriculture',
       'description':
