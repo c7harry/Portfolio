@@ -111,14 +111,12 @@ class _HeroSectionState extends State<HeroSection> {
                       ),
                     ],
                   ),
-                  child: CircleAvatar(
-                    radius: isMobile ? 60 : 75,
-                    backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
-                    child: Icon(
-                      Icons.person,
-                      size: isMobile ? 60 : 75,
-                      color: theme.colorScheme.primary,
-                    ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Image.asset(
+                    'assets/profile.jpg',
+                    fit: BoxFit.cover,
+                    width: isMobile ? 120 : 150,
+                    height: isMobile ? 120 : 150,
                   ),
                 )
                 .animate()
