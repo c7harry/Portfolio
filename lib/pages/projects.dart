@@ -212,66 +212,70 @@ class _ProjectsSectionState extends State<ProjectsSection>
 
     showDialog(
       context: context,
-      builder: (context) => Dialog(
-        insetPadding: const EdgeInsets.all(16),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.9,
-            maxWidth: MediaQuery.of(context).size.width * 0.95,
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 24.0),
-                child: Text(
-                  'Minecraft OpenGL – Demo',
-                  style: GoogleFonts.inter(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+      builder:
+          (context) => Dialog(
+            insetPadding: const EdgeInsets.all(16),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.9,
+                maxWidth: MediaQuery.of(context).size.width * 0.95,
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: Text(
+                      'Minecraft OpenGL – Demo',
+                      style: GoogleFonts.inter(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 12,
+                  const SizedBox(height: 12),
+                  Expanded(
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      itemCount: videoItems.length,
+                      itemBuilder: (context, index) {
+                        final item = videoItems[index];
+                        return _VideoDemoItem(
+                          title: item['title']!,
+                          videoPath: item['videoPath']!,
+                        );
+                      },
+                    ),
                   ),
-                  itemCount: videoItems.length,
-                  itemBuilder: (context, index) {
-                    final item = videoItems[index];
-                    return _VideoDemoItem(
-                      title: item['title']!,
-                      videoPath: item['videoPath']!,
-                    );
-                  },
-                ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Close'),
+                    ),
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Close'),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
     );
   }
 
   void _showCilantroDemo(BuildContext context) {
     const videoViewerId = 'cilantroYoutube';
 
-    ui_web.platformViewRegistry.registerViewFactory(videoViewerId, (int viewId) {
-      final iframe = html.IFrameElement()
-        ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
-        ..style.border = 'none'
-        ..style.width = '100%'
-        ..style.height = '100%'
-        ..style.display = 'block';
+    ui_web.platformViewRegistry.registerViewFactory(videoViewerId, (
+      int viewId,
+    ) {
+      final iframe =
+          html.IFrameElement()
+            ..src = 'https://www.youtube.com/embed/I8aS6tBc-qo'
+            ..style.border = 'none'
+            ..style.width = '100%'
+            ..style.height = '100%'
+            ..style.display = 'block';
 
       return iframe;
     });
@@ -425,9 +429,8 @@ class _ProjectsSectionState extends State<ProjectsSection>
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
       child: Column(
         children: [
-          // Header with Apple/Google style
           _buildHeader(isDark),
-          const SizedBox(height: 60),
+          const SizedBox(height: 30),
 
           // Featured Projects Section
           _buildFeaturedSection(featuredProjects, isDark),
@@ -452,16 +455,6 @@ class _ProjectsSectionState extends State<ProjectsSection>
             letterSpacing: -1.5,
           ),
         ),
-        const SizedBox(height: 16),
-        Text(
-          "Building the future, one line of code at a time",
-          style: GoogleFonts.inter(
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-            color: isDark ? Colors.white70 : Colors.black54,
-            letterSpacing: 0.5,
-          ),
-        ),
       ],
     );
   }
@@ -473,26 +466,14 @@ class _ProjectsSectionState extends State<ProjectsSection>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.blue.withOpacity(0.3)),
-              ),
-              child: Text(
-                "FEATURED",
-                style: GoogleFonts.inter(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.blue,
-                  letterSpacing: 1.2,
-                ),
-              ),
-            ),
-          ],
+        Text(
+          "Featured",
+          style: GoogleFonts.inter(
+            fontSize: 32,
+            fontWeight: FontWeight.w600,
+            color: isDark ? Colors.white : Colors.black,
+            letterSpacing: -0.5,
+          ),
         ),
         const SizedBox(height: 32),
 
@@ -574,7 +555,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "More Projects",
+          "More",
           style: GoogleFonts.inter(
             fontSize: 32,
             fontWeight: FontWeight.w600,
@@ -917,9 +898,14 @@ class _FeaturedProjectCardState extends State<_FeaturedProjectCard> {
                                   if (project['cilantroDemo'] == true)
                                     _ActionButton(
                                       icon: Icons.slideshow,
-                                      onPressed: project['demo'] != null
-                                          ? () => widget.launchURL(project['demo'])
-                                          : () => widget.showCilantroDemo(context),
+                                      onPressed:
+                                          project['demo'] != null
+                                              ? () => widget.launchURL(
+                                                project['demo'],
+                                              )
+                                              : () => widget.showCilantroDemo(
+                                                context,
+                                              ),
                                       tooltip: "View Project",
                                     ),
                                 ],
@@ -979,16 +965,18 @@ class _RegularProjectCardState extends State<_RegularProjectCard> {
             color: widget.isDark ? Colors.grey[900] : Colors.white,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: _isHovered
-                  ? primaryColor.withOpacity(0.3)
-                  : (widget.isDark ? Colors.grey[800]! : Colors.grey[200]!),
+              color:
+                  _isHovered
+                      ? primaryColor.withOpacity(0.3)
+                      : (widget.isDark ? Colors.grey[800]! : Colors.grey[200]!),
               width: 1.5,
             ),
             boxShadow: [
               BoxShadow(
-                color: _isHovered
-                    ? primaryColor.withOpacity(0.2)
-                    : Colors.black.withOpacity(0.05),
+                color:
+                    _isHovered
+                        ? primaryColor.withOpacity(0.2)
+                        : Colors.black.withOpacity(0.05),
                 blurRadius: _isHovered ? 20 : 10,
                 offset: const Offset(0, 5),
               ),
@@ -1030,14 +1018,18 @@ class _RegularProjectCardState extends State<_RegularProjectCard> {
                             style: GoogleFonts.inter(
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
-                              color: widget.isDark ? Colors.white : Colors.black,
+                              color:
+                                  widget.isDark ? Colors.white : Colors.black,
                             ),
                           ),
                           Text(
                             project['subtitle'],
                             style: GoogleFonts.inter(
                               fontSize: 14,
-                              color: widget.isDark ? Colors.white60 : Colors.black54,
+                              color:
+                                  widget.isDark
+                                      ? Colors.white60
+                                      : Colors.black54,
                             ),
                           ),
                         ],
@@ -1061,35 +1053,45 @@ class _RegularProjectCardState extends State<_RegularProjectCard> {
                         height: 1.4,
                       ),
                     ),
-                    if (project['points'] != null && (project['points'] as List).isNotEmpty) ...[
+                    if (project['points'] != null &&
+                        (project['points'] as List).isNotEmpty) ...[
                       const SizedBox(height: 12),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: (project['points'] as List)
-                            .map<Widget>((point) => Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "• ",
-                                      style: TextStyle(
-                                        color: primaryColor,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        point,
-                                        style: GoogleFonts.inter(
-                                          fontSize: 13,
-                                          color: widget.isDark
-                                              ? Colors.white.withOpacity(0.92)
-                                              : Colors.black.withOpacity(0.92),
+                        children:
+                            (project['points'] as List)
+                                .map<Widget>(
+                                  (point) => Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "• ",
+                                        style: TextStyle(
+                                          color: primaryColor,
+                                          fontSize: 14,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ))
-                            .toList(),
+                                      Expanded(
+                                        child: Text(
+                                          point,
+                                          style: GoogleFonts.inter(
+                                            fontSize: 13,
+                                            color:
+                                                widget.isDark
+                                                    ? Colors.white.withOpacity(
+                                                      0.92,
+                                                    )
+                                                    : Colors.black.withOpacity(
+                                                      0.92,
+                                                    ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                                .toList(),
                       ),
                     ],
                     const SizedBox(height: 16),
@@ -1097,26 +1099,29 @@ class _RegularProjectCardState extends State<_RegularProjectCard> {
                     Wrap(
                       spacing: 6,
                       runSpacing: 6,
-                      children: (project['techStack'] as List<String>).take(3).map((tech) {
-                        return Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: primaryColor.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
+                      children:
+                          (project['techStack'] as List<String>).take(3).map((
                             tech,
-                            style: GoogleFonts.inter(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w500,
-                              color: primaryColor,
-                            ),
-                          ),
-                        );
-                      }).toList(),
+                          ) {
+                            return Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: primaryColor.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                tech,
+                                style: GoogleFonts.inter(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w500,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            );
+                          }).toList(),
                     ),
                     const SizedBox(height: 8),
                     // Actions
@@ -1125,7 +1130,8 @@ class _RegularProjectCardState extends State<_RegularProjectCard> {
                         if (project['github'] != null)
                           _ActionButton(
                             icon: Icons.code,
-                            onPressed: () => widget.launchURL(project['github']),
+                            onPressed:
+                                () => widget.launchURL(project['github']),
                             tooltip: "Code",
                             compact: true,
                           ),
@@ -1323,9 +1329,10 @@ class _VideoDemoItemState extends State<_VideoDemoItem>
               color: Colors.black,
             ),
             clipBehavior: Clip.antiAlias,
-            child: _controller.value.isInitialized
-                ? VideoPlayer(_controller)
-                : const Center(child: CircularProgressIndicator()),
+            child:
+                _controller.value.isInitialized
+                    ? VideoPlayer(_controller)
+                    : const Center(child: CircularProgressIndicator()),
           ),
         ],
       ),
