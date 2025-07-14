@@ -24,28 +24,6 @@ class BetaProjectsSection extends StatelessWidget {
         'Mobile UI optimization with native features',
         'Comprehensive audit trail system',
         'Data recovery for deleted records',
-        'Timesheet editing functionality',
-      ],
-    },
-    {
-      'title': 'BayForm',
-      'subtitle': '📄 Modern AI-Powered Resume Builder & Career Tool',
-      'points': [
-        'Next.js 14 resume builder with TypeScript, Tailwind CSS, and real-time preview across 5 templates.',
-        'Advanced PDF export using html2canvas and jsPDF with print-optimized styling.',
-        'Local storage management with form validation, progress tracking, and Framer Motion animations.',
-        'QR code integration, skill categorization, GitHub project links, and certification sections.',
-        'Interactive form builder with progress tracking and job description analysis.',
-      ],
-      'github': 'https://github.com/c7harry/Resume-Builder',
-      'demo': 'https://bayform.netlify.app/',
-      'accentColor': Color(0xFF10B981),
-      'accentIcon': Icons.description_outlined,
-      'todo': [
-        'Cloud sync with Supabase/Firebase (debating with Bay Valley Tech to keep UX direct)',
-        'AI resume tailoring with job analysis and ATS optimization',
-        'Cover letter generation and job tracking',
-        'Template customization interface post-selection',
       ],
     },
   ];

@@ -9,6 +9,20 @@ import 'package:video_player/video_player.dart';
 class ProjectsSection extends StatelessWidget {
   final List<Map<String, dynamic>> projects = [
     {
+      'title': 'BayForm',
+      'subtitle': '📄 Modern AI-Powered Resume Builder & Career Tool',
+      'points': [
+        'Next.js 14 resume builder with TypeScript, Tailwind CSS, and real-time preview/in-line editing.',
+        'Advanced PDF export using html2canvas and jsPDF with print-optimized styling.',
+        'Local storage management with form validation, progress tracking, and Framer Motion animations.',
+        'QR code integration, skill categorization, GitHub project links, and certification sections.',
+      ],
+      'github': 'https://github.com/c7harry/Resume-Builder',
+      'demo': 'https://bayform.netlify.app/',
+      'accentColor': Color(0xFF10B981),
+      'accentIcon': Icons.description_outlined,
+    },
+    {
       'title': 'TaskPilot',
       'subtitle': '🚀 Chrome Extension - Bay Valley Tech Challenge',
       'points': [
@@ -20,7 +34,7 @@ class ProjectsSection extends StatelessWidget {
       'github':
           'https://github.com/c7harry/module-2-js-final-project-Harpreet-Dosanjh',
       'demo': 'https://module-2-js-final-project-harpreet.onrender.com',
-      'accentColor': Color(0xFFe3f2fd),
+      'accentColor': Color(0xFF3B82F6),
       'accentIcon': Icons.check_circle_outline,
     },
     {
@@ -34,7 +48,7 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/my_portfolio',
       'demo': 'https://portfolio-874c2.web.app/',
-      'accentColor': Color(0xFFf3e5f5),
+      'accentColor': Color(0xFF8B5CF6),
       'accentIcon': Icons.person_outline,
     },
     {
@@ -48,7 +62,7 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/CSE-106-Final-Project',
       'demo': 'https://bobcat-buzz.onrender.com/',
-      'accentColor': Color(0xFFe8f5e9),
+      'accentColor': Color(0xFF64748B),
       'accentIcon': Icons.lock_outline,
     },
     {
@@ -62,7 +76,7 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/bootstrap-email-dosanjh',
       'demo': 'https://bootstrap-email-dosanjh.onrender.com',
-      'accentColor': Color(0xFFfff3e0),
+      'accentColor': Color(0xFFF59E0B),
       'accentIcon': Icons.email_outlined,
     },
     {
@@ -76,7 +90,7 @@ class ProjectsSection extends StatelessWidget {
       ],
       'github': 'https://github.com/c7harry/Minecraft-OpenGL',
       'videoDemo': true,
-      'accentColor': Color(0xFFede7f6),
+      'accentColor': Color(0xFFEC4899),
       'accentIcon': Icons.videogame_asset_outlined,
     },
     {
@@ -89,7 +103,7 @@ class ProjectsSection extends StatelessWidget {
         'Developed in partnership with SupHerb Farms and featured at UC Merced’s Innovate 2 Grow.',
       ],
       'cilantroDemo': true,
-      'accentColor': Color(0xFFf1f8e9),
+      'accentColor': Color(0xFF84CC16),
       'accentIcon': Icons.agriculture_outlined,
     },
   ];
