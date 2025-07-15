@@ -70,8 +70,7 @@ class _ProjectsSectionState extends State<ProjectsSection>
     {
       'title': 'CraftMail',
       'subtitle': 'Responsive Email Client',
-      'description':
-          'Bay Valley Tech Challenge',
+      'description': 'Bay Valley Tech Challenge',
       'points': [
         'Built using HTML, CSS, and Bootstrap in 8-hours.',
         'Supports message filtering, folder tabs, and composing new messages.',
@@ -79,13 +78,13 @@ class _ProjectsSectionState extends State<ProjectsSection>
       ],
       'github': 'https://github.com/c7harry/bootstrap-email-dosanjh',
       'demo': 'https://bootstrap-email-dosanjh.onrender.com',
-      'primaryColor': Color(0xFFfff3e0),
+      'primaryColor': Color(0xFFDC2626),
       'icon': Icons.email_outlined,
       'techStack': ['HTML', 'CSS', 'Bootstrap'],
       'category': 'Development',
       'featured': false,
       'metrics': {},
-      'gradient': [Color(0xFFfff3e0), Color(0xFFffe0b2)],
+      'gradient': [Color(0xFFDC2626), Color(0xFFB91C1C)],
     },
     {
       'title': 'Cilantro Estimating',
@@ -129,10 +128,10 @@ class _ProjectsSectionState extends State<ProjectsSection>
       'github':
           'https://github.com/c7harry/module-2-js-final-project-Harpreet-Dosanjh',
       'demo': 'https://module-2-js-final-project-harpreet.onrender.com',
-      'primaryColor': Color(0xFF3B82F6),
-      'secondaryColor': Color(0xFF2563EB),
+      'primaryColor': Color(0xFF1E40AF),
+      'secondaryColor': Color(0xFF1D4ED8),
       'icon': Icons.task_outlined,
-      'gradient': [Color(0xFF3B82F6), Color(0xFF1D4ED8)],
+      'gradient': [Color(0xFF1E40AF), Color(0xFF1E3A8A)],
     },
     {
       'title': 'Minecraft Engine',
@@ -150,10 +149,10 @@ class _ProjectsSectionState extends State<ProjectsSection>
       ],
       'github': 'https://github.com/c7harry/Minecraft-OpenGL',
       'videoDemo': true,
-      'primaryColor': Color(0xFFEC4899),
-      'secondaryColor': Color(0xFFDB2777),
+      'primaryColor': Color(0xFF7C3AED),
+      'secondaryColor': Color(0xFF6D28D9),
       'icon': Icons.view_in_ar_outlined,
-      'gradient': [Color(0xFFEC4899), Color(0xFFBE185D)],
+      'gradient': [Color(0xFF7C3AED), Color(0xFF5B21B6)],
     },
     {
       'title': 'Portfolio Website',
@@ -175,10 +174,10 @@ class _ProjectsSectionState extends State<ProjectsSection>
       ],
       'github': 'https://github.com/c7harry/my_portfolio',
       'demo': 'https://portfolio-874c2.web.app/',
-      'primaryColor': Color(0xFF8B5CF6),
-      'secondaryColor': Color(0xFF7C3AED),
+      'primaryColor': Color(0xFF0891B2),
+      'secondaryColor': Color(0xFF0E7490),
       'icon': Icons.web_outlined,
-      'gradient': [Color(0xFF8B5CF6), Color(0xFF6D28D9)],
+      'gradient': [Color(0xFF0891B2), Color(0xFF164E63)],
     },
     {
       'title': 'Bobcat Buzz',
@@ -196,10 +195,10 @@ class _ProjectsSectionState extends State<ProjectsSection>
       ],
       'github': 'https://github.com/c7harry/CSE-106-Final-Project',
       'demo': 'https://bobcat-buzz.onrender.com/',
-      'primaryColor': Color(0xFFF59E42), // orange
-      'secondaryColor': Color(0xFFF97316),
+      'primaryColor': Color(0xFFF59E0B),
+      'secondaryColor': Color(0xFFD97706),
       'icon': Icons.security_outlined,
-      'gradient': [Color(0xFFF59E42), Color(0xFFF97316)],
+      'gradient': [Color(0xFFF59E0B), Color(0xFFB45309)],
     },
   ];
 
